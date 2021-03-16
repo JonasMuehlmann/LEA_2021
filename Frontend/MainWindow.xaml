@@ -1,0 +1,89 @@
+﻿<Window x:Class="LEA_2021.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LEA_2021"
+        mc:Ignorable="d"
+        Title="3D Renderer - LEA 2021" WindowStartupLocation="CenterOwner" 
+        ResizeMode="NoResize" 
+        Closing="OnWindowClosing"
+        Height="500" 
+        Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" Margin="20">
+            <StackPanel DockPanel.Dock="Top">
+                <ProgressBar IsIndeterminate="True" Height="0px" x:Name="progressBar" Maximum="100" Minimum="1"></ProgressBar>
+
+                <Rectangle Height="330px" Fill="Blue"></Rectangle>
+            </StackPanel>
+
+            <Button DockPanel.Dock="Bottom" FontSize="16px" FontWeight="Medium" Margin="0,20,0,0" Click="RenderButton_Click">Rendern</Button>
+        </DockPanel>
+
+        <StackPanel Grid.Column="1" Margin="0, 20, 20, 20">
+            <StackPanel.Resources>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Margin" Value="0, 0, 0, 10"></Setter>
+                </Style>
+                <Style TargetType="Label">
+                    <Setter Property="Padding" Value="0, 13, 0, 5"></Setter>
+                    <Setter Property="FontSize" Value="14px"></Setter>
+                    <Setter Property="FontWeight" Value="Medium"></Setter>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Padding" Value="5"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            
+            <StackPanel>
+                <Label>Szene laden</Label>
+                <ComboBox>
+                    <ComboBoxItem IsSelected="True">Szene 1</ComboBoxItem>
+                    <ComboBoxItem>Szene 2</ComboBoxItem>
+                    <ComboBoxItem>Szene 3</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <Label>Iterationen</Label>
+                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Minimum="10" Maximum="1000" x:Name="optionIterationSlider"></Slider>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="120px">
+                    <Label>Höhe</Label>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionHeight">450</TextBox>
+                </StackPanel>
+
+                <StackPanel Width="120px" Margin="5px, 0, 0, 0">
+                    <Label>Breite</Label>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionWidth">125</TextBox>
+                </StackPanel>
+            </StackPanel>
+
+
+            <StackPanel>
+                <Label>Field of View (FOV)</Label>
+                <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionVOW">120</TextBox>
+            </StackPanel>
+
+
+            <StackPanel>
+                <Label>Objekte</Label>
+                <ListBox x:Name="objectList" SelectionChanged="objectList_SelectionChanged">
+
+                </ListBox>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

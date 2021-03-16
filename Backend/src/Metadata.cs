@@ -8,6 +8,7 @@ namespace LEA_2021
 
         public int Height { get; set; }
 
+        // Horizontal Field of View in radians
         public int Fov { get; set; }
 
         public int NumIterations { get; set; }
@@ -25,5 +26,11 @@ namespace LEA_2021
         }
 
         #endregion
+
+
+        public float GetAspectRatio()
+        {
+            return (float) Width / Height;
+        }
     }
 }

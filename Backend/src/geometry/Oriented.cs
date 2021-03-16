@@ -7,7 +7,7 @@ namespace LEA_2021
     {
         #region Properties
 
-        public Vector<float> Orientation { get; set; }
+        public Vector3 Orientation { get; set; }
 
         #endregion
     }

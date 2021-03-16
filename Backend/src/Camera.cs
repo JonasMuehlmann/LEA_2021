@@ -3,21 +3,21 @@ using System.Numerics;
 
 namespace LEA_2021
 {
-    public class Ray
+    public class Camera
     {
         #region Properties
 
-        public Vector3 Origin { get; }
+        public Vector3 Position { get; set; }
 
-        public Vector3 Direction { get; }
+        public Vector3 Direction { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public Ray(Vector3 origin, Vector3 direction)
+        public Camera(Vector3 position, Vector3 direction)
         {
-            Origin    = origin;
+            Position  = position;
             Direction = direction;
         }
 

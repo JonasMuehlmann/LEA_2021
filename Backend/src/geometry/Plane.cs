@@ -16,7 +16,7 @@ namespace LEA_2021
 
         #region Constructors
 
-        public Plane(Vector<float> orientation, int width, int height)
+        public Plane(Vector3 orientation, int width, int height)
         {
             Orientation = orientation;
             Width       = width;
@@ -26,9 +26,9 @@ namespace LEA_2021
         #endregion
 
 
-        public override Vector<float>? Intersect(Ray ray, Vector<float> center)
+        public override Vector3? Intersect(Ray ray, Vector3 center)
         {
-            float denominator = Vector.Dot(Orientation, ray.Direction);
+            float denominator = Vector3.Dot(Orientation, ray.Direction);
 
             // Check if denominator is approximately 0
             if (Math.Abs(0 - denominator) > 0.0001f)
@@ -37,7 +37,7 @@ namespace LEA_2021
                 return null;
             }
 
-            float t = Vector.Dot(center - ray.Origin, Orientation) / denominator;
+            float t = Vector3.Dot(center - ray.Origin, Orientation) / denominator;
 
             return ray.Origin + t * ray.Direction;
         }

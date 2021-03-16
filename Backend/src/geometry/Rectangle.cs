@@ -17,7 +17,7 @@ namespace LEA_2021
 
         #region Constructors
 
-        public Rectangle(int width, int height, int length, Vector<float> orientation)
+        public Rectangle(int width, int height, int length, Vector3 orientation)
         {
             Width       = width;
             Height      = height;
@@ -28,7 +28,7 @@ namespace LEA_2021
         #endregion
 
 
-        public override Vector<float>? Intersect(Ray ray, Vector<float> center)
+        public override Vector3? Intersect(Ray ray, Vector3 center)
         {
             throw new System.NotImplementedException();
         }

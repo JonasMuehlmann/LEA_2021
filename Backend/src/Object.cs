@@ -11,13 +11,13 @@ namespace LEA_2021
 
         public Shape Shape { get; set; }
 
-        public Vector<float> Position { get; set; }
+        public Vector3 Position { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public Object(Material material, Shape shape, Vector<float> position)
+        public Object(Material material, Shape shape, Vector3 position)
         {
             Material = material;
             Shape    = shape;
@@ -27,7 +27,7 @@ namespace LEA_2021
         #endregion
 
 
-        public Vector<float>? Intersect(Ray ray)
+        public Vector3? Intersect(Ray ray)
         {
             return Shape.Intersect(ray, Position);
         }

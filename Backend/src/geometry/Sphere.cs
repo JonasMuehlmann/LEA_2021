@@ -21,7 +21,7 @@ namespace LEA_2021
         #endregion
 
 
-        public override Vector<float>? Intersect(Ray ray, Vector<float> center)
+        public override Vector3? Intersect(Ray ray, Vector3 center)
         {
             throw new System.NotImplementedException();
         }

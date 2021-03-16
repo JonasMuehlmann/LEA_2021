@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Numerics;
-
+using System.Text.Json;
+using System.Json;
 
 namespace LEA_2021
 {
@@ -26,9 +28,20 @@ namespace LEA_2021
         public Scene(Metadata metadata, Camera camera)
         {
             Metadata = metadata;
-            Objects  = new List<Object>();
-            Image    = new Bitmap(metadata.Width, metadata.Height);
-            Camera   = camera;
+            Objects = new List<Object>();
+            Image = new Bitmap(metadata.Width, metadata.Height);
+            Camera = camera;
+        }
+
+        public Scene(string configPath)
+        {
+            // deserialize JSON directly from a file
+            // var serializedConfig = JsonSerializer.Deserialize<Scene>(File.ReadAllText(@configPath));
+            
+            JsonValue value = JsonValue.Parse(File.ReadAllText(@configPath));
+            JsonObject result = value as JsonObject;
+
+            Console.WriteLine((int)value["Metadata"]["Width"]);
         }
 
         #endregion
@@ -41,10 +54,10 @@ namespace LEA_2021
                 for (int column = 0; column < Metadata.Height; ++column)
                 {
                     float ray_direction_x = (row
-                                           + 0.5f
-                                           - Metadata.Width)
-                                          * (float) Math.Tan(Metadata.Fov / 2f)
-                                          * Metadata.GetAspectRatio();
+                                             + 0.5f
+                                             - Metadata.Width)
+                                            * (float) Math.Tan(Metadata.Fov / 2f)
+                                            * Metadata.GetAspectRatio();
 
                     float ray_direction_y = column + 0.5f - Metadata.Width * 0.5f * (float) Math.Tan(Metadata.Fov / 2f);
                     // float ray_direction_z = -Metadata.Height / (2f * (float) Math.Tan(Metadata.Fov / 2d));
@@ -52,10 +65,10 @@ namespace LEA_2021
 
                     var ray_direction =
                         new Vector3(ray_direction_y,
-                                    ray_direction_y,
-                                    ray_direction_z
-                                   )
-                      - Camera.Position;
+                            ray_direction_y,
+                            ray_direction_z
+                        )
+                        - Camera.Position;
 
                     foreach (var _object in Objects)
                     {

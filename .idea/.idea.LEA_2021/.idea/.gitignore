@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.LEA_2021.iml
+# Datasource local storage ignored files
+/../../../../../../../../:\Users\info\RiderProjects\LEA_2021\.idea\.idea.LEA_2021\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

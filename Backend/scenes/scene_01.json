@@ -3,7 +3,7 @@
         "Width":          1920,
         "Height":         1080,
         "Num_Iterations": 5000,
-        "FOV":            120,
+        "FOV": 120
     },
     "Objects":  [
         {
@@ -12,7 +12,7 @@
             "Properties": {
                 "Radius":   10,
                 "Position": [10, 20, 30]
-            },
+            }
         },
         {
             "Shape":      "Rectangle",
@@ -22,7 +22,7 @@
                 "Width":    20,
                 "Height":   30,
                 "Position": [10, 20, 30]
-            },
+            }
         }
     ]
 }

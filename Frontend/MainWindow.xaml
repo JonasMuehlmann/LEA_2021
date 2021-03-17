@@ -60,12 +60,12 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <StackPanel Width="120px">
+                <StackPanel Width="128px">
                     <Label>Höhe</Label>
                     <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionHeight">450</TextBox>
                 </StackPanel>
 
-                <StackPanel Width="120px" Margin="5px, 0, 0, 0">
+                <StackPanel Width="128px" Margin="5px, 0, 0, 0">
                     <Label>Breite</Label>
                     <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionWidth">125</TextBox>
                 </StackPanel>

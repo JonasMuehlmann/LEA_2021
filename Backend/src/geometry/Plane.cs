@@ -63,13 +63,20 @@ namespace LEA_2021
             float denominator = Vec3.Dot(Orientation, ray.Direction);
 
             // Check if denominator is approximately 0
-            if (Math.Abs(denominator) < 0.0001f)
+
+            if (Math.Abs(denominator) < Single.Epsilon)
             {
                 // Ray does not intersect with plane
                 return null;
             }
 
             float t = Vec3.Dot(center - ray.Origin, Orientation) / denominator;
+
+            if (t > 0)
+            {
+                // Ray intersects, but is shot in opposite direction
+                return null;
+            }
 
             return ray.Origin + t * ray.Direction;
         }

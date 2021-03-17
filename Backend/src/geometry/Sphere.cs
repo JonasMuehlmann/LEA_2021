@@ -34,17 +34,10 @@ namespace LEA_2021
 
 
         /*
-         * Calculate intersection point given the following quadratic formula:
+         * Calculate intersection point given the quadratic formula
          */
         public override Vec3? Intersect(Ray ray, Point3 center)
         {
-            // // var CP       = ray.Origin - center;
-            // var CP       = center - ray.Origin;
-            // var CpDotR_D = Vec3.Dot(CP, R_D);
-
-            // float discriminant = Util.Square(CpDotR_D)
-            //                    - (Vec3.Dot(R_D, R_D) * Vec3.Dot(CP, CP)
-            //                     - Util.Square(Radius));
             float a            = Vec3.Dot(ray.Direction, ray.Direction);
             float b            = 2 * Vec3.Dot(center - ray.Origin, ray.Direction);
             float c            = Vec3.Dot(center     - ray.Origin, center - ray.Origin) - Util.Square(Radius);

@@ -33,7 +33,7 @@
             "Properties": {
                 "Width":       20,
                 "Height":      30,
-                "Position":    [0, 0, 0],
+                "Position":    [0, 0, 10],
                 "Orientation": [0, 1, 0]
             }
         }

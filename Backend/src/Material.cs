@@ -1,8 +1,13 @@
 using System.Drawing;
+using System.Numerics;
 
 
 namespace LEA_2021
 {
+    using Vec3 = Vector3;
+    using Point3 = Vector3;
+
+
     public class Material
     {
         #region Properties
@@ -45,5 +50,7 @@ namespace LEA_2021
         }
 
         #endregion
+
+        // TODO: Find sensible defaults for texture maps to implement constructor with default maps
     }
 }

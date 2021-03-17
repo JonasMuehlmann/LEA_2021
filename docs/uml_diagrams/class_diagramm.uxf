@@ -4,21 +4,21 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>666</y>
+      <x>372</x>
+      <y>678</y>
       <w>258</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>/Shape/
 -
-+intersect(Ray ray, position: Vec3) Vec3</panel_attributes>
++intersect(ray: Ray, position: Vec3) Vec3</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>768</y>
+      <x>372</x>
+      <y>780</y>
       <w>90</w>
       <h>30</h>
     </coordinates>
@@ -30,12 +30,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>522</x>
-      <y>858</y>
+      <x>474</x>
+      <y>870</y>
       <w>84</w>
       <h>48</h>
     </coordinates>
-    <panel_attributes>Rectangle
+    <panel_attributes>Cuboid
 -
 +length: float
 +width: float
@@ -45,8 +45,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>522</x>
-      <y>426</y>
+      <x>474</x>
+      <y>438</y>
       <w>156</w>
       <h>78</h>
     </coordinates>
@@ -64,8 +64,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>522</x>
-      <y>552</y>
+      <x>474</x>
+      <y>564</y>
       <w>156</w>
       <h>60</h>
     </coordinates>
@@ -81,8 +81,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>462</x>
-      <y>690</y>
+      <x>414</x>
+      <y>702</y>
       <w>18</w>
       <h>90</h>
     </coordinates>
@@ -92,8 +92,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>690</y>
+      <x>564</x>
+      <y>702</y>
       <w>18</w>
       <h>90</h>
     </coordinates>
@@ -103,8 +103,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>594</x>
-      <y>498</y>
+      <x>546</x>
+      <y>510</y>
       <w>18</w>
       <h>66</h>
     </coordinates>
@@ -114,8 +114,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>594</x>
-      <y>606</y>
+      <x>546</x>
+      <y>618</y>
       <w>18</w>
       <h>72</h>
     </coordinates>
@@ -125,8 +125,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>264</x>
-      <y>552</y>
+      <x>216</x>
+      <y>564</y>
       <w>126</w>
       <h>66</h>
     </coordinates>
@@ -143,24 +143,23 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>84</x>
-      <y>552</y>
+      <x>36</x>
+      <y>564</y>
       <w>126</w>
-      <h>54</h>
+      <h>66</h>
     </coordinates>
     <panel_attributes>Metadata
 -
 +width: int
 +height: int
-+fov: int
 +num_iterations: int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>204</x>
-      <y>570</y>
+      <x>156</x>
+      <y>582</y>
       <w>72</w>
       <h>18</h>
     </coordinates>
@@ -170,8 +169,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>384</x>
-      <y>564</y>
+      <x>336</x>
+      <y>576</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -184,8 +183,8 @@ contains &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>624</x>
-      <y>858</y>
+      <x>576</x>
+      <y>870</y>
       <w>84</w>
       <h>48</h>
     </coordinates>
@@ -198,8 +197,8 @@ contains &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>726</x>
-      <y>612</y>
+      <x>678</x>
+      <y>624</y>
       <w>96</w>
       <h>36</h>
     </coordinates>
@@ -212,8 +211,8 @@ contains &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>672</x>
-      <y>642</y>
+      <x>624</x>
+      <y>654</y>
       <w>114</w>
       <h>48</h>
     </coordinates>
@@ -223,8 +222,8 @@ contains &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>672</x>
-      <y>570</y>
+      <x>624</x>
+      <y>582</y>
       <w>114</w>
       <h>54</h>
     </coordinates>
@@ -234,8 +233,8 @@ contains &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>558</x>
-      <y>768</y>
+      <x>510</x>
+      <y>780</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -247,8 +246,8 @@ contains &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>792</y>
+      <x>612</x>
+      <y>804</y>
       <w>18</w>
       <h>78</h>
     </coordinates>
@@ -258,8 +257,8 @@ contains &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>792</y>
+      <x>510</x>
+      <y>804</y>
       <w>18</w>
       <h>78</h>
     </coordinates>
@@ -269,26 +268,52 @@ contains &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>264</x>
-      <y>426</y>
+      <x>216</x>
+      <y>438</y>
       <w>126</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>Camera
 -
 +position: Vec3
-+direction: Vec3</panel_attributes>
++direction: Vec3
++fov: float</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>318</x>
-      <y>468</y>
+      <x>270</x>
+      <y>480</y>
       <w>18</w>
       <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>228</x>
+      <y>678</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Light
+-
++ray: Ray
++energy: float</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>624</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
 </diagram>

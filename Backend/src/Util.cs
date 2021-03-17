@@ -1,8 +1,13 @@
 using System;
+using System.Numerics;
 
 
 namespace LEA_2021
 {
+    using Vec3 = Vector3;
+    using Point3 = Vector3;
+
+
     public static class Util
     {
         public static float RadiansToDegree(float radians)
@@ -38,6 +43,24 @@ namespace LEA_2021
         public static float DegreesToRadians(int degrees)
         {
             return (float) (degrees * Math.PI / 180d);
+        }
+
+
+        public static int Square(int value)
+        {
+            return value * value;
+        }
+
+
+        public static float Square(float value)
+        {
+            return value * value;
+        }
+
+
+        public static double Square(double value)
+        {
+            return value * value;
         }
     }
 }

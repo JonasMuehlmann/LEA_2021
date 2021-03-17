@@ -8,8 +8,6 @@ namespace LEA_2021
 
         public int Height { get; set; }
 
-        // Horizontal Field of View in radians
-        public int Fov { get; set; }
 
         public int NumIterations { get; set; }
 
@@ -17,11 +15,10 @@ namespace LEA_2021
 
         #region Constructors
 
-        public Metadata(int width, int height, int fov, int numIterations)
+        public Metadata(int width, int height, int numIterations)
         {
             Width         = width;
             Height        = height;
-            Fov           = fov;
             NumIterations = numIterations;
         }
 

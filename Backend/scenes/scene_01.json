@@ -1,27 +1,31 @@
 {
     "Metadata": {
-        "Width":          1920,
-        "Height":         1080,
-        "Num_Iterations": 5000,
+        "Width": 1920,
+        "Height": 1080,
+        "Num_Iterations": 5000
+    },
+    "Camera": {
+        "Position": [0, 0, 0],
+        "Direction": [0, 0, 1],
         "FOV": 120
     },
-    "Objects":  [
+    "Objects": [
         {
-            "Shape":      "Sphere",
-            "Material":   "gold",
+            "Shape": "Sphere",
+            "Material": "gold",
             "Properties": {
-                "Radius":   10,
+                "Radius": 10,
                 "Position": [10, 20, 30]
             }
         },
         {
-            "Shape":      "Rectangle",
-            "Material":   "wood",
+            "Shape": "Plane",
+            "Material": "wood",
             "Properties": {
-                "Length":   10,
-                "Width":    20,
-                "Height":   30,
-                "Position": [10, 20, 30]
+                "Width": 20,
+                "Height": 30,
+                "Position": [10, 20, 30],
+                "Orientation": [0, 0, 0]
             }
         }
     ]

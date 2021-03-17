@@ -113,15 +113,7 @@ namespace LEA_2021
                 }
 
                 Objects.Add(
-                    new Object(new Material(
-                            new Bitmap(1, 1),
-                            new Bitmap(1, 1),
-                            new Bitmap(1, 1),
-                            new Bitmap(1, 1),
-                            new Bitmap(1, 1),
-                            new Bitmap(1, 1),
-                            new Bitmap(1, 1)
-                        ),
+                    new Object(new Material(obj["Material"]),
                         shapeClass,
                         new Vector3(
                             obj["Properties"]["Position"][0],

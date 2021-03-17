@@ -12,7 +12,7 @@
     "Objects": [
         {
             "Shape": "Sphere",
-            "Material": "gold",
+            "Material": "brick",
             "Properties": {
                 "Radius": 10,
                 "Position": [10, 20, 30]
@@ -20,7 +20,7 @@
         },
         {
             "Shape": "Plane",
-            "Material": "wood",
+            "Material": "brick",
             "Properties": {
                 "Width": 20,
                 "Height": 30,

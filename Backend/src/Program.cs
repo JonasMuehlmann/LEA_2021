@@ -16,22 +16,22 @@ namespace LEA_2021
 
             var scene = new Scene(new Metadata(1920, 1080, 5), camera);
 
-            var empty_material = new Material(new Bitmap(1, 1),
-                                              new Bitmap(1, 1),
-                                              new Bitmap(1, 1),
-                                              new Bitmap(1, 1),
-                                              new Bitmap(1, 1),
-                                              new Bitmap(1, 1),
-                                              new Bitmap(1, 1)
-                                             );
+            // var scene = new Scene(@"C:\Users\info\RiderProjects\LEA_2021\Backend\scenes\scene_01.json");
+            
 
-            // scene.Objects.Add(new Object(empty_material,
-            //                              new Plane(new Vec3(0, 0, 1), 5, 10),
-            //                              new Point3(0, 0, 0)
-            //                             )
-            //                  );
-
-            scene.Objects.Add(new Object(empty_material, new Sphere(10), new Point3(0, 10, 50)));
+            scene.Objects.Add(new Object(new Material(
+                        new Bitmap(1, 1),
+                        new Bitmap(1, 1),
+                        new Bitmap(1, 1),
+                        new Bitmap(1, 1),
+                        new Bitmap(1, 1),
+                        new Bitmap(1, 1),
+                        new Bitmap(1, 1)
+                    ),
+                    new Plane(new Vector3(0, 1, 0), 5, 10),
+                    new Vector3(0, 0, 0)
+                )
+            );
 
             scene.Render();
         }

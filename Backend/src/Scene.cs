@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Numerics;
-
+using System.Text.Json;
+using System.Json;
 
 namespace LEA_2021
 {
@@ -43,6 +45,17 @@ namespace LEA_2021
             Objects  = new List<Object>();
             Image    = new Bitmap(metadata.Width, metadata.Height);
             Camera   = new Camera();
+        }
+
+        public Scene(string configPath)
+        {
+            // deserialize JSON directly from a file
+            // var serializedConfig = JsonSerializer.Deserialize<Scene>(File.ReadAllText(@configPath));
+            
+            JsonValue value = JsonValue.Parse(File.ReadAllText(@configPath));
+            JsonObject result = value as JsonObject;
+
+            Console.WriteLine((int)value["Metadata"]["Width"]);
         }
 
         #endregion

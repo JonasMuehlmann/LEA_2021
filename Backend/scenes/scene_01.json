@@ -1,10 +1,12 @@
 {
+    "Background": "../../../scenes/bg.png",
     "Metadata": {
         "Width": 1920,
         "Height": 1080,
         "Num_Iterations": 5
     },
     "Camera":   {
+    "Camera": {
         "Position": [0, 0, 0],
         "Direction": [0, 0, 1],
         "FOV": 60

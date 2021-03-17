@@ -64,8 +64,6 @@ namespace LEA_2021
                     var bitmapName = Path.GetFileNameWithoutExtension(file);
                     neededBitmaps.Remove(bitmapName);
 
-                    Console.WriteLine(char.ToUpper(bitmapName[0]).ToString() + bitmapName.Substring(1));
-
                     var propInfo =
                         typeof(Material).GetProperty(char.ToUpper(bitmapName[0]).ToString() + bitmapName.Substring(1));
                     propInfo.SetValue(this, Bitmap.FromFile(file), null);

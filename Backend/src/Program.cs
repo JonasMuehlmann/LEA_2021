@@ -12,7 +12,10 @@ namespace LEA_2021
     {
         static void Main(string[] args)
         {
-            var scene = new Scene(@"../../../scenes/scene_01.json");
+            var camera = new Camera(new Point3(0, 0, 0), new Vec3(0, 0, 1), Util.DegreesToRadians(60));
+
+            var scene = new Scene(@"scene_01");
+            
 
             scene.SetBackground(Color.Black);
             scene.Render();

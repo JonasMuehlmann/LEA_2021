@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Json;
 using System.Numerics;
-
+using System.Text.RegularExpressions;
 
 namespace LEA_2021
 {
@@ -52,14 +53,15 @@ namespace LEA_2021
 
 
         // Default background color is black
-        public Scene(string configPath)
+        public Scene(string configName)
         {
-            JsonValue value = JsonValue.Parse(File.ReadAllText(@configPath));
-
-            Metadata = new Metadata((int) value["Metadata"]["Width"],
-                                    (int) value["Metadata"]["Height"],
-                                    (int) value["Metadata"]["Num_Iterations"]
-                                   );
+            JsonValue value = JsonValue.Parse(File.ReadAllText($@"../../../scenes/{configName}.json"));
+            
+            Metadata = new Metadata(
+                (int) value["Metadata"]["Width"],
+                (int) value["Metadata"]["Height"],
+                (int) value["Metadata"]["Num_Iterations"]
+            );
 
             Image = new Bitmap(Metadata.Width, Metadata.Height);
 
@@ -122,6 +124,23 @@ namespace LEA_2021
                                       )
                            );
             }
+
+
+            if (Regex.IsMatch(value["Background"], @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
+            {
+                // Background is hex color
+                SetBackground(ColorTranslator.FromHtml(value["Background"]));
+            }
+            else if (Regex.IsMatch(value["Background"], @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
+            {
+                // background is path to image
+                SetBackground(value["Background"]);
+            }
+            else
+            {
+                // background must be color word
+                SetBackground(Color.FromName(value["Background"]));
+            }
         }
 
         #endregion
@@ -145,6 +164,7 @@ namespace LEA_2021
         }
 
 
+        [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH")]
         public void Render()
         {
             for (int i = 0; i < Metadata.NumIterations; i++)

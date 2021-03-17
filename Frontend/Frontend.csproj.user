@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="cameraEditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="objectEditor.xaml">
       <SubType>Designer</SubType>
     </Page>

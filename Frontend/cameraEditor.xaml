@@ -1,13 +1,13 @@
-﻿<Window x:Class="LEA_2021.objectEditor"
+﻿<Window x:Class="LEA_2021.cameraEditor"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LEA_2021"
         mc:Ignorable="d"
-        Title="ObjectEditor" WindowStartupLocation="CenterOwner" 
+        Title="Kamera bearbeiten" WindowStartupLocation="CenterOwner" 
         ResizeMode="NoResize" 
-        Height="500" 
+        Height="400" 
         Width="350">
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Top" Margin="20">
@@ -25,57 +25,46 @@
                 </Style>
             </StackPanel.Resources>
 
-            <StackPanel>
-                <Label>Material zuweisen</Label>
-                <ComboBox>
-                    <ComboBoxItem IsSelected="True">Wood</ComboBoxItem>
-                    <ComboBoxItem>Grass</ComboBoxItem>
-                    <ComboBoxItem>Stone</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-
             <StackPanel Orientation="Horizontal">
-                
+
                 <StackPanel Width="94px">
-                    <Label>X</Label>
+                    <Label>Position X</Label>
                     <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionPosX">450</TextBox>
                 </StackPanel>
 
                 <StackPanel Width="94px" Margin="5px, 0, 0, 0">
-                    <Label>Y</Label>
+                    <Label>Position Y</Label>
                     <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionPosY">125</TextBox>
                 </StackPanel>
 
                 <StackPanel Width="94px" Margin="5px, 0, 0, 0">
-                    <Label>Z</Label>
+                    <Label>Position Z</Label>
                     <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionPosZ">125</TextBox>
                 </StackPanel>
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="94px">
+                    <Label>Rotation X</Label>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionDirX">450</TextBox>
+                </StackPanel>
+
+                <StackPanel Width="94px" Margin="5px, 0, 0, 0">
+                    <Label>Rotation Y</Label>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionDirY">125</TextBox>
+                </StackPanel>
+
+                <StackPanel Width="94px" Margin="5px, 0, 0, 0">
+                    <Label>Rotation Z</Label>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionDirZ">125</TextBox>
+                </StackPanel>
+            </StackPanel>
 
 
             <StackPanel>
-                <Label>Radius</Label>
-                <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionRadius">5</TextBox>
+                <Label>Field of View (FOV)</Label>
+                <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionVOW">120</TextBox>
             </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Width="144px">
-                    <Label>Höhe</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionHeight">450</TextBox>
-                </StackPanel>
-
-                <StackPanel Width="144px" Margin="5px, 0, 0, 0">
-                    <Label>Breite</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionWidth">125</TextBox>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
-
-        <StackPanel DockPanel.Dock="Bottom" Margin="20">
-            <Button BorderBrush="Red" Padding="10" FontSize="15px" Background="Red" Foreground="White">
-                Löschen
-            </Button>
         </StackPanel>
     </DockPanel>
 </Window>

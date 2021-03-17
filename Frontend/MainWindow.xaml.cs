@@ -24,6 +24,7 @@ namespace LEA_2021
     public partial class MainWindow : Window
     {
         private objectEditor objectEditorWindow;
+        private cameraEditor cameraEditorWindow;
 
         public MainWindow()
         {
@@ -38,11 +39,20 @@ namespace LEA_2021
             {
                 objectEditorWindow.Close();
             }
+            if (cameraEditorWindow != null)
+            {
+                cameraEditorWindow.Close();
+            }
         }
 
         public void OnEditorWindowClosing(object sender, CancelEventArgs e)
         {
             objectEditorWindow = null;
+        }
+
+        public void OnCameraWindowClosing(object sender, CancelEventArgs e)
+        {
+            cameraEditorWindow = null;
         }
 
         private void updateObjects(){
@@ -69,7 +79,7 @@ namespace LEA_2021
 
         private objectEditor getobjectEditorWindow()
         {
-            if(objectEditorWindow == null)
+            if (objectEditorWindow == null)
             {
                 objectEditorWindow = new objectEditor();
                 objectEditorWindow.Show();
@@ -79,12 +89,29 @@ namespace LEA_2021
             return objectEditorWindow;
         }
 
+        private cameraEditor getCameraEditorWindow()
+        {
+            if (cameraEditorWindow == null)
+            {
+                cameraEditorWindow = new cameraEditor();
+                cameraEditorWindow.Show();
+                cameraEditorWindow.Closing += OnCameraWindowClosing;
+            }
+
+            return cameraEditorWindow;
+        }
+
         private void objectList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ObjectItem currItem = objectList.SelectedItem as ObjectItem;
-            
+
             getobjectEditorWindow().Title = $"{currItem.Name} bearbeiten";
             getobjectEditorWindow().Focus();
+        }
+
+        private void cameraEditButton_Click(object sender, RoutedEventArgs e)
+        {
+            getCameraEditorWindow();
         }
     }
 

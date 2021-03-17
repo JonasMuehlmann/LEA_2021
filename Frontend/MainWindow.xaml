@@ -71,19 +71,16 @@
                 </StackPanel>
             </StackPanel>
 
-
-            <StackPanel>
-                <Label>Field of View (FOV)</Label>
-                <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionVOW">120</TextBox>
-            </StackPanel>
-
-
             <StackPanel>
                 <Label>Objekte</Label>
                 <ListBox x:Name="objectList" SelectionChanged="objectList_SelectionChanged">
 
                 </ListBox>
             </StackPanel>
+
+            <Button x:Name="cameraEditButton" Padding="10" FontSize="15px" Click="cameraEditButton_Click">
+                Kamera bearbeiten
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

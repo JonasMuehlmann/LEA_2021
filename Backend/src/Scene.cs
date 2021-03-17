@@ -54,13 +54,80 @@ namespace LEA_2021
         // Default background color is black
         public Scene(string configPath)
         {
-            // deserialize JSON directly from a file
-            // var serializedConfig = JsonSerializer.Deserialize<Scene>(File.ReadAllText(@configPath));
+            JsonValue value = JsonValue.Parse(File.ReadAllText(@configPath));
+            
+            Metadata = new Metadata(
+                (int) value["Metadata"]["Width"],
+                (int) value["Metadata"]["Height"],
+                (int) value["Metadata"]["Num_Iterations"]
+            );
+            
+            Image = new Bitmap(Metadata.Width, Metadata.Height);
 
-            JsonValue  value  = JsonValue.Parse(File.ReadAllText(@configPath));
-            JsonObject result = value as JsonObject;
+            Camera = new Camera(
+                new Point3(
+                    value["Camera"]["Position"][0],
+                    value["Camera"]["Position"][1],
+                    value["Camera"]["Position"][1]
+                ),
+                new Vec3(
+                    value["Camera"]["Direction"][0],
+                    value["Camera"]["Direction"][1],
+                    value["Camera"]["Direction"][1]
+                ),
+                Util.DegreesToRadians((int) value["Camera"]["FOV"])
+            );
 
-            Console.WriteLine((int) value["Metadata"]["Width"]);
+            
+            // create object classes
+            Objects = new List<Object>();
+            foreach (JsonValue obj in value["Objects"])
+            {
+                Shape shapeClass = null;
+
+                switch ((string) obj["Shape"])
+                {
+                    case "Cuboid":
+                        shapeClass = new Cuboid(
+                            (int) obj["Properties"]["Width"],
+                            (int) obj["Properties"]["Height"],
+                            (int) obj["Properties"]["Length"],
+                            new Vec3(
+                                obj["Properties"]["Orientation"][0],
+                                obj["Properties"]["Orientation"][1],
+                                obj["Properties"]["Orientation"][2]
+                            )
+                        );
+                        break;
+                    case "Sphere":
+                        shapeClass = new Sphere(
+                            (float) obj["Properties"]["Radius"]
+                        );
+                        break;
+                    case "Plane":
+                        shapeClass = new Plane(
+                            new Vec3(
+                                obj["Properties"]["Orientation"][0],
+                                obj["Properties"]["Orientation"][1],
+                                obj["Properties"]["Orientation"][2]
+                            ),
+                            (int) obj["Properties"]["Width"],
+                            (int) obj["Properties"]["Height"]
+                        );
+                        break;
+                }
+
+                Objects.Add(
+                    new Object(new Material(obj),
+                        shapeClass,
+                        new Vector3(
+                            obj["Properties"]["Position"][0],
+                            obj["Properties"]["Position"][1],
+                            obj["Properties"]["Position"][2]
+                        )
+                    )
+                );
+            }
         }
 
         #endregion

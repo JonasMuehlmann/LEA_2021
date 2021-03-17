@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 
 
@@ -62,7 +63,7 @@ namespace LEA_2021
             float denominator = Vec3.Dot(Orientation, ray.Direction);
 
             // Check if denominator is approximately 0
-            if (denominator > -0.0001f)
+            if (Math.Abs(denominator) < 0.0001f)
             {
                 // Ray does not intersect with plane
                 return null;

@@ -12,26 +12,51 @@ namespace LEA_2021
     {
         static void Main(string[] args)
         {
-            var camera = new Camera(new Point3(0, 0, 0), new Vec3(0, 0, 1), Util.DegreesToRadians(120));
+            var camera = new Camera(new Point3(0, 0, 0), new Vec3(0, 0, 1), Util.DegreesToRadians(60));
 
             var scene = new Scene(new Metadata(1920, 1080, 5), camera);
 
             // var scene = new Scene(@"C:\Users\info\RiderProjects\LEA_2021\Backend\scenes\scene_01.json");
-            
 
-            scene.Objects.Add(new Object(new Material(
-                        new Bitmap(1, 1),
-                        new Bitmap(1, 1),
-                        new Bitmap(1, 1),
-                        new Bitmap(1, 1),
-                        new Bitmap(1, 1),
-                        new Bitmap(1, 1),
-                        new Bitmap(1, 1)
-                    ),
-                    new Plane(new Vector3(0, 1, 0), 5, 10),
-                    new Vector3(0, 0, 0)
-                )
-            );
+
+            // scene.Objects.Add(new Object(new Material(new Bitmap(1, 1),
+            //                                           new Bitmap(1, 1),
+            //                                           new Bitmap(1, 1),
+            //                                           new Bitmap(1, 1),
+            //                                           new Bitmap(1, 1),
+            //                                           new Bitmap(1, 1),
+            //                                           new Bitmap(1, 1)
+            //                                          ),
+            //                              new Sphere(10),
+            //                              new Point3(0, 0, 20)
+            //                             )
+            //                  );
+
+            scene.Objects.Add(new Object(new Material(new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1)
+                                                     ),
+                                         new Sphere(5),
+                                         new Point3(20, 10, 50)
+                                        )
+                             );
+
+            scene.Objects.Add(new Object(new Material(new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1),
+                                                      new Bitmap(1, 1)
+                                                     ),
+                                         new Sphere(5),
+                                         new Point3(-20, -10, 50)
+                                        )
+                             );
 
             scene.Render();
         }

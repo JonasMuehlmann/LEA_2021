@@ -38,29 +38,52 @@ namespace LEA_2021
          */
         public override Vec3? Intersect(Ray ray, Point3 center)
         {
-            var R_D      = ray.Direction;
-            var CP       = center - ray.Origin;
-            var CpDotR_D = Vec3.Dot(CP, R_D);
+            // // var CP       = ray.Origin - center;
+            // var CP       = center - ray.Origin;
+            // var CpDotR_D = Vec3.Dot(CP, R_D);
 
-            float discriminant = Util.Square(CpDotR_D)
-                               - (Vec3.Dot(R_D, R_D) * Vec3.Dot(CP, CP)
-                                - Util.Square(Radius));
+            // float discriminant = Util.Square(CpDotR_D)
+            //                    - (Vec3.Dot(R_D, R_D) * Vec3.Dot(CP, CP)
+            //                     - Util.Square(Radius));
+            float a            = Vec3.Dot(ray.Direction, ray.Direction);
+            float b            = 2 * Vec3.Dot(center - ray.Origin, ray.Direction);
+            float c            = Vec3.Dot(center     - ray.Origin, center - ray.Origin) - Util.Square(Radius);
+            float discriminant = Util.Square(b)                                         - 4 * a * c;
 
-
+            // No intersection
             if (discriminant < 0)
             {
                 return null;
             }
 
 
-            var   discriminant_squared = (float) Math.Sqrt(discriminant);
-            float t1                   = CpDotR_D + discriminant_squared / Vec3.Dot(R_D, R_D);
-            float t2                   = CpDotR_D - discriminant_squared / Vec3.Dot(R_D, R_D);
+            var discriminant_sqrt = (float) Math.Sqrt(discriminant);
+            // float t1                = CpDotR_D + discriminant_sqrt / Vec3.Dot(ray.Direction, ray.Direction);
+            // float t2                = CpDotR_D - discriminant_sqrt / Vec3.Dot(ray.Direction, ray.Direction);
+            float t1 = -b + discriminant_sqrt / 2 * a;
+            float t2 = -b - discriminant_sqrt / 2 * a;
 
-            float closest_t    = t1 < t2 ? t1 : t2;
-            Vec3  intersection = ray.Origin + closest_t * R_D;
+            // Ray intersects, but is shot away from sphere
+            if (t1 < 0 && t2 < 0)
+            {
+                return null;
+            }
 
-            return intersection;
+            // Ray intersects but is shot from within sphere
+            if (t1 < 0 || t2 < 0)
+            {
+                return null;
+            }
+            // Both t are positive, intersection is valid
+            else
+            {
+                // Line can intersect sphere twice (at the front and at the back)
+                // only the closer one is visible
+                float closest_t    = t1 < t2 ? t1 : t2;
+                Vec3  intersection = ray.Origin + closest_t * ray.Direction;
+
+                return intersection;
+            }
         }
     }
 }

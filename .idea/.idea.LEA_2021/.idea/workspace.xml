@@ -10,17 +10,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="added uml diagram">
+    <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="linked backend to frontend, finally">
+      <change afterPath="$PROJECT_DIR$/Backend/scenes/forest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Material.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Material.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Object.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Object.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/Frontend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Frontend.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/MainWindow.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/cameraEditor.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/cameraEditor.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/objectEditor.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/objectEditor.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,12 +114,13 @@
       <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" />
       <option value="$PROJECT_DIR$/.gitignore" />
-      <option value="$PROJECT_DIR$/Frontend/MainWindow.xaml" />
-      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
-      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
       <option value="$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" />
+      <option value="$PROJECT_DIR$/Frontend/MainWindow.xaml" />
+      <option value="$PROJECT_DIR$/Backend/scenes/forest.json" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -269,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615985987202</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="linked backend to frontend, finally">
+      <created>1615991161542</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1615991161542</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +307,8 @@
     <MESSAGE value="Add multiple iterations to Scene.Render()" />
     <MESSAGE value="Add IDE configs" />
     <MESSAGE value="added uml diagram" />
-    <option name="LAST_COMMIT_MESSAGE" value="added uml diagram" />
+    <MESSAGE value="linked backend to frontend, finally" />
+    <option name="LAST_COMMIT_MESSAGE" value="linked backend to frontend, finally" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

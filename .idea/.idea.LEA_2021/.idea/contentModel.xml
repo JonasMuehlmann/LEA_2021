@@ -16,9 +16,12 @@
         </e>
         <e p="out" t="Include">
           <e p="foo.png" t="Include" />
+          <e p="forest.png" t="Include" />
+          <e p="scene_01.png" t="Include" />
         </e>
         <e p="scenes" t="Include">
           <e p="bg.png" t="Include" />
+          <e p="forest.json" t="Include" />
           <e p="materials" t="Include">
             <e p="brick" t="Include">
               <e p="albedo.png" t="Include" />
@@ -71,6 +74,7 @@
               <e p="App.g.cs" t="Include" />
               <e p="cameraEditor.g.cs" t="Include" />
               <e p="Frontend.AssemblyInfo.cs" t="Include" />
+              <e p="GeneratedInternalTypeHelper.g.cs" t="Include" />
               <e p="MainWindow.g.cs" t="Include" />
               <e p="objectEditor.g.cs" t="Include" />
             </e>

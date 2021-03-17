@@ -1,18 +1,18 @@
 {
-    "Background": "../../../../Backend/scenes/bg.png",
+    "Background": "Green",
     "Metadata": {
-        "Width": 1920,
-        "Height": 1080,
-        "Num_Iterations": 5
+        "Width": 1280,
+        "Height": 720,
+        "Num_Iterations": 25
     },
     "Camera": {
         "Position": [0, 0, 0],
         "Direction": [0, 0, 1],
-        "FOV": 60
+        "FOV": 100
     },
-    "Objects":  [
+    "Objects": [
         {
-            "Name": "Brick 01",
+            "Name": "Tree 01",
             "Shape": "Sphere",
             "Material": "brick",
             "Properties": {
@@ -21,12 +21,12 @@
             }
         },
         {
-            "Name": "Brick 02",
+            "Name": "Tree 02",
             "Shape": "Sphere",
             "Material": "brick",
             "Properties": {
-                "Radius": 10,
-                "Position": [20, 10, 50]
+                "Radius": 8,
+                "Position": [-25, -15, 40]
             }
         }
     ]

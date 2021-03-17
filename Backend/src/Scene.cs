@@ -84,7 +84,7 @@ namespace LEA_2021
                     }
                 }
 
-                Image.Save("../../../../Backend/out/foo.png", ImageFormat.Png);
+                Image.Save($"../../../../Backend/out/{Name}.png", ImageFormat.Png);
             }
         }
 

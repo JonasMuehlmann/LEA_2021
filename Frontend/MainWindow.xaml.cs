@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace LEA_2021
 {
@@ -14,7 +20,11 @@ namespace LEA_2021
     public partial class MainWindow : Window
     {
         private cameraEditor cameraEditorWindow;
+
+        private Scene currentScene;
         private objectEditor objectEditorWindow;
+
+        private Task renderTask;
 
         public List<Scene> sceneItems;
 
@@ -28,16 +38,14 @@ namespace LEA_2021
 
         public void OnWindowClosing(object sender, CancelEventArgs e)
         {
-            // close object editor window if main window gets closed
-            if (objectEditorWindow != null)
-            {
-                objectEditorWindow.Close();
-            }
+            closeSubWindows();
+        }
 
-            if (cameraEditorWindow != null)
-            {
-                cameraEditorWindow.Close();
-            }
+        public void closeSubWindows()
+        {
+            objectEditorWindow?.Close();
+
+            cameraEditorWindow?.Close();
         }
 
         public void OnEditorWindowClosing(object sender, CancelEventArgs e)
@@ -62,6 +70,15 @@ namespace LEA_2021
 
             btn.IsEnabled = false;
             ProgressBar.Height = 10;
+
+            renderTask = Task.Run(currentScene.Render);
+
+            renderTask.GetAwaiter().OnCompleted(() =>
+            {
+                btn.IsEnabled = true;
+                ProgressBar.Height = 0;
+                // OutputImage.Source = currentScene.Image;
+            });
         }
 
         private objectEditor getobjectEditorWindow()
@@ -106,9 +123,9 @@ namespace LEA_2021
         {
             foreach (string file in Directory.GetFiles("../../../../Backend/scenes"))
             {
-                if (System.IO.Path.GetExtension(file) == ".json")
+                if (Path.GetExtension(file) == ".json")
                 {
-                    sceneItems.Add(new Scene(System.IO.Path.GetFileNameWithoutExtension(file)));
+                    sceneItems.Add(new Scene(Path.GetFileNameWithoutExtension(file)));
                 }
             }
 
@@ -117,7 +134,31 @@ namespace LEA_2021
 
         private void sceneBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.DataContext = SceneBox.SelectedItem as Scene;
+            currentScene = SceneBox.SelectedItem as Scene;
+            DataContext = currentScene;
+            RenderButton.IsEnabled = true;
+            closeSubWindows();
+        }
+    }
+
+    public class ImageConverter : IValueConverter
+    {
+        public object Convert(
+            object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            MemoryStream ms = new MemoryStream();
+            ((Bitmap) value)?.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            ms.Seek(0, SeekOrigin.Begin);
+            image.StreamSource = ms;
+            image.EndInit();
+            return image;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
         }
     }
 }

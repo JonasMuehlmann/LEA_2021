@@ -10,11 +10,12 @@
         Closing="OnWindowClosing"
         Height="500" 
         Width="800">
+    
+    <Window.Resources>
+        <local:ImageConverter x:Key="ImageConverter" />
+    </Window.Resources>
+    
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500" />
             <ColumnDefinition />
@@ -24,10 +25,11 @@
             <StackPanel DockPanel.Dock="Top">
                 <ProgressBar IsIndeterminate="True" Height="0px" x:Name="ProgressBar" Maximum="100" Minimum="1" />
 
-                <Rectangle Height="330px" Fill="Blue" />
+                <!-- <Rectangle Height="330px" Fill="Blue" /> -->
+                <Image Source="{Binding Image, Converter={StaticResource ImageConverter}}" Height="330px" Name="OutputImage" />
             </StackPanel>
 
-            <Button DockPanel.Dock="Bottom" FontSize="16px" FontWeight="Medium" Margin="0,20,0,0" Click="RenderButton_Click">Rendern</Button>
+            <Button x:Name="RenderButton" IsEnabled="False" DockPanel.Dock="Bottom" FontSize="16px" FontWeight="Medium" Margin="0,20,0,0" Click="RenderButton_Click">Rendern</Button>
         </DockPanel>
 
         <StackPanel Grid.Column="1" Margin="0, 20, 20, 20">
@@ -52,7 +54,7 @@
 
             <StackPanel>
                 <Label>Iterationen</Label>
-                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Minimum="10" Maximum="1000" Value="{Binding Metadata.NumIterations}" x:Name="OptionIterationSlider" />
+                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Minimum="5" Maximum="1000" Value="{Binding Metadata.NumIterations}" x:Name="OptionIterationSlider" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">

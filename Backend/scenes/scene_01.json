@@ -4,6 +4,7 @@
         "Height": 1080,
         "Num_Iterations": 5000
     },
+    "Background": "../../../scenes/bg.png",
     "Camera": {
         "Position": [0, 0, 0],
         "Direction": [0, 0, 1],

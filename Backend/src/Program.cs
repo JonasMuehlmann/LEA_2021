@@ -14,7 +14,7 @@ namespace LEA_2021
         {
             var camera = new Camera(new Point3(0, 0, 0), new Vec3(0, 0, 1), Util.DegreesToRadians(60));
 
-            var scene = new Scene(@"../../../scenes/scene_01.json");
+            var scene = new Scene(@"scene_01");
             
 
             // scene.Objects.Add(new Object(new Material(new Bitmap(1, 1),

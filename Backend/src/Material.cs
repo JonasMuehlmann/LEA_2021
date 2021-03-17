@@ -1,5 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Numerics;
+using System.Reflection;
 
 
 namespace LEA_2021
@@ -40,13 +44,41 @@ namespace LEA_2021
             Bitmap emission
         )
         {
-            Albedo           = albedo;
-            Metalness        = metalness;
-            Roughness        = roughness;
+            Albedo = albedo;
+            Metalness = metalness;
+            Roughness = roughness;
             AmbientOcclusion = ambientOcclusion;
-            Normal           = normal;
-            Bump             = bump;
-            Emission         = emission;
+            Normal = normal;
+            Bump = bump;
+            Emission = emission;
+        }
+
+        public Material(string name)
+        {
+            List<string> neededBitmaps = new List<string> {"albedo", "metalness", "roughness", "ambientOcclusion", "normal", "bump", "emission"};
+
+            if (Directory.Exists($"..\\..\\..\\scenes\\materials\\{name}"))
+            {
+                foreach (var file in Directory.GetFiles($"..\\..\\..\\scenes\\materials\\{name}"))
+                {
+                    var bitmapName = Path.GetFileNameWithoutExtension(file);
+                    neededBitmaps.Remove(bitmapName);
+
+                    Console.WriteLine(char.ToUpper(bitmapName[0]).ToString() + bitmapName.Substring(1));
+
+                    var propInfo =
+                        typeof(Material).GetProperty(char.ToUpper(bitmapName[0]).ToString() + bitmapName.Substring(1));
+                    propInfo.SetValue(this, Bitmap.FromFile(file), null);
+                }
+            }
+
+            
+            // iterate non-found bitmaps to set default values
+            foreach (string bitmap in neededBitmaps)
+            {
+                var propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]).ToString() + bitmap.Substring(1));
+                propInfo.SetValue(this, new Bitmap(1, 1), null);
+            }
         }
 
         #endregion

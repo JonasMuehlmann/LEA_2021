@@ -120,16 +120,6 @@ namespace LEA_2021
                                      - Camera.Position
                                       );
 
-                    // // Debug camera by setting pixel to rays x-distance from camera
-                    // int distance_z = 255 - (int) (1f + 2.5f * 254f * (1f + ray_direction.Z) / 2f);
-                    // Image.SetPixel(row,
-                    //                column,
-                    //                Color.FromArgb(100,
-                    //                               distance_z,distance_z,distance_z
-                    //                              )
-                    //               );
-
-
                     foreach (var _object in Objects)
                     {
                         Vector3? intersection = _object.Intersect(new Ray(Camera.Position, ray_direction));

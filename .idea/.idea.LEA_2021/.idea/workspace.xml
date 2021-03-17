@@ -10,11 +10,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/shelf/Uncommitted_changes_before_Update_at_3_17_21__11_53_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/shelf/Uncommitted_changes_before_Update_at_3_17_21__11_53_AM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/shelf/Uncommitted_changes_before_Update_at_3_17_21__12_03_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/shelf/Uncommitted_changes_before_Update_at_3_17_21__12_03_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/shelf/Uncommitted_changes_before_Update_at_3_17_21__12_05_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/shelf/Uncommitted_changes_before_Update_at_3_17_21__12_05_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/out/foo.png" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/out/foo.png" afterDir="false" />
+    <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="added uml diagram">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Material.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Material.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Object.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Object.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Frontend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Frontend.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/cameraEditor.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/cameraEditor.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/objectEditor.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/objectEditor.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,16 +110,18 @@
       <option value="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Camera.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" />
       <option value="$PROJECT_DIR$/.gitignore" />
+      <option value="$PROJECT_DIR$/Frontend/MainWindow.xaml" />
       <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
+      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
+      <option value="$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -137,7 +145,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Project.Backend">
+  <component name="RunManager" selected=".NET Project.Frontend">
     <configuration name="Backend" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Backend/bin/Debug/netcoreapp3.1/Backend.dll" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -254,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615985673090</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added uml diagram">
+      <created>1615985987202</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1615985987202</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,7 +300,8 @@
     <MESSAGE value="Fix renderloop" />
     <MESSAGE value="Add multiple iterations to Scene.Render()" />
     <MESSAGE value="Add IDE configs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add IDE configs" />
+    <MESSAGE value="added uml diagram" />
+    <option name="LAST_COMMIT_MESSAGE" value="added uml diagram" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

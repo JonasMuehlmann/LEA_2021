@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Numerics;
-using System.Reflection;
-
 
 namespace LEA_2021
 {
@@ -14,7 +11,16 @@ namespace LEA_2021
 
     public class Material
     {
+        // TODO: Find sensible defaults for texture maps to implement constructor with default maps
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
+
         #region Properties
+
+        public string Name { get; set; }
 
         public Bitmap Albedo { get; set; }
 
@@ -55,7 +61,10 @@ namespace LEA_2021
 
         public Material(string name)
         {
-            List<string> neededBitmaps = new List<string> {"albedo", "metalness", "roughness", "ambientOcclusion", "normal", "bump", "emission"};
+            Name = name;
+
+            List<string> neededBitmaps = new List<string>
+                {"albedo", "metalness", "roughness", "ambientOcclusion", "normal", "bump", "emission"};
 
             if (Directory.Exists($"..\\..\\..\\scenes\\materials\\{name}"))
             {
@@ -70,7 +79,7 @@ namespace LEA_2021
                 }
             }
 
-            
+
             // iterate non-found bitmaps to set default values
             foreach (string bitmap in neededBitmaps)
             {
@@ -80,7 +89,5 @@ namespace LEA_2021
         }
 
         #endregion
-
-        // TODO: Find sensible defaults for texture maps to implement constructor with default maps
     }
 }

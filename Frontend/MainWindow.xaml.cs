@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.ComponentModel;
 
 namespace LEA_2021
 {
@@ -23,13 +13,17 @@ namespace LEA_2021
     /// </summary>
     public partial class MainWindow : Window
     {
-        private objectEditor objectEditorWindow;
         private cameraEditor cameraEditorWindow;
+        private objectEditor objectEditorWindow;
+
+        public List<Scene> sceneItems;
 
         public MainWindow()
         {
             InitializeComponent();
-            updateObjects();
+
+            sceneItems = new List<Scene>();
+            getScenes();
         }
 
         public void OnWindowClosing(object sender, CancelEventArgs e)
@@ -39,6 +33,7 @@ namespace LEA_2021
             {
                 objectEditorWindow.Close();
             }
+
             if (cameraEditorWindow != null)
             {
                 cameraEditorWindow.Close();
@@ -55,16 +50,8 @@ namespace LEA_2021
             cameraEditorWindow = null;
         }
 
-        private void updateObjects(){
-            List<ObjectItem> items = new List<ObjectItem>();
-            items.Add(new ObjectItem() { Name = "Baum01", Shape = "Rectangle", Material = "wood" });
-            items.Add(new ObjectItem() { Name= "Kreis", Shape = "Square", Material = "grass" });
-            items.Add(new ObjectItem() { Name = "Stein", Shape = "Plane", Material = "stone" });
-
-            objectList.ItemsSource = items;
-        }
-
-        private void TextBoxNumberValidation(object sender, TextCompositionEventArgs e) {
+        private void TextBoxNumberValidation(object sender, TextCompositionEventArgs e)
+        {
             Regex regex = new Regex("[^0-9]");
             e.Handled = regex.IsMatch(e.Text);
         }
@@ -74,7 +61,7 @@ namespace LEA_2021
             Button btn = sender as Button;
 
             btn.IsEnabled = false;
-            progressBar.Height = 10;
+            ProgressBar.Height = 10;
         }
 
         private objectEditor getobjectEditorWindow()
@@ -103,7 +90,7 @@ namespace LEA_2021
 
         private void objectList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ObjectItem currItem = objectList.SelectedItem as ObjectItem;
+            Object currItem = ObjectList.SelectedItem as Object;
 
             getobjectEditorWindow().Title = $"{currItem.Name} bearbeiten";
             getobjectEditorWindow().Focus();
@@ -113,17 +100,24 @@ namespace LEA_2021
         {
             getCameraEditorWindow();
         }
-    }
 
-    public class ObjectItem
-    {
-        public string Shape { get; set; }
-        public string Material { get; set; }
-        public string Name { get; set; }
 
-        public override string ToString()
+        public void getScenes()
         {
-            return string.Format("{0} (Shape: {1}, Material: {2})", Name, Shape, Material);
+            foreach (string file in Directory.GetFiles("../../../../Backend/scenes"))
+            {
+                if (System.IO.Path.GetExtension(file) == ".json")
+                {
+                    sceneItems.Add(new Scene(System.IO.Path.GetFileNameWithoutExtension(file)));
+                }
+            }
+
+            SceneBox.ItemsSource = sceneItems;
+        }
+
+        private void sceneBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.DataContext = SceneBox.SelectedItem as Scene;
         }
     }
 }

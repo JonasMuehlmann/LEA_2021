@@ -5,6 +5,7 @@
     <e p="C:\Users\info\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_LEA_2021.821250035.00" t="ExcludeRecursive" />
     <e p="C:\Users\info\RiderProjects\LEA_2021" t="IncludeFlat">
       <e p="Backend" t="IncludeRecursive">
+        <e p="Annotations.cs" t="Include" />
         <e p="Backend.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">

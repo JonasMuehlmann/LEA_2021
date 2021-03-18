@@ -3,7 +3,7 @@
     "Metadata": {
         "Width": 1920,
         "Height": 1080,
-        "Num_Iterations": 5
+        "Num_Iterations": 10
     },
     "Camera": {
         "Position": [0, 0, 0],

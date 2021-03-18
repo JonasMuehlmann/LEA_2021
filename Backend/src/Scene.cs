@@ -1,5 +1,7 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -14,8 +16,29 @@ namespace LEA_2021
     using Point3 = Vector3;
 
 
-    public class Scene
+    public class Scene : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public void DetectBackground()
+        {
+            if (Regex.IsMatch(backgroundValue, @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
+            {
+                // Background is hex color
+                SetBackground(ColorTranslator.FromHtml(backgroundValue));
+            }
+            else if (Regex.IsMatch(backgroundValue, @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
+            {
+                // background is path to image
+                SetBackground(backgroundValue);
+            }
+            else
+            {
+                // background must be color word
+                SetBackground(Color.FromName(backgroundValue));
+            }
+        }
+
         public void SetBackground(Color color)
         {
             for (int i = 0; i < Image.Width; i++)
@@ -37,8 +60,17 @@ namespace LEA_2021
         [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH")]
         public void Render()
         {
+            DetectBackground();
+            Percentage = 0;
+
+            Random rn = new();
             for (int i = 0; i < Metadata.NumIterations; i++)
             {
+                Console.WriteLine(i);
+                Percentage = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
+                OnPropertyChanged("Percentage");
+                Camera.Fov = rn.Next(10, 400);
+
                 for (int row = 0; row < Metadata.Width; ++row)
                 {
                     for (int column = 0; column < Metadata.Height; ++column)
@@ -64,13 +96,13 @@ namespace LEA_2021
 
                         // For now, the camara always faces forward, hence we set the z-component to -1
                         // TODO: Camera to world transformation
-                        var ray_direction =
-                            Vec3.Normalize(new Vector3(Pixel_x,
-                                               Pixel_y,
-                                               -1
-                                           )
-                                           - Camera.Position
-                            );
+                        var ray_direction = Vec3.Normalize(
+                            new Vector3(
+                                Pixel_x,
+                                Pixel_y,
+                                -1
+                            ) - Camera.Position
+                        );
 
                         foreach (var _object in Objects)
                         {
@@ -84,8 +116,20 @@ namespace LEA_2021
                     }
                 }
 
-                Image.Save($"../../../../Backend/out/{Name}.png", ImageFormat.Png);
+                // semi-live update commented out due to performance issues
+                // if (i != 0 && i % 3 == 0)
+                // {
+                //     OnPropertyChanged("Image");
+                // }
             }
+
+            Image.Save($"../../../../Backend/out/{Name}.png", ImageFormat.Png);
+            OnPropertyChanged("Image");
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public override string ToString()
@@ -103,7 +147,11 @@ namespace LEA_2021
 
         public Bitmap Image { get; set; }
 
+        public int Percentage { get; set; }
+
         public Camera Camera { get; set; }
+
+        public string backgroundValue { get; set; }
 
         #endregion
 
@@ -116,6 +164,9 @@ namespace LEA_2021
             Objects = new List<Object>();
             Image = new Bitmap(metadata.Width, metadata.Height);
             Camera = camera;
+
+            Name = "Untitled";
+            backgroundValue = "Black";
             SetBackground(Color.Black);
         }
 
@@ -127,6 +178,9 @@ namespace LEA_2021
             Objects = new List<Object>();
             Image = new Bitmap(metadata.Width, metadata.Height);
             Camera = new Camera();
+
+            Name = "Untitled";
+            backgroundValue = "Black";
             SetBackground(Color.Black);
         }
 
@@ -207,22 +261,8 @@ namespace LEA_2021
                 );
             }
 
-
-            if (Regex.IsMatch(value["Background"], @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
-            {
-                // Background is hex color
-                SetBackground(ColorTranslator.FromHtml(value["Background"]));
-            }
-            else if (Regex.IsMatch(value["Background"], @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
-            {
-                // background is path to image
-                SetBackground(value["Background"]);
-            }
-            else
-            {
-                // background must be color word
-                SetBackground(Color.FromName(value["Background"]));
-            }
+            backgroundValue = value["Background"];
+            DetectBackground();
         }
 
         #endregion

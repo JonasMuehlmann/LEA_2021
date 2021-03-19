@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 
 
@@ -75,7 +76,7 @@ namespace LEA_2021
 
         public override float Intersect(Ray ray, Point3 center)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

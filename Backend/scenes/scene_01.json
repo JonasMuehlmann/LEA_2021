@@ -1,29 +1,29 @@
 {
-    "Background": "../../../Backend/scenes/bg.png",
-    "Metadata": {
-        "Width": 1920,
-        "Height": 1080,
+    "Background": "../../../../Backend/scenes/bg.png",
+    "Metadata":   {
+        "Width":          1920,
+        "Height":         1080,
         "Num_Iterations": 5
     },
-    "Camera": {
-        "Position": [0, 0, 0],
+    "Camera":     {
+        "Position":  [0, 0, 0],
         "Direction": [0, 0, 1],
-        "FOV": 60
+        "FOV":       60
     },
-    "Objects":  [
+    "Objects":    [
         {
-            "Name": "Brick 01",
-            "Shape": "Sphere",
-            "Material": "brick",
+            "Name":       "Brick 01",
+            "Shape":      "Sphere",
+            "Material":   "brick",
             "Properties": {
                 "Radius":   10,
                 "Position": [-20, -10, 50]
             }
         },
         {
-            "Name": "Brick 02",
-            "Shape": "Sphere",
-            "Material": "brick",
+            "Name":       "Brick 02",
+            "Shape":      "Sphere",
+            "Material":   "brick",
             "Properties": {
                 "Radius":   10,
                 "Position": [-10, -10, -40]

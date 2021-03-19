@@ -60,19 +60,19 @@ namespace LEA_2021
 
         public override float Intersect(Ray ray, Point3 center)
         {
-            float denominator = Vec3.Dot(Orientation, ray.Direction);
+            var denominator = Vec3.Dot(Orientation, ray.Direction);
 
             // Check if denominator is approximately 0
 
-            if (Math.Abs(denominator) < Single.Epsilon)
+            if (Math.Abs(denominator) < float.Epsilon)
             {
                 // Ray does not intersect with plane
                 return -1f;
             }
 
-            float t = Vec3.Dot(center - ray.Origin, Orientation) / denominator;
+            var t = Vec3.Dot(center - ray.Origin, Orientation) / denominator;
 
-            if (t > Single.Epsilon)
+            if (t > float.Epsilon)
             {
                 // Ray intersects, but is shot in opposite direction
                 return -1f;

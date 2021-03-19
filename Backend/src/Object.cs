@@ -9,13 +9,6 @@ namespace LEA_2021
 
     public class Object
     {
-
-
-        public override string ToString()
-        {
-            return $"{Name} (Material: {Material})";
-        }
-
         #region Properties
 
         public string Name { get; set; }
@@ -33,10 +26,11 @@ namespace LEA_2021
         public Object(Material material, Shape shape, Point3 position, string name)
         {
             Material = material;
-            Shape = shape;
+            Shape    = shape;
             Position = position;
-            Name = name;
+            Name     = name;
         }
+
 
         public Object(Material material, Shape shape, Point3 position)
         {
@@ -55,6 +49,12 @@ namespace LEA_2021
         }
 
         #endregion
+
+
+        public override string ToString()
+        {
+            return $"{Name} (Material: {Material})";
+        }
 
 
         public float Intersect(Ray ray)

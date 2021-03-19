@@ -19,9 +19,7 @@ namespace LEA_2021
 
         #region Constructors
 
-        ///  
         /// LightBeam with 100% brightness
-        ///  
         public LightBeam(Ray ray)
         {
             Ray        = ray;

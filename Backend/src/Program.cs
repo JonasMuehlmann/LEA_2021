@@ -8,9 +8,9 @@ namespace LEA_2021
     using Point3 = Vector3;
 
 
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var scene = new Scene(@"scene_01");
 

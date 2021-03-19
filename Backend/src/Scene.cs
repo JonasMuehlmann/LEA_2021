@@ -10,6 +10,7 @@ using System.Json;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
+
 namespace LEA_2021
 {
     using Vec3 = Vector3;
@@ -18,48 +19,9 @@ namespace LEA_2021
 
     public class Scene : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public void DetectBackground()
-        {
-            if (Regex.IsMatch(backgroundValue, @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
-            {
-                // Background is hex color
-                SetBackground(ColorTranslator.FromHtml(backgroundValue));
-            }
-            else if (Regex.IsMatch(backgroundValue, @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
-            {
-                // background is path to image
-                SetBackground(backgroundValue);
-            }
-            else
-            {
-                // background must be color word
-                SetBackground(Color.FromName(backgroundValue));
-            }
-        }
-
-
-
-        public void SetBackground(string image_path)
-        {
-            Image = new Bitmap(Bitmap.FromFile(image_path));
-        }
-
-
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        public override string ToString()
-        {
-            return $"{Name}";
-        }
-
         #region Properties
 
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         public Metadata Metadata { get; set; }
 
@@ -87,11 +49,11 @@ namespace LEA_2021
         public Scene(Metadata metadata, Camera camera)
         {
             Metadata = metadata;
-            Objects = new List<Object>();
-            Image = new Bitmap(metadata.Width, metadata.Height);
-            Camera = camera;
+            Objects  = new List<Object>();
+            Image    = new Bitmap(metadata.Width, metadata.Height);
+            Camera   = camera;
 
-            Name = "Untitled";
+            Name            = "Untitled";
             backgroundValue = "Black";
             SetBackground(Color.Black);
             PointLights     = new List<PointLight>();
@@ -104,11 +66,11 @@ namespace LEA_2021
         public Scene(Metadata metadata)
         {
             Metadata = metadata;
-            Objects = new List<Object>();
-            Image = new Bitmap(metadata.Width, metadata.Height);
-            Camera = new Camera();
+            Objects  = new List<Object>();
+            Image    = new Bitmap(metadata.Width, metadata.Height);
+            Camera   = new Camera();
 
-            Name = "Untitled";
+            Name            = "Untitled";
             backgroundValue = "Black";
             SetBackground(Color.Black);
             PointLights     = new List<PointLight>();
@@ -123,24 +85,23 @@ namespace LEA_2021
             JsonValue value = JsonValue.Parse(File.ReadAllText($@"../../../../Backend/scenes/{configName}.json"));
             Name = configName;
 
-            Metadata = new Metadata(
-                (int) value["Metadata"]["Width"],
-                (int) value["Metadata"]["Height"],
-                (int) value["Metadata"]["Num_Iterations"]
-            );
+            Metadata = new Metadata((int) value["Metadata"]["Width"],
+                                    (int) value["Metadata"]["Height"],
+                                    (int) value["Metadata"]["Num_Iterations"]
+                                   );
 
             Image = new Bitmap(Metadata.Width, Metadata.Height);
 
             Camera = new Camera(new Point3(value["Camera"]["Position"][0],
-                    value["Camera"]["Position"][1],
-                    value["Camera"]["Position"][1]
-                ),
-                new Vec3(value["Camera"]["Direction"][0],
-                    value["Camera"]["Direction"][1],
-                    value["Camera"]["Direction"][1]
-                ),
-                Util.DegreesToRadians((int) value["Camera"]["FOV"])
-            );
+                                           value["Camera"]["Position"][1],
+                                           value["Camera"]["Position"][1]
+                                          ),
+                                new Vec3(value["Camera"]["Direction"][0],
+                                         value["Camera"]["Direction"][1],
+                                         value["Camera"]["Direction"][1]
+                                        ),
+                                Util.DegreesToRadians((int) value["Camera"]["FOV"])
+                               );
 
 
             // create object classes
@@ -153,15 +114,14 @@ namespace LEA_2021
                 switch ((string) obj["Shape"])
                 {
                     case "Cuboid":
-                        shapeClass = new Cuboid(
-                            (int) obj["Properties"]["Width"],
-                            (int) obj["Properties"]["Height"],
-                            (int) obj["Properties"]["Length"],
-                            new Vec3(obj["Properties"]["Orientation"][0],
-                                obj["Properties"]["Orientation"][1],
-                                obj["Properties"]["Orientation"][2]
-                            )
-                        );
+                        shapeClass = new Cuboid((int) obj["Properties"]["Width"],
+                                                (int) obj["Properties"]["Height"],
+                                                (int) obj["Properties"]["Length"],
+                                                new Vec3(obj["Properties"]["Orientation"][0],
+                                                         obj["Properties"]["Orientation"][1],
+                                                         obj["Properties"]["Orientation"][2]
+                                                        )
+                                               );
 
                         break;
 
@@ -172,26 +132,25 @@ namespace LEA_2021
 
                     case "Plane":
                         shapeClass = new Plane(new Vec3(obj["Properties"]["Orientation"][0],
-                                obj["Properties"]["Orientation"][1],
-                                obj["Properties"]["Orientation"][2]
-                            ),
-                            (int) obj["Properties"]["Width"],
-                            (int) obj["Properties"]["Height"]
-                        );
+                                                        obj["Properties"]["Orientation"][1],
+                                                        obj["Properties"]["Orientation"][2]
+                                                       ),
+                                               (int) obj["Properties"]["Width"],
+                                               (int) obj["Properties"]["Height"]
+                                              );
 
                         break;
                 }
 
-                Objects.Add(new Object(
-                        new Material(obj["Material"]),
-                        shapeClass,
-                        new Vector3(obj["Properties"]["Position"][0],
-                            obj["Properties"]["Position"][1],
-                            obj["Properties"]["Position"][2]
-                        ),
-                        obj["Name"]
-                    )
-                );
+                Objects.Add(new Object(new Material(obj["Material"]),
+                                       shapeClass,
+                                       new Vector3(obj["Properties"]["Position"][0],
+                                                   obj["Properties"]["Position"][1],
+                                                   obj["Properties"]["Position"][2]
+                                                  ),
+                                       obj["Name"]
+                                      )
+                           );
             }
 
 
@@ -220,12 +179,52 @@ namespace LEA_2021
 
         #endregion
 
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+
+        public void DetectBackground()
+        {
+            if (Regex.IsMatch(backgroundValue, @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
+            {
+                // Background is hex color
+                SetBackground(ColorTranslator.FromHtml(backgroundValue));
+            }
+            else if (Regex.IsMatch(backgroundValue, @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
+            {
+                // background is path to image
+                SetBackground(backgroundValue);
+            }
+            else
+            {
+                // background must be color word
+                SetBackground(Color.FromName(backgroundValue));
+            }
+        }
+
+
+        public void SetBackground(string image_path)
+        {
+            Image = new Bitmap(System.Drawing.Image.FromFile(image_path));
+        }
+
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
+
 
         public void SetBackground(Color color)
         {
-            for (int i = 0; i < Image.Width; i++)
+            for (var i = 0; i < Image.Width; i++)
             {
-                for (int j = 0; j < Image.Height; j++)
+                for (var j = 0; j < Image.Height; j++)
                 {
                     Image.SetPixel(i, j, color);
                 }
@@ -233,12 +232,9 @@ namespace LEA_2021
         }
 
 
-
-
-
         private Vec3 Reflect(Vec3 direction, Vec3 surfaceNormal)
         {
-            return direction - (2f * surfaceNormal * Vec3.Dot(surfaceNormal, direction));
+            return direction - 2f * surfaceNormal * Vec3.Dot(surfaceNormal, direction);
         }
 
 
@@ -267,26 +263,26 @@ namespace LEA_2021
 
             foreach (var _object in Objects)
             {
-                float t = _object.Intersect(lightBeam.Ray);
+                var t = _object.Intersect(lightBeam.Ray);
 
                 // We hit an object
-                if (t > Single.Epsilon)
+                if (t > float.Epsilon)
                 {
                     // return Color.White;
-                    Point3 intersection = lightBeam.Ray.Origin + t * lightBeam.Ray.Direction;
+                    var intersection = lightBeam.Ray.Origin + t * lightBeam.Ray.Direction;
 
                     // Console.WriteLine(t);
                     // Console.WriteLine($"{intersection.X},{intersection.Y},{intersection.Z}");
                     // Console.WriteLine($"{intersection.Z}");
                     // TODO: Seems working until at least here
-                    Vec3  surfaceNormal      = Vec3.Normalize(Util.FromAToB(_object.Position, intersection));
-                    float brightnessDiffuse  = 0f;
-                    float brightnessSpecular = 0f;
+                    var surfaceNormal      = Vec3.Normalize(Util.FromAToB(_object.Position, intersection));
+                    var brightnessDiffuse  = 0f;
+                    var brightnessSpecular = 0f;
 
                     // Calculate direct illumination
                     foreach (var pointLight in PointLights)
                     {
-                        Vec3 objectToLight = Vec3.Normalize(Util.FromAToB(_object.Position, pointLight.Position));
+                        var objectToLight = Vec3.Normalize(Util.FromAToB(_object.Position, pointLight.Position));
 
 
                         // Lambertian diffuse lighting
@@ -297,8 +293,8 @@ namespace LEA_2021
 
                         // Blinn-Phong specular highlights
                         //(OL + OC) * N
-                        Vec3 surfaceToLight  = Util.FromAToB(intersection, pointLight.Position);
-                        Vec3 surfaceToCamera = Util.FromAToB(intersection, Camera.Position);
+                        var surfaceToLight  = Util.FromAToB(intersection, pointLight.Position);
+                        var surfaceToCamera = Util.FromAToB(intersection, Camera.Position);
                         brightnessSpecular += Vec3.Dot(Vec3.Normalize(surfaceToLight + surfaceToCamera), surfaceNormal);
                     }
 
@@ -308,7 +304,7 @@ namespace LEA_2021
                     // x and y range therefore is less than the spheres diameter, which is wrong, tinyraytracer does it right
                     // Error Must be in intersection function
                     // TODO: Get Object color instead
-                    Color color = Color.Gray;
+                    var color = Color.Gray;
 
                     // Diffuse lighting
                     color = Color.FromArgb(255,
@@ -383,14 +379,12 @@ namespace LEA_2021
                     // Point2 uv    = Sphere.GetUVCoordinates((Vec3) intersection, _object.Position);
                     // Color  pixel = people.GetPixel((int)(uv.X * 1920), (int)(uv.Y * 1080));
                 }
-                else
-                {
-                    currentColor = Color.FromArgb(255,
-                                                  (int) (lightBeam.Brightness * BackgroundColor.R),
-                                                  (int) (lightBeam.Brightness * BackgroundColor.G),
-                                                  (int) (lightBeam.Brightness * BackgroundColor.B)
-                                                 );
-                }
+
+                currentColor = Color.FromArgb(255,
+                                              (int) (lightBeam.Brightness * BackgroundColor.R),
+                                              (int) (lightBeam.Brightness * BackgroundColor.G),
+                                              (int) (lightBeam.Brightness * BackgroundColor.B)
+                                             );
             }
 
             return TraceRay(lightBeam, currentColor, currentDepth + 1);
@@ -401,13 +395,13 @@ namespace LEA_2021
         {
             // Build Normalized Device Coordinates (NDC)
             // Value range is [0,1], 0.5f makes points appear in the center of a pixel
-            float ndcX = (row    + 0.5f) / Metadata.Width;
-            float ndcY = (column + 0.5f) / Metadata.Height;
+            var ndcX = (row    + 0.5f) / Metadata.Width;
+            var ndcY = (column + 0.5f) / Metadata.Height;
 
             // Convert NDC to Screen space by remapping increasing x values to the range [-1,1]
             // and increasing y-values to the range [1,1-]
-            float screenX = 2f * ndcX - 1f;
-            float screenY = 1f        - 2f * ndcY;
+            var screenX = 2f * ndcX - 1f;
+            var screenY = 1f        - 2f * ndcY;
 
             // Because the image is not square (Usually images are wider than they are high),
             // pixels are now rectangular.
@@ -415,8 +409,8 @@ namespace LEA_2021
             screenX *= Metadata.GetAspectRatio();
 
             // Transform to camera space by accounting for field of view
-            float cameraX = screenX * (float) Math.Tan(Camera.Fov / 2f);
-            float cameraY = screenY * (float) Math.Tan(Camera.Fov / 2f);
+            var cameraX = screenX * (float) Math.Tan(Camera.Fov / 2f);
+            var cameraY = screenY * (float) Math.Tan(Camera.Fov / 2f);
 
             // For now, the camara always faces forward, hence we set the z-component to -1
             // TODO: Camera to world transformation
@@ -438,19 +432,21 @@ namespace LEA_2021
         {
             DetectBackground();
             Percentage = 0;
-            for (int i = 0; i < Metadata.NumIterations; ++i)
+
+            for (var i = 0; i < Metadata.NumIterations; ++i)
             {
                 Percentage = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
                 OnPropertyChanged("Percentage");
-                for (int column = 0; column < Metadata.Height; ++column)
+
+                for (var column = 0; column < Metadata.Height; ++column)
                 {
-                    for (int row = 0; row < Metadata.Width; ++row)
+                    for (var row = 0; row < Metadata.Width; ++row)
                     {
                         Ray primaryRay = CastPrimaryRay(row, column);
 
                         // Console.WriteLine($"{primaryRay.Direction.X} {primaryRay.Direction.Y} {primaryRay.Direction.Z}");
 
-                        Color? pixel = TraceRay(new LightBeam(primaryRay), new Color());
+                        var pixel = TraceRay(new LightBeam(primaryRay), new Color());
 
                         if (pixel is not null)
                         {
@@ -459,8 +455,8 @@ namespace LEA_2021
                     }
                 }
 
-            Image.Save($"../../../../Backend/out/{Name}.png", ImageFormat.Png);
-            OnPropertyChanged("Image");
+                Image.Save($"../../../../Backend/out/{Name}.png", ImageFormat.Png);
+                OnPropertyChanged("Image");
             }
         }
     }

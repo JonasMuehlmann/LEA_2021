@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.ComponentModel;
 
 namespace LEA_2021
 {
@@ -23,26 +20,33 @@ namespace LEA_2021
     /// </summary>
     public partial class MainWindow : Window
     {
-        private objectEditor objectEditorWindow;
         private cameraEditor cameraEditorWindow;
+
+        private Scene currentScene;
+        private objectEditor objectEditorWindow;
+
+        private Task renderTask;
+
+        public List<Scene> sceneItems;
 
         public MainWindow()
         {
             InitializeComponent();
-            updateObjects();
+
+            sceneItems = new List<Scene>();
+            getScenes();
         }
 
         public void OnWindowClosing(object sender, CancelEventArgs e)
         {
-            // close object editor window if main window gets closed
-            if (objectEditorWindow != null)
-            {
-                objectEditorWindow.Close();
-            }
-            if (cameraEditorWindow != null)
-            {
-                cameraEditorWindow.Close();
-            }
+            closeSubWindows();
+        }
+
+        public void closeSubWindows()
+        {
+            objectEditorWindow?.Close();
+
+            cameraEditorWindow?.Close();
         }
 
         public void OnEditorWindowClosing(object sender, CancelEventArgs e)
@@ -55,16 +59,8 @@ namespace LEA_2021
             cameraEditorWindow = null;
         }
 
-        private void updateObjects(){
-            List<ObjectItem> items = new List<ObjectItem>();
-            items.Add(new ObjectItem() { Name = "Baum01", Shape = "Rectangle", Material = "wood" });
-            items.Add(new ObjectItem() { Name= "Kreis", Shape = "Square", Material = "grass" });
-            items.Add(new ObjectItem() { Name = "Stein", Shape = "Plane", Material = "stone" });
-
-            objectList.ItemsSource = items;
-        }
-
-        private void TextBoxNumberValidation(object sender, TextCompositionEventArgs e) {
+        private void TextBoxNumberValidation(object sender, TextCompositionEventArgs e)
+        {
             Regex regex = new Regex("[^0-9]");
             e.Handled = regex.IsMatch(e.Text);
         }
@@ -74,7 +70,16 @@ namespace LEA_2021
             Button btn = sender as Button;
 
             btn.IsEnabled = false;
-            progressBar.Height = 10;
+            ProgressBar.Height = 10;
+
+            renderTask = Task.Run(currentScene.Render);
+
+            renderTask.GetAwaiter().OnCompleted(() =>
+            {
+                btn.IsEnabled = true;
+                ProgressBar.Height = 0;
+                // OutputImage.Source = currentScene.Image;
+            });
         }
 
         private objectEditor getobjectEditorWindow()
@@ -103,7 +108,7 @@ namespace LEA_2021
 
         private void objectList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ObjectItem currItem = objectList.SelectedItem as ObjectItem;
+            Object currItem = ObjectList.SelectedItem as Object;
 
             getobjectEditorWindow().Title = $"{currItem.Name} bearbeiten";
             getobjectEditorWindow().Focus();
@@ -113,17 +118,53 @@ namespace LEA_2021
         {
             getCameraEditorWindow();
         }
+
+
+        public void getScenes()
+        {
+            foreach (string file in Directory.GetFiles("../../../../Backend/scenes"))
+            {
+                if (Path.GetExtension(file) == ".json")
+                {
+                    sceneItems.Add(new Scene(Path.GetFileNameWithoutExtension(file)));
+                }
+            }
+
+            SceneBox.ItemsSource = sceneItems;
+        }
+
+        private void sceneBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentScene = SceneBox.SelectedItem as Scene;
+            DataContext = currentScene;
+            RenderButton.IsEnabled = true;
+            closeSubWindows();
+        }
     }
 
-    public class ObjectItem
+    public class ImageConverter : IValueConverter
     {
-        public string Shape { get; set; }
-        public string Material { get; set; }
-        public string Name { get; set; }
-
-        public override string ToString()
+        [SuppressMessage("ReSharper.DPA", "DPA0003: Excessive memory allocations in LOH")]
+        public object Convert(
+            object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return string.Format("{0} (Shape: {1}, Material: {2})", Name, Shape, Material);
+            lock ((Bitmap) value)
+            {
+                BitmapImage image = new BitmapImage();
+                MemoryStream ms = new MemoryStream();
+
+                ((Bitmap) value)?.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                image.BeginInit();
+                ms.Seek(0, SeekOrigin.Begin);
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
         }
     }
 }

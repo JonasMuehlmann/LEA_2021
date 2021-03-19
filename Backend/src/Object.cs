@@ -7,9 +7,18 @@ namespace LEA_2021
     using Point3 = Vector3;
 
 
-    class Object
+    public class Object
     {
+
+
+        public override string ToString()
+        {
+            return $"{Name} (Material: {Material})";
+        }
+
         #region Properties
+
+        public string Name { get; set; }
 
         public Material Material { get; set; }
 
@@ -20,6 +29,14 @@ namespace LEA_2021
         #endregion
 
         #region Constructors
+
+        public Object(Material material, Shape shape, Point3 position, string name)
+        {
+            Material = material;
+            Shape = shape;
+            Position = position;
+            Name = name;
+        }
 
         public Object(Material material, Shape shape, Point3 position)
         {

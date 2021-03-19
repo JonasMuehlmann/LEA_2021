@@ -13,15 +13,15 @@
         <StackPanel DockPanel.Dock="Top" Margin="20">
             <StackPanel.Resources>
                 <Style TargetType="StackPanel">
-                    <Setter Property="Margin" Value="0, 0, 0, 5"></Setter>
+                    <Setter Property="Margin" Value="0, 0, 0, 5" />
                 </Style>
                 <Style TargetType="Label">
-                    <Setter Property="Padding" Value="0, 13, 0, 5"></Setter>
-                    <Setter Property="FontSize" Value="14px"></Setter>
-                    <Setter Property="FontWeight" Value="Medium"></Setter>
+                    <Setter Property="Padding" Value="0, 13, 0, 5" />
+                    <Setter Property="FontSize" Value="14px" />
+                    <Setter Property="FontWeight" Value="Medium" />
                 </Style>
                 <Style TargetType="TextBox">
-                    <Setter Property="Padding" Value="5"></Setter>
+                    <Setter Property="Padding" Value="5" />
                 </Style>
             </StackPanel.Resources>
 
@@ -38,17 +38,17 @@
                 
                 <StackPanel Width="94px">
                     <Label>X</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionPosX">450</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionPosX">450</TextBox>
                 </StackPanel>
 
                 <StackPanel Width="94px" Margin="5px, 0, 0, 0">
                     <Label>Y</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionPosY">125</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionPosY">125</TextBox>
                 </StackPanel>
 
                 <StackPanel Width="94px" Margin="5px, 0, 0, 0">
                     <Label>Z</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionPosZ">125</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionPosZ">125</TextBox>
                 </StackPanel>
             </StackPanel>
 
@@ -56,18 +56,18 @@
 
             <StackPanel>
                 <Label>Radius</Label>
-                <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionRadius">5</TextBox>
+                <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionRadius">5</TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Width="144px">
                     <Label>Höhe</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionHeight">450</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionHeight">450</TextBox>
                 </StackPanel>
 
                 <StackPanel Width="144px" Margin="5px, 0, 0, 0">
                     <Label>Breite</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="optionWidth">125</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionWidth">125</TextBox>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

@@ -1,5 +1,7 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -8,23 +10,64 @@ using System.Json;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
-
 namespace LEA_2021
 {
     using Vec3 = Vector3;
     using Point3 = Vector3;
-    using Point2 = Vector2;
 
 
-    class Scene
+    public class Scene : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public void DetectBackground()
+        {
+            if (Regex.IsMatch(backgroundValue, @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
+            {
+                // Background is hex color
+                SetBackground(ColorTranslator.FromHtml(backgroundValue));
+            }
+            else if (Regex.IsMatch(backgroundValue, @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
+            {
+                // background is path to image
+                SetBackground(backgroundValue);
+            }
+            else
+            {
+                // background must be color word
+                SetBackground(Color.FromName(backgroundValue));
+            }
+        }
+
+
+
+        public void SetBackground(string image_path)
+        {
+            Image = new Bitmap(Bitmap.FromFile(image_path));
+        }
+
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
+
         #region Properties
+
+        public String Name { get; set; }
 
         public Metadata Metadata { get; set; }
 
         public List<Object> Objects { get; set; }
 
         public Bitmap Image { get; set; }
+
+        public int Percentage { get; set; }
 
         public Camera Camera { get; set; }
 
@@ -34,6 +77,8 @@ namespace LEA_2021
 
         public Color BackgroundColor { get; set; }
 
+        public string backgroundValue { get; set; }
+
         #endregion
 
         #region Constructors
@@ -42,9 +87,12 @@ namespace LEA_2021
         public Scene(Metadata metadata, Camera camera)
         {
             Metadata = metadata;
-            Objects  = new List<Object>();
-            Image    = new Bitmap(metadata.Width, metadata.Height);
-            Camera   = camera;
+            Objects = new List<Object>();
+            Image = new Bitmap(metadata.Width, metadata.Height);
+            Camera = camera;
+
+            Name = "Untitled";
+            backgroundValue = "Black";
             SetBackground(Color.Black);
             PointLights     = new List<PointLight>();
             Rng             = new Random();
@@ -56,9 +104,12 @@ namespace LEA_2021
         public Scene(Metadata metadata)
         {
             Metadata = metadata;
-            Objects  = new List<Object>();
-            Image    = new Bitmap(metadata.Width, metadata.Height);
-            Camera   = new Camera();
+            Objects = new List<Object>();
+            Image = new Bitmap(metadata.Width, metadata.Height);
+            Camera = new Camera();
+
+            Name = "Untitled";
+            backgroundValue = "Black";
             SetBackground(Color.Black);
             PointLights     = new List<PointLight>();
             Rng             = new Random();
@@ -69,25 +120,27 @@ namespace LEA_2021
         // Default background color is black
         public Scene(string configName)
         {
-            JsonValue value = JsonValue.Parse(File.ReadAllText($@"../../../scenes/{configName}.json"));
+            JsonValue value = JsonValue.Parse(File.ReadAllText($@"../../../../Backend/scenes/{configName}.json"));
+            Name = configName;
 
-            Metadata = new Metadata((int) value["Metadata"]["Width"],
-                                    (int) value["Metadata"]["Height"],
-                                    (int) value["Metadata"]["Num_Iterations"]
-                                   );
+            Metadata = new Metadata(
+                (int) value["Metadata"]["Width"],
+                (int) value["Metadata"]["Height"],
+                (int) value["Metadata"]["Num_Iterations"]
+            );
 
             Image = new Bitmap(Metadata.Width, Metadata.Height);
 
             Camera = new Camera(new Point3(value["Camera"]["Position"][0],
-                                           value["Camera"]["Position"][1],
-                                           value["Camera"]["Position"][1]
-                                          ),
-                                new Vec3(value["Camera"]["Direction"][0],
-                                         value["Camera"]["Direction"][1],
-                                         value["Camera"]["Direction"][1]
-                                        ),
-                                Util.DegreesToRadians((int) value["Camera"]["FOV"])
-                               );
+                    value["Camera"]["Position"][1],
+                    value["Camera"]["Position"][1]
+                ),
+                new Vec3(value["Camera"]["Direction"][0],
+                    value["Camera"]["Direction"][1],
+                    value["Camera"]["Direction"][1]
+                ),
+                Util.DegreesToRadians((int) value["Camera"]["FOV"])
+            );
 
 
             // create object classes
@@ -100,14 +153,15 @@ namespace LEA_2021
                 switch ((string) obj["Shape"])
                 {
                     case "Cuboid":
-                        shapeClass = new Cuboid((int) obj["Properties"]["Width"],
-                                                (int) obj["Properties"]["Length"],
-                                                (int) obj["Properties"]["Length"],
-                                                new Vec3(obj["Properties"]["Orientation"][0],
-                                                         obj["Properties"]["Orientation"][1],
-                                                         obj["Properties"]["Orientation"][2]
-                                                        )
-                                               );
+                        shapeClass = new Cuboid(
+                            (int) obj["Properties"]["Width"],
+                            (int) obj["Properties"]["Height"],
+                            (int) obj["Properties"]["Length"],
+                            new Vec3(obj["Properties"]["Orientation"][0],
+                                obj["Properties"]["Orientation"][1],
+                                obj["Properties"]["Orientation"][2]
+                            )
+                        );
 
                         break;
 
@@ -118,24 +172,26 @@ namespace LEA_2021
 
                     case "Plane":
                         shapeClass = new Plane(new Vec3(obj["Properties"]["Orientation"][0],
-                                                        obj["Properties"]["Orientation"][1],
-                                                        obj["Properties"]["Orientation"][2]
-                                                       ),
-                                               (int) obj["Properties"]["Width"],
-                                               (int) obj["Properties"]["Length"]
-                                              );
+                                obj["Properties"]["Orientation"][1],
+                                obj["Properties"]["Orientation"][2]
+                            ),
+                            (int) obj["Properties"]["Width"],
+                            (int) obj["Properties"]["Height"]
+                        );
 
                         break;
                 }
 
-                Objects.Add(new Object(new Material(obj["Material"]),
-                                       shapeClass,
-                                       new Vector3(obj["Properties"]["Position"][0],
-                                                   obj["Properties"]["Position"][1],
-                                                   obj["Properties"]["Position"][2]
-                                                  )
-                                      )
-                           );
+                Objects.Add(new Object(
+                        new Material(obj["Material"]),
+                        shapeClass,
+                        new Vector3(obj["Properties"]["Position"][0],
+                            obj["Properties"]["Position"][1],
+                            obj["Properties"]["Position"][2]
+                        ),
+                        obj["Name"]
+                    )
+                );
             }
 
 
@@ -158,6 +214,8 @@ namespace LEA_2021
             PointLights     = new List<PointLight>();
             Rng             = new Random();
             BackgroundColor = Color.Black;
+            backgroundValue = value["Background"];
+            DetectBackground();
         }
 
         #endregion
@@ -175,10 +233,7 @@ namespace LEA_2021
         }
 
 
-        public void SetBackground(string imagePath)
-        {
-            Image = new Bitmap(Bitmap.FromFile(imagePath));
-        }
+
 
 
         private Vec3 Reflect(Vec3 direction, Vec3 surfaceNormal)
@@ -381,8 +436,12 @@ namespace LEA_2021
         [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH")]
         public void Render()
         {
+            DetectBackground();
+            Percentage = 0;
             for (int i = 0; i < Metadata.NumIterations; ++i)
             {
+                Percentage = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
+                OnPropertyChanged("Percentage");
                 for (int column = 0; column < Metadata.Height; ++column)
                 {
                     for (int row = 0; row < Metadata.Width; ++row)
@@ -400,7 +459,8 @@ namespace LEA_2021
                     }
                 }
 
-                Image.Save("../../../out/foo.png", ImageFormat.Png);
+            Image.Save($"../../../../Backend/out/{Name}.png", ImageFormat.Png);
+            OnPropertyChanged("Image");
             }
         }
     }

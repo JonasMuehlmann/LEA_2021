@@ -11,6 +11,9 @@ namespace LEA_2021
     {
         #region Properties
 
+        /// <summary>
+        /// A Vector representing the normal of an object's top side
+        /// </summary>
         public Vec3 Orientation { get; set; }
 
         #endregion

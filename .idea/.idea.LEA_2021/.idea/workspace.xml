@@ -11,12 +11,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/src/geometry/PointLight.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/out/foo.png" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/out/foo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Camera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Camera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/LightBeam.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/LightBeam.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Metadata.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Metadata.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Object.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Object.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Util.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Util.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/uml_diagrams/LEA2021_usecase_gui.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/uml_diagrams/LEA2021_usecase_gui.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/uml_diagrams/LEA2021_usecase_gui.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/uml_diagrams/LEA2021_usecase_gui.uxf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/uml_diagrams/class_diagramm.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/uml_diagrams/class_diagramm.uxf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,38 +84,28 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Sphere.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/03CDD8B5-17F3-4DEA-8229-F6B98322B93D/14/6aff9a1f/List`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Backend/src/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Plane.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/src/geometry/Plane.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/87DBB896-6B20-4A14-9B6A-7AB43642646D/dc/f253005c/Vector`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/CE392B59-909B-4D07-850B-C6313D6CF5E7/3/System.Drawing.Common.notsupported.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/src/Scene.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/633820B9-579F-4675-BABE-D79321255F17/7b/a85d73d0/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/87DBB896-6B20-4A14-9B6A-7AB43642646D/c0/4329e721/Math.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Cuboid.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9A625919-60D0-4309-B061-98634ED8683B/4c/3b9bb348/SortedDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EB73B25A-F6A9-4F97-8FA5-C1DBA8EB133D/0c/84a91204/Color.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/E6052F63-69FB-4011-8A1B-EEAD82CB51D1/1/Bitmap.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/03CDD8B5-17F3-4DEA-8229-F6B98322B93D/4b/10b0d5e5/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Backend/scenes/scene_01.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Sphere.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Util.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/03CDD8B5-17F3-4DEA-8229-F6B98322B93D/14/6aff9a1f/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/E6052F63-69FB-4011-8A1B-EEAD82CB51D1/1/Bitmap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Backend/src/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/03CDD8B5-17F3-4DEA-8229-F6B98322B93D/4b/10b0d5e5/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Metadata.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Shape.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Plane.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Backend/scenes/scene_01.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/LightBeam.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -122,23 +128,24 @@
       <option value="$PROJECT_DIR$/Backend/src/Sphere.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Plane.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Canera.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Metadata.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Rectangle.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/LightBeam.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Camera.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" />
       <option value="$PROJECT_DIR$/.gitignore" />
-      <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/LightBeam.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Metadata.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/PointLight.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Camera.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
       <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
+      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -150,23 +157,24 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.8248472" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.37654015" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="XThreadsFramesViewSplitterKey" value="0.13204226" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.080213904" />
     <property name="do_not_show_solution_notification" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Frontend/bin/Debug/net5.0-windows/Frontend.dll" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.Backend">
     <configuration name="Backend" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/Backend/bin/Debug/netcoreapp3.1/Backend.dll" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Backend/bin/Release/netcoreapp5.0/Backend.dll" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Backend/bin/Debug/netcoreapp3.1" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Backend/bin/Release/netcoreapp5.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
@@ -176,24 +184,24 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="PROJECT_TFM" value="net5.0" />
       <method v="2">
         <option name="Build" />
       </method>
     </configuration>
     <configuration name="Frontend" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/Frontend/bin/Debug/netcoreapp3.1/Frontend.dll" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Frontend/bin/Debug/net5.0-windows/Frontend.dll" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Frontend/bin/Debug/netcoreapp3.1" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Frontend/bin/Debug/net5.0-windows" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/Frontend/Frontend.csproj" />
-      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="0" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
-      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
-      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="0" />
+      <option name="PROJECT_KIND" value="Unloaded" />
       <option name="PROJECT_TFM" value=".NETCoreApp,Version=v3.1" />
       <method v="2">
         <option name="Build" />
@@ -214,7 +222,8 @@
       <updated>1615792326752</updated>
       <workItem from="1615792329265" duration="45539000" />
       <workItem from="1615963941184" duration="445000" />
-      <workItem from="1615964409323" duration="23126000" />
+      <workItem from="1615964409323" duration="79343000" />
+      <workItem from="1616136194292" duration="25831000" />
     </task>
     <task id="LOCAL-00001" summary="Created repo.">
       <created>1615793301147</created>
@@ -286,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615985741618</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fixed plane intersection">
+      <created>1615990240116</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1615990240116</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,10 +334,30 @@
     <MESSAGE value="Add multiple iterations to Scene.Render()" />
     <MESSAGE value="Add IDE configs" />
     <MESSAGE value="Fix false merge in scene config" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix false merge in scene config" />
+    <MESSAGE value="Fixed plane intersection" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Backend/src/Scene.cs</url>
+          <line>237</line>
+          <properties documentPath="$PROJECT_DIR$/Backend/src/Scene.cs" initialLine="231" containingFunctionPresentation="method 'TraceRay'">
+            <startOffsets>
+              <option value="8476" />
+            </startOffsets>
+            <endOffsets>
+              <option value="8602" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

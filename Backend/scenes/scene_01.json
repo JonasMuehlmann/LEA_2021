@@ -1,22 +1,22 @@
 {
     "Background": "../../../scenes/bg.png",
-    "Metadata": {
-        "Width": 1920,
-        "Height": 1080,
-        "Num_Iterations": 5
+    "Metadata":   {
+        "Width":          1920,
+        "Height":         1080,
+        "Num_Iterations": 1
     },
-    "Camera": {
-        "Position": [0, 0, 0],
+    "Camera":     {
+        "Position":  [0, 0, 0],
         "Direction": [0, 0, 1],
-        "FOV": 60
+        "FOV":       90
     },
-    "Objects":  [
+    "Objects":    [
         {
             "Shape":      "Sphere",
             "Material":   "brick",
             "Properties": {
                 "Radius":   10,
-                "Position": [-20, -10, 50]
+                "Position": [10, 0, -20]
             }
         },
         {
@@ -24,17 +24,7 @@
             "Material":   "brick",
             "Properties": {
                 "Radius":   10,
-                "Position": [20, 10, 50]
-            }
-        },
-        {
-            "Shape":      "Plane",
-            "Material":   "brick",
-            "Properties": {
-                "Width":       20,
-                "Height":      30,
-                "Position":    [0, 0, 10],
-                "Orientation": [0, 1, 0]
+                "Position": [-10, -10, -40]
             }
         }
     ]

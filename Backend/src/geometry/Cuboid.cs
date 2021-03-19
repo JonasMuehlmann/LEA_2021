@@ -73,7 +73,7 @@ namespace LEA_2021
         #endregion
 
 
-        public override Vec3? Intersect(Ray ray, Point3 center)
+        public override float Intersect(Ray ray, Point3 center)
         {
             throw new System.NotImplementedException();
         }

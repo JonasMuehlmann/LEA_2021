@@ -11,9 +11,9 @@ namespace LEA_2021
     {
         #region Properties
 
-        public Vec3 Origin { get; }
+        public Vec3 Origin { get; set; }
 
-        public Vec3 Direction { get; }
+        public Vec3 Direction { get; set; }
 
         #endregion
 

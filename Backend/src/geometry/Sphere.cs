@@ -6,6 +6,7 @@ namespace LEA_2021
 {
     using Vec3 = Vector3;
     using Point3 = Vector3;
+    using Point2 = Vector2;
 
 
     public class Sphere : Shape
@@ -33,50 +34,90 @@ namespace LEA_2021
         #endregion
 
 
-        /*
-         * Calculate intersection point given the quadratic formula
-         */
-        public override Vec3? Intersect(Ray ray, Point3 center)
+        // TODO: Fix
+        // Return UV coordinates in the range of [0,1]
+        public static Point2 GetUvCoordinates(Point3 surfacePoint, Vec3 centerPosition)
         {
-            float a            = Vec3.Dot(ray.Direction, ray.Direction);
-            float b            = 2 * Vec3.Dot(center - ray.Origin, ray.Direction);
-            float c            = Vec3.Dot(center     - ray.Origin, center - ray.Origin) - Util.Square(Radius);
-            float discriminant = Util.Square(b)                                         - 4 * a * c;
+            // Vec3 surfaceNormal = Vec3.Normalize(centerPosition - surfacePoint);
+            Vec3 surfaceNormal = Vec3.Normalize(surfacePoint - centerPosition);
+
+            float u = (float) (0.5f + (Math.Atan2(-surfaceNormal.Z, surfaceNormal.X) / (2f * Math.PI)));
+            float v = (float) (0.5f - Math.Asin(surfaceNormal.Y) / Math.PI);
+            // float u = (float) ((Math.Atan(-surfaceNormal.X / -surfaceNormal.Z) +  Math.PI / 2f) / Math.PI);
+            // float v = (float) (Math.Acos(-surfaceNormal.Y) / Math.PI);
+
+            // float u =  (float)((Math.Atan2(-surfaceNormal.Z, surfaceNormal.X)+ Math.PI) / (2f * Math.PI));
+            // float v =  (float)(Math.Acos(-surfaceNormal.Y / surfaceNormal.Length()) / Math.PI);
+
+            //float u = Util.RescaleToRange((float)Math.Atan2(-surfaceNormal.Z, surfaceNormal.X), (float)-Math.PI, (float)Math.PI, 0f, 1f);
+            return new Point2(u, v);
+        }
+
+
+        /// Calculate intersection point given the quadratic formula
+        public override float Intersect(Ray ray, Point3 center)
+        {
+            Vec3 CO = Util.FromAToB(ray.Origin, center);
+
+            float tca = Vec3.Dot(ray.Direction, CO);
+            float d2  = Vector3.Dot(CO, CO) - Util.Square(tca);
 
             // No intersection
-            if (discriminant < 0)
+            if (d2 > Util.Square(Radius))
             {
-                return null;
+                return -1f;
             }
 
 
-            var discriminant_sqrt = (float) Math.Sqrt(discriminant);
-            // float t1                = CpDotR_D + discriminant_sqrt / Vec3.Dot(ray.Direction, ray.Direction);
-            // float t2                = CpDotR_D - discriminant_sqrt / Vec3.Dot(ray.Direction, ray.Direction);
-            float t1 = -b + discriminant_sqrt / 2 * a;
-            float t2 = -b - discriminant_sqrt / 2 * a;
+            float thc = (float) Math.Sqrt(Util.Square(Radius) - d2);
 
-            // Ray intersects, but is shot away from sphere
-            if (t1 < 0 && t2 < 0)
+            float t1 = tca - thc;
+            float t2 = tca + thc;
+
+            // if (t1 < 0)
+            // {
+            //     t1 = t2;
+            // }
+            // if (t1 < 0)
+            // {
+            //     return -1f;
+            // }
+            // else
+            // {
+            //     return t1;
+            // }
+
+            // // Original
+            // float t1 = (-b + discriminantSqrt) / (2f * a);
+            // float t2 = (-b - discriminantSqrt) / (2f * a);
+
+            // float t1 = -(-b + discriminantSqrt) / (2f * a);
+            // float t2 = -(-b - discriminantSqrt) / (2f * a);
+
+            // // New
+            // float q = -0.5f * (b + Math.Sign(b) * discriminantSqrt);
+            //
+            // float t1 = q / a;
+            // float t2 = c / q;
+
+            // Both intersections are behind the rays origin, the object is behind the rays direction
+            if (t1 < Single.Epsilon && t2 < Single.Epsilon)
             {
-                return null;
+                return -1f;
             }
 
-            // Ray intersects but is shot from within sphere
-            if (t1 < 0 || t2 < 0)
+            // One intersection is behind the rays origin, we must be inside the sphere
+            if (t1 < Single.Epsilon || t2 < Single.Epsilon)
             {
-                return null;
+                return -1f;
             }
-            // Both t are positive, intersection is valid
-            else
-            {
-                // Line can intersect sphere twice (at the front and at the back)
-                // only the closer one is visible
-                float closest_t    = t1 < t2 ? t1 : t2;
-                Vec3  intersection = ray.Origin + closest_t * ray.Direction;
 
-                return intersection;
-            }
+            // Both intersections are in the correct direction of the ray
+            // Line can intersect sphere twice entering and leaving the sphere
+            // We only care about the entrance-intersection
+            float closestT = t1 < t2 ? t1 : t2;
+
+            return closestT;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace LEA_2021
         #endregion
 
 
-        public Vector3? Intersect(Ray ray)
+        public float Intersect(Ray ray)
         {
             return Shape.Intersect(ray, Position);
         }

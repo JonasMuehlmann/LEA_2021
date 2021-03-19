@@ -63,13 +63,11 @@ namespace LEA_2021
             DetectBackground();
             Percentage = 0;
 
-            Random rn = new();
             for (int i = 0; i < Metadata.NumIterations; i++)
             {
                 Console.WriteLine(i);
                 Percentage = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
                 OnPropertyChanged("Percentage");
-                Camera.Fov = rn.Next(10, 400);
 
                 for (int row = 0; row < Metadata.Width; ++row)
                 {

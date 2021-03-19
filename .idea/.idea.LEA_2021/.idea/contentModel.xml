@@ -9,7 +9,7 @@
         <e p="Backend.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Release" t="Include">
+          <e p="Debug" t="Include">
             <e p="netcoreapp5.0" t="Include">
               <e p="Backend.AssemblyInfo.cs" t="Include" />
             </e>
@@ -70,7 +70,7 @@
         <e p="MainWindow.xaml" t="Include" />
         <e p="MainWindow.xaml.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Release" t="Include">
+          <e p="Debug" t="Include">
             <e p="net5.0-windows" t="Include">
               <e p="App.g.cs" t="Include" />
               <e p="cameraEditor.g.cs" t="Include" />
@@ -83,6 +83,7 @@
         </e>
         <e p="objectEditor.xaml" t="Include" />
         <e p="objectEditor.xaml.cs" t="Include" />
+        <e p="VectorConverter.cs" t="Include" />
       </e>
       <e p="LEA_2021.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />

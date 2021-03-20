@@ -70,11 +70,11 @@ namespace LEA_2021
                 return -1f;
             }
 
-            var t = Vec3.Dot(center - ray.Origin, Orientation) / denominator;
+            var t = Vec3.Dot(Vec3.Normalize(Util.FromAToB(ray.Origin, center)), Orientation) / denominator;
 
-            if (t > float.Epsilon)
+            if (t < float.Epsilon)
             {
-                // Ray intersects, but is shot in opposite direction
+                // Ray intersects, but is shot away from the sphere
                 return -1f;
             }
 

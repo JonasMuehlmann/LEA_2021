@@ -16,10 +16,11 @@ namespace LEA_2021
 
 
             scene.SetBackground(Color.Black);
-            // is z=20 or z=-21 correct for being next to the sphere?
+            // is z=20 or z=-20 correct for being next to the sphere?
+            // TODO: Light intensity values other than 1 are broken
+            // scene.PointLights.Add(new PointLight(new Point3(20, -20, 20), 1f));
             scene.PointLights.Add(new PointLight(new Point3(20, 20, 20), 1f));
-            // scene.PointLights.Add(new PointLight(new Point3(20,20,30), 1f));
-
+            // scene.PointLights.Add(new PointLight(new Point3(40, 0, 20),1f));
             scene.Render();
         }
     }

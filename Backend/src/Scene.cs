@@ -15,10 +15,17 @@ namespace LEA_2021
 {
     using Vec3 = Vector3;
     using Point3 = Vector3;
+    using Point2 = Vector2;
 
 
     public class Scene : INotifyPropertyChanged
     {
+        #region Fields
+
+        Bitmap background = new Bitmap(Bitmap.FromFile("/home/jonas/RiderProjects/LEA_2021/Backend/scenes/bg.png"));
+
+        #endregion
+
         #region Properties
 
         public string Name { get; set; }
@@ -136,7 +143,7 @@ namespace LEA_2021
                                                         obj["Properties"]["Orientation"][2]
                                                        ),
                                                (int) obj["Properties"]["Width"],
-                                               (int) obj["Properties"]["Height"]
+                                               (int) obj["Properties"]["Length"]
                                               );
 
                         break;
@@ -240,7 +247,7 @@ namespace LEA_2021
 
         private Vec3 Refract(Vec3 direction, Vec3 surfaceNormal)
         {
-            return Vec3.Zero;
+            throw new NotImplementedException();
         }
 
 
@@ -254,7 +261,7 @@ namespace LEA_2021
             //
             // lightBeam.Brightness *= 1 / lightBeam.Brightness;
 
-            if (currentDepth > 5)
+            if (currentDepth > 0)
             {
                 return currentColor;
             }
@@ -268,13 +275,8 @@ namespace LEA_2021
                 // We hit an object
                 if (t > float.Epsilon)
                 {
-                    // return Color.White;
                     var intersection = lightBeam.Ray.Origin + t * lightBeam.Ray.Direction;
 
-                    // Console.WriteLine(t);
-                    // Console.WriteLine($"{intersection.X},{intersection.Y},{intersection.Z}");
-                    // Console.WriteLine($"{intersection.Z}");
-                    // TODO: Seems working until at least here
                     var surfaceNormal      = Vec3.Normalize(Util.FromAToB(_object.Position, intersection));
                     var brightnessDiffuse  = 0f;
                     var brightnessSpecular = 0f;
@@ -282,102 +284,74 @@ namespace LEA_2021
                     // Calculate direct illumination
                     foreach (var pointLight in PointLights)
                     {
+                        // Lambertian diffuse lighting
                         var objectToLight = Vec3.Normalize(Util.FromAToB(_object.Position, pointLight.Position));
 
-
-                        // Lambertian diffuse lighting
                         brightnessDiffuse +=
                             pointLight.Brightness * Math.Max(0f, Vec3.Dot(objectToLight, surfaceNormal));
-                        // From tinyraytracer:
-                        //  specular_light_intensity += powf(std::max(0.f, -reflect(-light_dir, N)*dir), material.specular_exponent)*lights[i].intensity;
 
                         // Blinn-Phong specular highlights
-                        //(OL + OC) * N
-                        var surfaceToLight  = Util.FromAToB(intersection, pointLight.Position);
-                        var surfaceToCamera = Util.FromAToB(intersection, Camera.Position);
-                        brightnessSpecular += Vec3.Dot(Vec3.Normalize(surfaceToLight + surfaceToCamera), surfaceNormal);
+                        // TODO: Replace with glossiness of surface
+                        var specularExponent = 200f;
+                        var surfaceToLight   = Util.FromAToB(intersection, pointLight.Position);
+                        var surfaceToCamera  = Util.FromAToB(intersection, Camera.Position);
+
+
+                        brightnessSpecular +=
+                            (float) Math.Pow(Math.Max(0f,
+                                                      Vec3.Dot(Vec3.Normalize(surfaceToLight + surfaceToCamera),
+                                                               surfaceNormal
+                                                              )
+                                                     ),
+                                             specularExponent
+                                            );
+
+                        // TODO: Shadows
                     }
 
-                    // Console.WriteLine(brightnessDiffuse);
-
-                    // x and y range from -8.6 to 8.6, z from -15 to -10 (-30, -10 for tinyraytrcer)
-                    // x and y range therefore is less than the spheres diameter, which is wrong, tinyraytracer does it right
-                    // Error Must be in intersection function
                     // TODO: Get Object color instead
-                    var color = Color.Gray;
+                    // TODO: Specular highlights are broken for colors that have 0 values
+                    Point2 uv        = Sphere.GetUvCoordinates(intersection, _object.Position);
+                    var    colorOrig = background.GetPixel((int) (uv.X * 1920), (int) (uv.Y * 1080));
+                    var    color     = new Color();
 
                     // Diffuse lighting
                     color = Color.FromArgb(255,
-                                           (int) Math.Clamp(color.R * brightnessDiffuse, 0, 255),
-                                           (int) Math.Clamp(color.G * brightnessDiffuse, 0, 255),
-                                           (int) Math.Clamp(color.B * brightnessDiffuse, 0, 255)
+                                           (int) Math.Clamp(colorOrig.R * brightnessDiffuse, 0, 255),
+                                           (int) Math.Clamp(colorOrig.G * brightnessDiffuse, 0, 255),
+                                           (int) Math.Clamp(colorOrig.B * brightnessDiffuse, 0, 255)
                                           );
 
-                    // TODO: Replace with glossiness of surface
+
                     // TODO: Cleanup
-                    float specularExponent = 50;
 
                     // Specular lighting
                     color = Color.FromArgb(255,
                                            (int) Math.Clamp(color.R
-                                                          + color.R * Math.Pow(brightnessSpecular, specularExponent),
+                                                          + color.R * brightnessSpecular,
                                                             0,
                                                             255
                                                            ),
                                            (int) Math.Clamp(color.G
-                                                          + color.G * Math.Pow(brightnessSpecular, specularExponent),
+                                                          + color.G * brightnessSpecular,
                                                             0,
                                                             255
                                                            ),
                                            (int) Math.Clamp(color.B
-                                                          + color.B * Math.Pow(brightnessSpecular, specularExponent),
+                                                          + color.B * brightnessSpecular,
                                                             0,
                                                             255
                                                            )
                                           );
 
-                    // Gamma correction
+                    // // Gamma correction
                     // color = Color.FromArgb(255,
                     //               (int)(255f * Math.Pow(color.R/255f, 1f/2.2f)),
                     //               (int)(255f * Math.Pow(color.G/255f, 1f/2.2f)),
                     //               (int)(255f * Math.Pow(color.B/255f, 1f/2.2f))
                     //              );
-                    //
 
                     return color;
-                    // return Color.FromArgb(255,
-                    //                       (int) (255f * surfaceNormal.X),
-                    //                       (int) (255f * surfaceNormal.Y),
-                    //                       (int) (255f * -surfaceNormal.Z)
-                    //                      );
-                    // Console.WriteLine(intersection.Z);
-
-                    // return Color.FromArgb(255,
-                    //                       (int) (125f * (1 + surfaceNormal.X)),
-                    //                       (int) (255f * Math.Abs(0)),
-                    //                       (int) (255f * Math.Abs(0))
-                    //                      );
-                    // // Sphere shape = _object.Shape as Sphere;
-                    // Console.WriteLine(shape.Radius - Util.FromAToB(_object.Position, (Vec3) intersection).Length());
-                    // Console.WriteLine(Util.FromAToB(_object.Position, (Vec3) intersection));
-                    // Console.WriteLine(intersection);
-                    // return Color.FromArgb(255, (int) (Math.Abs(surfaceNormal.X*255f)), (int)(Math.Abs(surfaceNormal.Y * 255f)), (int)(Math.Abs(surfaceNormal.Z * 255f)));
-                    // TODO: Diffuse reflection
-                    // TODO: Specular reflection
-                    // TODO: Shadows
-                    // if (_object.Shape.GetType() == typeof(Plane))
-                    // {
-                    //     int distance = (int) (10 * Vector3.Distance((Vector3) intersection, _object.Position));
-                    //     Image.SetPixel(row, column, Color.FromArgb(100, distance, distance, distance));
-                    // }
-                    // else
-                    //
-                    // {
-                    //     Image.SetPixel(row, column, Color.White);
-                    // }
-
-                    // Point2 uv    = Sphere.GetUVCoordinates((Vec3) intersection, _object.Position);
-                    // Color  pixel = people.GetPixel((int)(uv.X * 1920), (int)(uv.Y * 1080));
                 }
 
                 currentColor = Color.FromArgb(255,

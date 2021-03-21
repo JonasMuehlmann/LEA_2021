@@ -137,14 +137,14 @@ namespace LEA_2021
 
                         break;
 
-                    case "Plane":
-                        shapeClass = new Plane(new Vec3(obj["Properties"]["Orientation"][0],
-                                                        obj["Properties"]["Orientation"][1],
-                                                        obj["Properties"]["Orientation"][2]
-                                                       ),
-                                               (int) obj["Properties"]["Width"],
-                                               (int) obj["Properties"]["Length"]
-                                              );
+                    case "FinitePlane":
+                        shapeClass = new FinitePlane(new Vec3(obj["Properties"]["Orientation"][0],
+                                                              obj["Properties"]["Orientation"][1],
+                                                              obj["Properties"]["Orientation"][2]
+                                                             ),
+                                                     (int) obj["Properties"]["Width"],
+                                                     (int) obj["Properties"]["Length"]
+                                                    );
 
                         break;
                 }
@@ -239,6 +239,7 @@ namespace LEA_2021
         }
 
 
+        // TODO: Use Vector3.Reflect instead
         private Vec3 Reflect(Vec3 direction, Vec3 surfaceNormal)
         {
             return direction - 2f * surfaceNormal * Vec3.Dot(surfaceNormal, direction);
@@ -275,7 +276,7 @@ namespace LEA_2021
                 // We hit an object
                 if (t > float.Epsilon)
                 {
-                    var intersection = lightBeam.Ray.Origin + t * lightBeam.Ray.Direction;
+                    var intersection = lightBeam.Ray.At(t);
 
                     var surfaceNormal      = Vec3.Normalize(Util.FromAToB(_object.Position, intersection));
                     var brightnessDiffuse  = 0f;
@@ -311,9 +312,16 @@ namespace LEA_2021
 
                     // TODO: Get Object color instead
                     // TODO: Specular highlights are broken for colors that have 0 values
-                    Point2 uv        = Sphere.GetUvCoordinates(intersection, _object.Position);
-                    var    colorOrig = background.GetPixel((int) (uv.X * 1920), (int) (uv.Y * 1080));
-                    var    color     = new Color();
+                    Color colorOrig = Color.Brown;
+
+                    if (_object.Shape.GetType() == typeof(Sphere))
+                    {
+                        Point2 uv = Sphere.GetUvCoordinates(intersection, _object.Position);
+                        colorOrig = background.GetPixel((int) (uv.X * 1920), (int) (uv.Y * 1080));
+                    }
+
+
+                    var color = new Color();
 
                     // Diffuse lighting
                     color = Color.FromArgb(255,

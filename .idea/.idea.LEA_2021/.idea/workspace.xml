@@ -11,14 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/csv-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/out/scene_01.png" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/out/scene_01.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Util.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Util.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/uml_diagrams/class_diagramm.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/uml_diagrams/class_diagramm.uxf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +72,7 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Backend/src/geometry/Plane.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/87DBB896-6B20-4A14-9B6A-7AB43642646D/dc/f253005c/Vector`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/CE392B59-909B-4D07-850B-C6313D6CF5E7/3/System.Drawing.Common.notsupported.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/src/Scene.cs" root0="FORCE_HIGHLIGHTING" />
@@ -112,20 +114,22 @@
       <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
       <option value="$PROJECT_DIR$/.gitignore" />
       <option value="$PROJECT_DIR$/Backend/src/LightBeam.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Metadata.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/PointLight.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Camera.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" />
-      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
       <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/Orientation.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -137,12 +141,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.99834573" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3716551" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="XThreadsFramesViewSplitterKey" value="0.29199648" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.4625" />
     <property name="do_not_show_solution_notification" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Frontend/bin/Debug/net5.0-windows/Frontend.dll" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -204,7 +208,9 @@
       <workItem from="1615963941184" duration="445000" />
       <workItem from="1615964409323" duration="79343000" />
       <workItem from="1616136194292" duration="26913000" />
-      <workItem from="1616230887636" duration="20002000" />
+      <workItem from="1616230887636" duration="22498000" />
+      <workItem from="1616321287766" duration="5035000" />
+      <workItem from="1616332100267" duration="6830000" />
     </task>
     <task id="LOCAL-00001" summary="Created repo.">
       <created>1615793301147</created>
@@ -290,7 +296,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616176409420</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fix Plane intersection, implement specular highlights and fix uv coordinate calculation">
+      <created>1616254089447</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1616254089447</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,7 +337,8 @@
     <MESSAGE value="Fix false merge in scene config" />
     <MESSAGE value="Fixed plane intersection" />
     <MESSAGE value="Forgot to commit throughout the days..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Forgot to commit throughout the days..." />
+    <MESSAGE value="Fix Plane intersection, implement specular highlights and fix uv coordinate calculation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Plane intersection, implement specular highlights and fix uv coordinate calculation" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -333,17 +347,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Backend/src/geometry/Plane.cs</url>
-          <line>62</line>
-          <properties documentPath="$PROJECT_DIR$/Backend/src/geometry/Plane.cs" initialLine="62" containingFunctionPresentation="method 'Intersect'">
+          <url>file://$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs</url>
+          <line>87</line>
+          <properties documentPath="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" initialLine="87" containingFunctionPresentation="method 'IsInBounds'">
             <startOffsets>
-              <option value="1305" />
+              <option value="2091" />
             </startOffsets>
             <endOffsets>
-              <option value="1360" />
+              <option value="2235" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

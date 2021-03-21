@@ -50,8 +50,8 @@
           <e p="Util.cs" t="Include" />
           <e p="geometry" t="Include">
             <e p="Cuboid.cs" t="Include" />
+            <e p="FinitePlane.cs" t="Include" />
             <e p="Oriented.cs" t="Include" />
-            <e p="Plane.cs" t="Include" />
             <e p="PointLight.cs" t="Include" />
             <e p="Ray.cs" t="Include" />
             <e p="Shape.cs" t="Include" />

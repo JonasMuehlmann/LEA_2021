@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 
 
@@ -9,12 +10,37 @@ namespace LEA_2021
 
     public abstract class Oriented : Shape
     {
+        #region Fields
+
+        private Vec3 _orientation;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
         ///     A Vector representing the normal of an object's top side
         /// </summary>
-        public Vec3 Orientation { get; set; }
+        public Vec3 Orientation
+        {
+            get => _orientation;
+            set
+            {
+                if (
+                    !(Equals(value, Vec3.UnitY)
+                   || Equals(value, -Vec3.UnitY)
+                   || Equals(value, Vec3.UnitX)
+                   || Equals(value, -Vec3.UnitX)
+                   || Equals(value, Vec3.UnitZ)
+                   || Equals(value, -Vec3.UnitZ)
+                        ))
+                {
+                    throw new ArgumentException("Orientation can only be axis aligned");
+                }
+
+                _orientation = value;
+            }
+        }
 
         #endregion
     }

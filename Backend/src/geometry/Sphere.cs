@@ -34,15 +34,10 @@ namespace LEA_2021
         #endregion
 
 
-        // TODO: Fix
         // Return UV coordinates in the range of [0,1]
-        public static Point2 GetUvCoordinates(Point3 surfacePoint, Vec3 centerPosition)
+        public override Point2 GetUvCoordinates(Point3 surfacePoint, Vec3 centerPosition)
         {
-            var surfaceNormal = Vec3.Normalize(Util.FromAToB(centerPosition, surfacePoint));
-
-
-            // float u = (float) (0.5f + (Math.Atan2(-surfaceNormal.Z, -surfaceNormal.X)) / (2f * Math.PI));
-            // float v =  (float)(Math.Acos(surfaceNormal.Y / surfaceNormal.Length()) / Math.PI);
+            Vector3 surfaceNormal = Vec3.Normalize(Util.FromAToB(centerPosition, surfacePoint));
 
             // Upper bound of the calculation is too low, magic number for correction
             float u = 1.79f * (float) ((Math.PI + Math.Atan2(-surfaceNormal.Z, surfaceNormal.X)) / (2 * Math.PI));
@@ -54,8 +49,7 @@ namespace LEA_2021
                                         );
             }
 
-            // Console.WriteLine(u);
-            float v = (float) (Math.Acos(surfaceNormal.Y) / (Math.PI));
+            float v = (float) (Math.Acos(surfaceNormal.Y) / Math.PI);
 
             return new Point2(u, v);
         }
@@ -64,10 +58,10 @@ namespace LEA_2021
         /// Calculate intersection point given the quadratic formula
         public override float Intersect(Ray ray, Point3 center)
         {
-            var CO = Util.FromAToB(ray.Origin, center);
+            Vector3 CO = Util.FromAToB(ray.Origin, center);
 
-            var tca = Vec3.Dot(ray.Direction, CO);
-            var d2  = Vector3.Dot(CO, CO) - Util.Square(tca);
+            float tca = Vec3.Dot(ray.Direction, CO);
+            float d2  = Vector3.Dot(CO, CO) - Util.Square(tca);
 
             // No intersection
             if (d2 > Util.Square(Radius))
@@ -76,36 +70,10 @@ namespace LEA_2021
             }
 
 
-            var thc = (float) Math.Sqrt(Util.Square(Radius) - d2);
+            float thc = (float) Math.Sqrt(Util.Square(Radius) - d2);
 
-            var t1 = tca - thc;
-            var t2 = tca + thc;
-
-            // if (t1 < 0)
-            // {
-            //     t1 = t2;
-            // }
-            // if (t1 < 0)
-            // {
-            //     return -1f;
-            // }
-            // else
-            // {
-            //     return t1;
-            // }
-
-            // // Original
-            // float t1 = (-b + discriminantSqrt) / (2f * a);
-            // float t2 = (-b - discriminantSqrt) / (2f * a);
-
-            // float t1 = -(-b + discriminantSqrt) / (2f * a);
-            // float t2 = -(-b - discriminantSqrt) / (2f * a);
-
-            // // New
-            // float q = -0.5f * (b + Math.Sign(b) * discriminantSqrt);
-            //
-            // float t1 = q / a;
-            // float t2 = c / q;
+            float t1 = tca - thc;
+            float t2 = tca + thc;
 
             // Both intersections are behind the rays origin, the object is behind the rays direction
             if (t1 < float.Epsilon && t2 < float.Epsilon)
@@ -122,7 +90,7 @@ namespace LEA_2021
             // Both intersections are in the correct direction of the ray
             // Line can intersect sphere twice entering and leaving the sphere
             // We only care about the entrance-intersection
-            var closestT = t1 < t2 ? t1 : t2;
+            float closestT = t1 < t2 ? t1 : t2;
 
             return closestT;
         }

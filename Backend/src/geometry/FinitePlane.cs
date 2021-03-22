@@ -6,6 +6,7 @@ namespace LEA_2021
 {
     using Vec3 = Vector3;
     using Point3 = Vector3;
+    using Point2 = Vector2;
 
 
     public class FinitePlane : Oriented
@@ -64,8 +65,8 @@ namespace LEA_2021
                 Math.Abs(Orientation.Y) == 1f
             )
             {
-                if (Util.ScalarDistance(center.X, intersection.X) > Length / 2f
-                 || Util.ScalarDistance(center.Z, intersection.Z) > Width  / 2f)
+                if (Math.Abs(Util.ScalarDistance(center.X, intersection.X)) > Length / 2f
+                 || Math.Abs(Util.ScalarDistance(center.Z, intersection.Z)) > Width  / 2f)
                 {
                     return false;
                 }
@@ -75,8 +76,8 @@ namespace LEA_2021
                 Math.Abs(Orientation.X) == 1f
             )
             {
-                if (Util.ScalarDistance(center.Z, intersection.Z) > Length / 2f
-                 || Util.ScalarDistance(center.Y, intersection.Y) > Width  / 2f)
+                if (Math.Abs(Util.ScalarDistance(center.Z, intersection.Z)) > Length / 2f
+                 || Math.Abs(Util.ScalarDistance(center.Y, intersection.Y)) > Width  / 2f)
                 {
                     return false;
                 }
@@ -85,8 +86,8 @@ namespace LEA_2021
             if (Math.Abs(Orientation.Z) == 1f
             )
             {
-                if (Util.ScalarDistance(center.Y, intersection.Y) > Length / 2f
-                 || Util.ScalarDistance(center.X, intersection.X) > Width  / 2f)
+                if (Math.Abs(Util.ScalarDistance(center.Y, intersection.Y)) > Length / 2f
+                 || Math.Abs(Util.ScalarDistance(center.X, intersection.X)) > Width  / 2f)
                 {
                     return false;
                 }
@@ -96,9 +97,37 @@ namespace LEA_2021
         }
 
 
+        public override Point2 GetUvCoordinates(Point3 center, Point3 intersection)
+        {
+            if (Math.Abs(Orientation.Y) == 1f)
+            {
+                float u = Util.RescaleToRange(Util.ScalarDistance(center.Z, intersection.Z), -Length, Length, 0, 1);
+                float v = Util.RescaleToRange(Util.ScalarDistance(center.X, intersection.X), -Width,  Width,  0, 1);
+
+                return new Point2(u, v);
+            }
+
+            if (Math.Abs(Orientation.X) == 1f)
+            {
+                float u = Util.RescaleToRange(Util.ScalarDistance(center.Z, intersection.Z), -Length, Length, 0, 1);
+                float v = Util.RescaleToRange(Util.ScalarDistance(center.Y, intersection.Y), -Width,  Width,  0, 1);
+
+                return new Point2(u, v);
+            }
+
+            else
+            {
+                float u = Util.RescaleToRange(Util.ScalarDistance(center.Y, intersection.Y), -Length, Length, 0, 1);
+                float v = Util.RescaleToRange(Util.ScalarDistance(center.X, intersection.X), -Width,  Width,  0, 1);
+
+                return new Point2(u, v);
+            }
+        }
+
+
         public override float Intersect(Ray ray, Point3 center)
         {
-            var denominator = Vec3.Dot(Orientation, ray.Direction);
+            float denominator = Vec3.Dot(Orientation, ray.Direction);
 
             // Check if denominator is approximately 0
 
@@ -108,7 +137,7 @@ namespace LEA_2021
                 return -1f;
             }
 
-            var t = Vec3.Dot(Util.FromAToB(ray.Origin, center), Orientation) / denominator;
+            float t = Vec3.Dot(Util.FromAToB(ray.Origin, center), Orientation) / denominator;
 
             if (t < float.Epsilon)
             {

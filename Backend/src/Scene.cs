@@ -325,16 +325,10 @@ namespace LEA_2021
                     // TODO: Shadows
                 }
 
-                // TODO: Get Object color instead
                 // TODO: Specular highlights are broken for colors that have 0 values
-                Color colorOrig = Color.Brown;
-
-                if (closestObject.Shape.GetType() == typeof(Sphere))
-                {
-                    Vector2 uv     = Sphere.GetUvCoordinates(intersection, closestObject.Position);
-                    Bitmap  albedo = closestObject.Material.Albedo;
-                    colorOrig = albedo.GetPixel((int) (uv.X * albedo.Width), (int) (uv.Y * albedo.Height));
-                }
+                Vector2 uv        = closestObject.GetUvCoordinates(intersection, closestObject.Position);
+                Bitmap  albedo    = closestObject.Material.Albedo;
+                Color   colorOrig = albedo.GetPixel((int) (uv.X * albedo.Width), (int) (uv.Y * albedo.Height));
 
 
                 currentColor = Util.ClampedColorScale(colorOrig, brightnessDiffuse);
@@ -380,7 +374,6 @@ namespace LEA_2021
             float cameraY = screenY * (float) Math.Tan(Camera.Fov / 2f);
 
             // For now, the camara always faces forward, hence we set the z-component to -1
-            // TODO: Camera to world transformation
             Vector3 rayDirection = Vec3.Normalize(Util.FromAToB(Camera.Position,
                                                                 new Vector3(cameraX,
                                                                             cameraY,

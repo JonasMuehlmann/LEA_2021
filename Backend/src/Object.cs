@@ -5,6 +5,7 @@ namespace LEA_2021
 {
     using Vec3 = Vector3;
     using Point3 = Vector3;
+    using Point2 = Vector2;
 
 
     public class Object
@@ -60,6 +61,12 @@ namespace LEA_2021
         public float Intersect(Ray ray)
         {
             return Shape.Intersect(ray, Position);
+        }
+
+
+        public Point2 GetUvCoordinates(Point3 intersection, Point3 position)
+        {
+            return Shape.GetUvCoordinates(intersection, position);
         }
     }
 }

@@ -21,18 +21,18 @@
             }
         },
         {
-            "Name":       "Brick 02",
+            "Name":       "Wood 01",
             "Shape":      "Sphere",
-            "Material":   "brick",
+            "Material":   "wood",
             "Properties": {
                 "Radius":   10,
                 "Position": [-20, -10, -40]
             }
         },
         {
-            "Name":       "Brick 02",
+            "Name":       "Gold",
             "Shape":      "FinitePlane",
-            "Material":   "brick",
+            "Material":   "gold",
             "Properties": {
                 "Orientation": [0, 0, 1],
                 "Width":       50,

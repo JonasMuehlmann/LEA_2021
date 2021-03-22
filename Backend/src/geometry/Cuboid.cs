@@ -78,5 +78,11 @@ namespace LEA_2021
         {
             throw new NotImplementedException();
         }
+
+
+        public override Vector2 GetUvCoordinates(Vector3 intersection, Vector3 position)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

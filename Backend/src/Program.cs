@@ -12,15 +12,14 @@ namespace LEA_2021
     {
         private static void Main(string[] args)
         {
-            var scene = new Scene(@"scene_01");
+            Scene scene = new Scene(@"scene_01");
 
 
             scene.SetBackground(Color.Black);
             // is z=20 or z=-20 correct for being next to the sphere?
-            // TODO: Light intensity values other than 1 are broken
             // scene.PointLights.Add(new PointLight(new Point3(20, -20, 20), 1f));
-            scene.PointLights.Add(new PointLight(new Point3(20, 20, 20), 1f));
-            // scene.PointLights.Add(new PointLight(new Point3(40, 0, 20),1f));
+            scene.PointLights.Add(new PointLight(new Point3(20,  20, 20), 1f));
+            scene.PointLights.Add(new PointLight(new Point3(-40, 0,  20), 0.7f));
             scene.Render();
         }
     }

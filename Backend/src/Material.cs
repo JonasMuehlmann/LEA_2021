@@ -27,7 +27,7 @@ namespace LEA_2021
 
         public Bitmap Normal { get; set; }
 
-        public Bitmap Bump { get; set; }
+        public Bitmap Displacement { get; set; }
 
         public Bitmap Emission { get; set; }
 
@@ -41,7 +41,7 @@ namespace LEA_2021
             Bitmap roughness,
             Bitmap ambientOcclusion,
             Bitmap normal,
-            Bitmap bump,
+            Bitmap displacement,
             Bitmap emission
         )
         {
@@ -50,7 +50,7 @@ namespace LEA_2021
             Roughness        = roughness;
             AmbientOcclusion = ambientOcclusion;
             Normal           = normal;
-            Bump             = bump;
+            Displacement     = displacement;
             Emission         = emission;
         }
 
@@ -59,14 +59,15 @@ namespace LEA_2021
         {
             Name = name;
 
-            List<string> neededBitmaps = new List<string>
+            List<string> neededBitmaps = new()
                                          {
                                              "albedo",
                                              "metalness",
                                              "roughness",
                                              "ambientOcclusion",
                                              "normal",
-                                             "bump",
+                                             "displacement",
+                                             "displacement",
                                              "emission"
                                          };
 
@@ -95,9 +96,8 @@ namespace LEA_2021
 
         #endregion
 
+
         // TODO: Find sensible defaults for texture maps to implement constructor with default maps
-
-
         public override string ToString()
         {
             return $"{Name}";

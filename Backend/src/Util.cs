@@ -91,19 +91,19 @@ namespace LEA_2021
 
         public static float ScalarDistance(float a, float b)
         {
-            return Math.Abs(Math.Abs(a) - Math.Abs(b));
+            return Math.Abs(a) - Math.Abs(b);
         }
 
 
         public static double ScalarDistance(double a, double b)
         {
-            return Math.Abs(Math.Abs(a) - Math.Abs(b));
+            return Math.Abs(a) - Math.Abs(b);
         }
 
 
         public static int ScalarDistance(int a, int b)
         {
-            return Math.Abs(Math.Abs(a) - Math.Abs(b));
+            return Math.Abs(a) - Math.Abs(b);
         }
 
 

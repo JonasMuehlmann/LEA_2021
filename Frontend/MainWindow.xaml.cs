@@ -112,6 +112,10 @@ namespace LEA_2021
 
             getobjectEditorWindow().Title = $"{currItem.Name} bearbeiten";
             getobjectEditorWindow().Focus();
+
+            getobjectEditorWindow().DataContext = currItem;
+            Console.WriteLine(currItem.Position);
+            Console.WriteLine(currItem.Position.X);
         }
 
         private void cameraEditButton_Click(object sender, RoutedEventArgs e)

@@ -9,6 +9,11 @@
         ResizeMode="NoResize" 
         Height="500" 
         Width="350">
+    
+    <Window.Resources>
+        <local:VectorConverter x:Key="VectorConverter" />
+    </Window.Resources>
+    
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Top" Margin="20">
             <StackPanel.Resources>
@@ -28,46 +33,46 @@
             <StackPanel>
                 <Label>Material zuweisen</Label>
                 <ComboBox>
-                    <ComboBoxItem IsSelected="True">Wood</ComboBoxItem>
+                    <ComboBoxItem>Wood</ComboBoxItem>
                     <ComboBoxItem>Grass</ComboBoxItem>
                     <ComboBoxItem>Stone</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
 
+            
             <StackPanel Orientation="Horizontal">
-                
                 <StackPanel Width="94px">
                     <Label>X</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionPosX">450</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionPosX" Text="{Binding Position.X}" />
                 </StackPanel>
 
                 <StackPanel Width="94px" Margin="5px, 0, 0, 0">
                     <Label>Y</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionPosY">125</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionPosY" Text="{Binding Position.Y}" />
                 </StackPanel>
 
                 <StackPanel Width="94px" Margin="5px, 0, 0, 0">
                     <Label>Z</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionPosZ">125</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionPosZ"  Text="{Binding Position.Z}" />
                 </StackPanel>
             </StackPanel>
 
 
 
-            <StackPanel>
+            <StackPanel x:Name="sphereContainer" Visibility="Collapsed">
                 <Label>Radius</Label>
-                <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionRadius">5</TextBox>
+                <TextBox PreviewTextInput="TextBoxNumberValidation" Text="{Binding Shape.Radius}" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="rectangleContainer" Visibility="Collapsed" Orientation="Horizontal">
                 <StackPanel Width="144px">
                     <Label>Höhe</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionHeight">450</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" Text="{Binding Shape.Height}" />
                 </StackPanel>
-
+                
                 <StackPanel Width="144px" Margin="5px, 0, 0, 0">
                     <Label>Breite</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionWidth">125</TextBox>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" Text="{Binding Shape.Width}" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

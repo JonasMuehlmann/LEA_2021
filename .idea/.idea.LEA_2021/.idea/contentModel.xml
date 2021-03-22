@@ -49,6 +49,7 @@
         </e>
         <e p="src" t="Include">
           <e p="Camera.cs" t="Include" />
+          <e p="Constants.cs" t="Include" />
           <e p="HitRecord.cs" t="Include" />
           <e p="LightBeam.cs" t="Include" />
           <e p="Material.cs" t="Include" />

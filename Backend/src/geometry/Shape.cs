@@ -9,6 +9,6 @@ namespace LEA_2021
 
     public abstract class Shape
     {
-        public abstract Vec3? Intersect(Ray ray, Point3 center);
+        public abstract float Intersect(Ray ray, Point3 center);
     }
 }

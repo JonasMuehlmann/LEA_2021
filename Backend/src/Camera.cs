@@ -15,7 +15,7 @@ namespace LEA_2021
 
         public Vec3 Direction { get; set; }
 
-        // Horizontal Field of View in radians
+        /// Horizontal Field of View in radians
         public float Fov { get; set; }
 
         #endregion

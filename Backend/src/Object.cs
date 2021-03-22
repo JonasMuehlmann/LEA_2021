@@ -1,5 +1,6 @@
 using System.Numerics;
 
+
 namespace LEA_2021
 {
     using Vec3 = Vector3;
@@ -8,16 +9,6 @@ namespace LEA_2021
 
     public class Object
     {
-        public Vector3? Intersect(Ray ray)
-        {
-            return Shape.Intersect(ray, Position);
-        }
-
-        public override string ToString()
-        {
-            return $"{Name} (Material: {Material})";
-        }
-
         #region Properties
 
         public string Name { get; set; }
@@ -35,15 +26,16 @@ namespace LEA_2021
         public Object(Material material, Shape shape, Point3 position, string name)
         {
             Material = material;
-            Shape = shape;
+            Shape    = shape;
             Position = position;
-            Name = name;
+            Name     = name;
         }
+
 
         public Object(Material material, Shape shape, Point3 position)
         {
             Material = material;
-            Shape = shape;
+            Shape    = shape;
             Position = position;
         }
 
@@ -52,10 +44,22 @@ namespace LEA_2021
         public Object(Material material, Shape shape)
         {
             Material = material;
-            Shape = shape;
+            Shape    = shape;
             Position = Vec3.Zero;
         }
 
         #endregion
+
+
+        public override string ToString()
+        {
+            return $"{Name} (Material: {Material})";
+        }
+
+
+        public float Intersect(Ray ray)
+        {
+            return Shape.Intersect(ray, Position);
+        }
     }
 }

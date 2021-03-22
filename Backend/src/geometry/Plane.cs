@@ -14,7 +14,7 @@ namespace LEA_2021
 
         public int Width { get; set; }
 
-        public int Height { get; set; }
+        public int Length { get; set; }
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace LEA_2021
         {
             Orientation = orientation;
             Width       = width;
-            Height      = height;
+            Length      = height;
         }
 
 
@@ -34,7 +34,7 @@ namespace LEA_2021
         {
             Orientation = orientation;
             Width       = dimensions;
-            Height      = dimensions;
+            Length      = dimensions;
         }
 
 
@@ -43,7 +43,7 @@ namespace LEA_2021
         {
             Orientation = Vec3.UnitY;
             Width       = width;
-            Height      = height;
+            Length      = height;
         }
 
 
@@ -52,26 +52,33 @@ namespace LEA_2021
         {
             Orientation = Vec3.UnitY;
             Width       = dimensions;
-            Height      = dimensions;
+            Length      = dimensions;
         }
 
         #endregion
 
 
-        public override Vec3? Intersect(Ray ray, Point3 center)
+        public override float Intersect(Ray ray, Point3 center)
         {
-            float denominator = Vec3.Dot(Orientation, ray.Direction);
+            var denominator = Vec3.Dot(Orientation, ray.Direction);
 
             // Check if denominator is approximately 0
-            if (Math.Abs(denominator) < 0.0001f)
+
+            if (Math.Abs(denominator) < float.Epsilon)
             {
                 // Ray does not intersect with plane
-                return null;
+                return -1f;
             }
 
-            float t = Vec3.Dot(center - ray.Origin, Orientation) / denominator;
+            var t = Vec3.Dot(center - ray.Origin, Orientation) / denominator;
 
-            return ray.Origin + t * ray.Direction;
+            if (t > float.Epsilon)
+            {
+                // Ray intersects, but is shot in opposite direction
+                return -1f;
+            }
+
+            return t;
         }
     }
 }

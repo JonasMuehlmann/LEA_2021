@@ -8,16 +8,18 @@ namespace LEA_2021
     using Point3 = Vector3;
 
 
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var camera = new Camera(new Point3(0, 0, 0), new Vec3(0, 0, 1), Util.DegreesToRadians(60));
-
             var scene = new Scene(@"scene_01");
-            
+
 
             scene.SetBackground(Color.Black);
+            // is z=20 or z=-21 correct for being next to the sphere?
+            scene.PointLights.Add(new PointLight(new Point3(20, 20, 20), 1f));
+            // scene.PointLights.Add(new PointLight(new Point3(20,20,30), 1f));
+
             scene.Render();
         }
     }

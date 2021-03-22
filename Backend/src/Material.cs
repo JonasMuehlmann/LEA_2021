@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Numerics;
 
+
 namespace LEA_2021
 {
     using Vec3 = Vector3;
@@ -11,13 +12,6 @@ namespace LEA_2021
 
     public class Material
     {
-        // TODO: Find sensible defaults for texture maps to implement constructor with default maps
-
-        public override string ToString()
-        {
-            return $"{Name}";
-        }
-
         #region Properties
 
         public string Name { get; set; }
@@ -50,21 +44,30 @@ namespace LEA_2021
             Bitmap emission
         )
         {
-            Albedo = albedo;
-            Metalness = metalness;
-            Roughness = roughness;
+            Albedo           = albedo;
+            Metalness        = metalness;
+            Roughness        = roughness;
             AmbientOcclusion = ambientOcclusion;
-            Normal = normal;
-            Bump = bump;
-            Emission = emission;
+            Normal           = normal;
+            Bump             = bump;
+            Emission         = emission;
         }
+
 
         public Material(string name)
         {
             Name = name;
 
-            List<string> neededBitmaps = new List<string>
-                {"albedo", "metalness", "roughness", "ambientOcclusion", "normal", "bump", "emission"};
+            var neededBitmaps = new List<string>
+                                {
+                                    "albedo",
+                                    "metalness",
+                                    "roughness",
+                                    "ambientOcclusion",
+                                    "normal",
+                                    "bump",
+                                    "emission"
+                                };
 
             if (Directory.Exists($"..\\..\\..\\scenes\\materials\\{name}"))
             {
@@ -74,20 +77,29 @@ namespace LEA_2021
                     neededBitmaps.Remove(bitmapName);
 
                     var propInfo =
-                        typeof(Material).GetProperty(char.ToUpper(bitmapName[0]).ToString() + bitmapName.Substring(1));
-                    propInfo.SetValue(this, Bitmap.FromFile(file), null);
+                        typeof(Material).GetProperty(char.ToUpper(bitmapName[0]) + bitmapName.Substring(1));
+
+                    propInfo.SetValue(this, Image.FromFile(file), null);
                 }
             }
 
 
             // iterate non-found bitmaps to set default values
-            foreach (string bitmap in neededBitmaps)
+            foreach (var bitmap in neededBitmaps)
             {
-                var propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]).ToString() + bitmap.Substring(1));
+                var propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]) + bitmap.Substring(1));
                 propInfo.SetValue(this, new Bitmap(1, 1), null);
             }
         }
 
         #endregion
+
+        // TODO: Find sensible defaults for texture maps to implement constructor with default maps
+
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

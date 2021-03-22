@@ -62,5 +62,29 @@ namespace LEA_2021
         {
             return value * value;
         }
+
+
+        public static float RescaleToRange(float x, float oldMin, float oldMax, float newMin, float newMax)
+        {
+            return (x - oldMin) / (oldMax - oldMin) * (newMax - newMin) + newMin;
+        }
+
+
+        public static float RescaleToRange(int x, int oldMin, int oldMax, int newMin, int newMax)
+        {
+            return (x - oldMin) / (oldMax - oldMin) * (newMax - newMin) + newMin;
+        }
+
+
+        public static double RescaleToRange(double x, double oldMin, double oldMax, double newMin, double newMax)
+        {
+            return (x - oldMin) / (oldMax - oldMin) * (newMax - newMin) + newMin;
+        }
+
+
+        public static Vec3 FromAToB(Vec3 a, Vec3 b)
+        {
+            return b - a;
+        }
     }
 }

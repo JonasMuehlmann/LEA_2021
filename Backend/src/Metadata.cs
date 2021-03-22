@@ -27,7 +27,7 @@ namespace LEA_2021
 
         public float GetAspectRatio()
         {
-            return (float) Width / Height;
+            return Width / (float) Height;
         }
     }
 }

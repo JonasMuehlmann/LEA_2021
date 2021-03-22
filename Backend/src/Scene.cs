@@ -409,7 +409,7 @@ namespace LEA_2021
                     }
                 }
 
-                Image.Save($"../../../../Backend/out/{Name}.png", ImageFormat.Png);
+                Image.Save($"{Constants.OutputDir}/{Name}.png", ImageFormat.Png);
                 OnPropertyChanged("Image");
             }
         }

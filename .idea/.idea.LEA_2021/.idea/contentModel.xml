@@ -30,6 +30,7 @@
               <e p="normal.jpg" t="Include" />
               <e p="roughness.jpg" t="Include" />
             </e>
+            <e p="checkerboard.jpg" t="Include" />
             <e p="gold" t="Include">
               <e p="albedo.jpg" t="Include" />
               <e p="ambientOcclusion.jpg" t="Include" />

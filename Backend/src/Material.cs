@@ -71,9 +71,9 @@ namespace LEA_2021
                                              "emission"
                                          };
 
-            if (Directory.Exists($"../../../scenes/materials/{name}"))
+            if (Directory.Exists($"{Constants.MaterialsDir}/{name}"))
             {
-                foreach (string file in Directory.GetFiles($"../../../scenes/materials/{name}"))
+                foreach (string file in Directory.GetFiles($"{Constants.MaterialsDir}/{name}"))
                 {
                     string? bitmapName = Path.GetFileNameWithoutExtension(file);
                     neededBitmaps.Remove(bitmapName);
@@ -90,7 +90,7 @@ namespace LEA_2021
             foreach (string bitmap in neededBitmaps)
             {
                 PropertyInfo? propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]) + bitmap.Substring(1));
-                propInfo.SetValue(this, new Bitmap(1, 1), null);
+                propInfo.SetValue(this, new Bitmap($"{Constants.MaterialsDir}/checkerboard.jpg"), null);
             }
         }
 

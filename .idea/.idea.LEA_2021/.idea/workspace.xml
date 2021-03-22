@@ -15,10 +15,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/Backend/src/Constants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Material.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Material.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +100,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/39/22730e3d/Path.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/87DBB896-6B20-4A14-9B6A-7AB43642646D/c0/4329e721/Math.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Util.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9A625919-60D0-4309-B061-98634ED8683B/4c/3b9bb348/SortedDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/8a/49a91079/Math.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1D674F4A-076F-4038-B05A-10EA7AA10D43/dd/fbee6b9d/Directory.cs" root0="SKIP_HIGHLIGHTING" />
@@ -154,10 +153,9 @@
       <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
       <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
-      <option value="$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Constants.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -238,7 +236,7 @@
       <workItem from="1616136194292" duration="26913000" />
       <workItem from="1616230887636" duration="22498000" />
       <workItem from="1616321287766" duration="5035000" />
-      <workItem from="1616332100267" duration="24553000" />
+      <workItem from="1616332100267" duration="23453000" />
     </task>
     <task id="LOCAL-00001" summary="Created repo.">
       <created>1615793301147</created>
@@ -359,14 +357,7 @@
       <option name="project" value="LOCAL" />
       <updated>1616406052629</updated>
     </task>
-    <task id="LOCAL-00018" summary="Add material folder">
-      <created>1616407987033</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1616407987033</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,8 +398,7 @@
     <MESSAGE value="Clean up Scene.TraceRay()" />
     <MESSAGE value="Make spheres render in their albedo" />
     <MESSAGE value="Remove uncommented code, fix naming error in material and implement uv coordinates for plane" />
-    <MESSAGE value="Add material folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add material folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove uncommented code, fix naming error in material and implement uv coordinates for plane" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

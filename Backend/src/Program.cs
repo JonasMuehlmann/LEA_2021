@@ -20,7 +20,7 @@ namespace LEA_2021
             // scene.PointLights.Add(new PointLight(new Point3(20, -20, 20), 1f));
             scene.PointLights.Add(new PointLight(new Point3(20,  20, 20), 1f));
             scene.PointLights.Add(new PointLight(new Point3(-40, 0,  20), 0.5f));
-            scene.PointLights.Add(new PointLight(new Point3(0,   0,  0),  0.5f));
+            // scene.PointLights.Add(new PointLight(new Point3(0,   0,  0),  0.5f));
             scene.Render();
         }
     }

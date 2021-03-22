@@ -26,7 +26,16 @@
             "Material":   "wood",
             "Properties": {
                 "Radius":   10,
-                "Position": [-20, -10, -40]
+                "Position": [-20, -10, -35]
+            }
+        },
+        {
+            "Name":       "Gem 01",
+            "Shape":      "Sphere",
+            "Material":   "gem_agate",
+            "Properties": {
+                "Radius":   15,
+                "Position": [-25, 15, -50]
             }
         },
         {
@@ -37,7 +46,7 @@
                 "Orientation": [0, 0, 1],
                 "Width":       50,
                 "Length":      70,
-                "Position":    [0, 0, -50]
+                "Position":    [0, 0, -60]
             }
         }
     ]

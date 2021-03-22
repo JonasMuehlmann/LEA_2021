@@ -40,14 +40,15 @@ namespace LEA_2021
             Vector3 surfaceNormal = Vec3.Normalize(Util.FromAToB(centerPosition, surfacePoint));
 
             // Upper bound of the calculation is too low, magic number for correction
-            float u = 1.79f * (float) ((Math.PI + Math.Atan2(-surfaceNormal.Z, surfaceNormal.X)) / (2 * Math.PI));
-
-            if (u > 1)
-            {
-                throw new
-                    ApplicationException("Scuffed u term calculation caused invalid result, clamp the result or fix the algorithm"
-                                        );
-            }
+            float u = 1.77f * (float) ((Math.PI + Math.Atan2(-surfaceNormal.Z, surfaceNormal.X)) / (2 * Math.PI));
+            u = Math.Clamp(u, 0f, 1f);
+            //
+            // if (u > 1)
+            // {
+            //     throw new
+            //         ApplicationException($"Scuffed u term calculation caused invalid result:{u}, clamp the result or fix the algorithm"
+            //                             );
+            // }
 
             float v = (float) (Math.Acos(surfaceNormal.Y) / Math.PI);
 

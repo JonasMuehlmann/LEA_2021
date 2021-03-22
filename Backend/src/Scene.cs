@@ -273,6 +273,7 @@ namespace LEA_2021
         }
 
 
+        // TODO: Implement reflections
         private Color TraceRay(LightBeam lightBeam, Color currentColor, int currentDepth = 0)
         {
             // // Russian roulette as base case 
@@ -283,7 +284,7 @@ namespace LEA_2021
             //
             // lightBeam.Brightness *= 1 / lightBeam.Brightness;
 
-            if (currentDepth > 0)
+            if (currentDepth > 10)
             {
                 return currentColor;
             }
@@ -303,6 +304,8 @@ namespace LEA_2021
                 float   brightnessDiffuse  = 0f;
                 float   brightnessSpecular = 0f;
 
+                Point3 intersectionOffset = intersection + float.Epsilon * surfaceNormal;
+
                 // Calculate direct illumination
                 foreach (var pointLight in PointLights)
                 {
@@ -313,7 +316,6 @@ namespace LEA_2021
                     // Cast shadows by not adding specular or diffuse light, if path to light is not clear
                     float distanceToLight = Vec3.Distance(intersection, pointLight.Position);
                     // Raise point above objects surface to prevent self-intersection
-                    Point3 intersectionOffset = intersection + float.Epsilon * surfaceNormal;
 
                     if (FindClosestHit(new Ray(intersectionOffset, Vec3.Normalize(surfaceToLight))).Distance
                       < distanceToLight)
@@ -335,16 +337,36 @@ namespace LEA_2021
                     brightnessSpecular += (float) Math.Pow(Math.Max(0f, facingRatio), specularExponent);
                 }
 
-                // TODO: Specular highlights are broken for colors that have 0 values
-                Vector2 uv        = closestObject.GetUvCoordinates(intersection, closestObject.Position);
-                Bitmap  albedo    = closestObject.Material.Albedo;
-                Color   colorOrig = albedo.GetPixel((int) (uv.X * albedo.Width), (int) (uv.Y * albedo.Height));
+                Vector2 uv     = closestObject.GetUvCoordinates(intersection, closestObject.Position);
+                Bitmap  albedo = closestObject.Material.Albedo;
+
+                Color colorOrig =
+                    albedo.GetPixel((int) (uv.X * (albedo.Width - 1)), (int) (uv.Y * (albedo.Height - 1)));
+
+                Bitmap roughness = closestObject.Material.Roughness;
+
+                // Since the roughness map is monochrome, we can pick any of its color channels
+                int roughnessRaw = roughness.GetPixel((int) uv.X * (roughness.Width - 1),
+                                                      (int) uv.Y * (roughness.Width - 1)
+                                                     )
+                                            .R;
+
+                // Gloss is 1-Roughness
+                float gloss = 1f
+                            - Util.RescaleToRange(roughnessRaw, 0f, 255f, 0f, 1f);
+
+                lightBeam.Ray.Origin    = intersectionOffset;
+                lightBeam.Ray.Direction = Vec3.Reflect(lightBeam.Ray.Direction, surfaceNormal);
+                Color reflectionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
 
 
                 currentColor = Util.ClampedColorScale(colorOrig, brightnessDiffuse);
 
                 currentColor =
                     Util.ClampedColorAdd(currentColor, Util.ClampedColorScale(currentColor, brightnessSpecular));
+
+                currentColor =
+                    Util.ClampedColorAdd(currentColor, Util.ClampedColorScale(reflectionColor, gloss));
 
                 // // Gamma correction
                 // color = Color.FromArgb(255,
@@ -358,7 +380,8 @@ namespace LEA_2021
                 currentColor = BackgroundColor;
             }
 
-            return TraceRay(lightBeam, currentColor, currentDepth + 1);
+            // return TraceRay(lightBeam, currentColor, currentDepth + 1);
+            return currentColor;
         }
 
 

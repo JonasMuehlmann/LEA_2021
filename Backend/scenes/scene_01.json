@@ -3,12 +3,12 @@
     "Metadata":   {
         "Width":          1920,
         "Height":         1080,
-        "Num_Iterations": 5
+        "Num_Iterations": 1
     },
     "Camera":     {
         "Position":  [0, 0, 0],
         "Direction": [0, 0, 1],
-        "FOV":       60
+        "FOV": 90
     },
     "Objects":    [
         {
@@ -17,7 +17,7 @@
             "Material":   "brick",
             "Properties": {
                 "Radius":   10,
-                "Position": [-20, -10, 50]
+                "Position": [10, 0, -20]
             }
         },
         {
@@ -26,7 +26,18 @@
             "Material":   "brick",
             "Properties": {
                 "Radius":   10,
-                "Position": [-10, -10, -40]
+                "Position": [-20, -10, -40]
+            }
+        },
+        {
+            "Name":       "Brick 02",
+            "Shape":      "FinitePlane",
+            "Material":   "brick",
+            "Properties": {
+                "Orientation": [0, 0, 1],
+                "Width":       50,
+                "Length":      70,
+                "Position":    [0, 0, -50]
             }
         }
     ]

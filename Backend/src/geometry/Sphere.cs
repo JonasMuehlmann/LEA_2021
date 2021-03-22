@@ -38,18 +38,25 @@ namespace LEA_2021
         // Return UV coordinates in the range of [0,1]
         public static Point2 GetUvCoordinates(Point3 surfacePoint, Vec3 centerPosition)
         {
-            // Vec3 surfaceNormal = Vec3.Normalize(centerPosition - surfacePoint);
-            var surfaceNormal = Vec3.Normalize(surfacePoint - centerPosition);
+            var surfaceNormal = Vec3.Normalize(Util.FromAToB(centerPosition, surfacePoint));
 
-            var u = (float) (0.5f + Math.Atan2(-surfaceNormal.Z, surfaceNormal.X) / (2f * Math.PI));
-            var v = (float) (0.5f - Math.Asin(surfaceNormal.Y)                    / Math.PI);
-            // float u = (float) ((Math.Atan(-surfaceNormal.X / -surfaceNormal.Z) +  Math.PI / 2f) / Math.PI);
-            // float v = (float) (Math.Acos(-surfaceNormal.Y) / Math.PI);
 
-            // float u =  (float)((Math.Atan2(-surfaceNormal.Z, surfaceNormal.X)+ Math.PI) / (2f * Math.PI));
-            // float v =  (float)(Math.Acos(-surfaceNormal.Y / surfaceNormal.Length()) / Math.PI);
+            // float u = (float) (0.5f + (Math.Atan2(-surfaceNormal.Z, -surfaceNormal.X)) / (2f * Math.PI));
+            // float v =  (float)(Math.Acos(surfaceNormal.Y / surfaceNormal.Length()) / Math.PI);
 
-            //float u = Util.RescaleToRange((float)Math.Atan2(-surfaceNormal.Z, surfaceNormal.X), (float)-Math.PI, (float)Math.PI, 0f, 1f);
+            // Upper bound of the calculation is too low, magic number for correction
+            float u = 1.79f * (float) ((Math.PI + Math.Atan2(-surfaceNormal.Z, surfaceNormal.X)) / (2 * Math.PI));
+
+            if (u > 1)
+            {
+                throw new
+                    ApplicationException("Scuffed u term calculation caused invalid result, clamp the result or fix the algorithm"
+                                        );
+            }
+
+            // Console.WriteLine(u);
+            float v = (float) (Math.Acos(surfaceNormal.Y) / (Math.PI));
+
             return new Point2(u, v);
         }
 

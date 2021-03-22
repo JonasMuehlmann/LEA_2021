@@ -34,5 +34,11 @@ namespace LEA_2021
         }
 
         #endregion
+
+
+        public Point3 At(float t)
+        {
+            return Origin + t * Direction;
+        }
     }
 }

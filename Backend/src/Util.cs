@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Numerics;
 
 
@@ -85,6 +86,54 @@ namespace LEA_2021
         public static Vec3 FromAToB(Vec3 a, Vec3 b)
         {
             return b - a;
+        }
+
+
+        public static float ScalarDistance(float a, float b)
+        {
+            return Math.Abs(Math.Abs(a) - Math.Abs(b));
+        }
+
+
+        public static double ScalarDistance(double a, double b)
+        {
+            return Math.Abs(Math.Abs(a) - Math.Abs(b));
+        }
+
+
+        public static int ScalarDistance(int a, int b)
+        {
+            return Math.Abs(Math.Abs(a) - Math.Abs(b));
+        }
+
+
+        public static Color ClampedColorScale(Color color, float term)
+        {
+            return Color.FromArgb(255,
+                                  (int) Math.Clamp(color.R * term, 0, 255),
+                                  (int) Math.Clamp(color.G * term, 0, 255),
+                                  (int) Math.Clamp(color.B * term, 0, 255)
+                                 );
+        }
+
+
+        public static Color ClampedColorAdd(Color color, Color color2)
+        {
+            return Color.FromArgb(255,
+                                  Math.Clamp(color.R + color2.R, 0, 255),
+                                  Math.Clamp(color.G + color2.G, 0, 255),
+                                  Math.Clamp(color.B + color2.B, 0, 255)
+                                 );
+        }
+
+
+        public static Color ClampedColorAdd(Color color, int value)
+        {
+            return Color.FromArgb(255,
+                                  Math.Clamp(+color.R * value, 0, 255),
+                                  Math.Clamp(+color.G * value, 0, 255),
+                                  Math.Clamp(+color.B * value, 0, 255)
+                                 );
         }
     }
 }

@@ -22,8 +22,7 @@ namespace LEA_2021
     {
         #region Fields
 
-        Bitmap background = new Bitmap(Bitmap.FromFile("/home/jonas/RiderProjects/LEA_2021/Backend/scenes/bg.png"));
-        float  specularExponent = 200f;
+        private readonly float specularExponent = 200f;
 
         #endregion
 
@@ -230,9 +229,9 @@ namespace LEA_2021
 
         public void SetBackground(Color color)
         {
-            for (var i = 0; i < Image.Width; i++)
+            for (int i = 0; i < Image.Width; i++)
             {
-                for (var j = 0; j < Image.Height; j++)
+                for (int j = 0; j < Image.Height; j++)
                 {
                     Image.SetPixel(i, j, color);
                 }
@@ -292,34 +291,34 @@ namespace LEA_2021
 
 
             HitRecord closestHit      = FindClosestHit(lightBeam.Ray);
-            var       closestObject   = closestHit.Object;
-            var       closestDistance = closestHit.Distance;
+            Object?   closestObject   = closestHit.Object;
+            float     closestDistance = closestHit.Distance;
 
 
             if (!float.IsPositiveInfinity(closestDistance) && closestObject is not null)
             {
-                var intersection = lightBeam.Ray.At(closestDistance);
+                Vector3 intersection = lightBeam.Ray.At(closestDistance);
 
-                var surfaceNormal      = Vec3.Normalize(Util.FromAToB(closestObject.Position, intersection));
-                var brightnessDiffuse  = 0f;
-                var brightnessSpecular = 0f;
+                Vector3 surfaceNormal      = Vec3.Normalize(Util.FromAToB(closestObject.Position, intersection));
+                float   brightnessDiffuse  = 0f;
+                float   brightnessSpecular = 0f;
 
                 // Calculate direct illumination
                 foreach (var pointLight in PointLights)
                 {
                     // Lambertian diffuse lighting
-                    Vec3 objectToLight = Vec3.Normalize(Util.FromAToB(closestObject.Position, pointLight.Position));
+                    Vector3 objectToLight = Vec3.Normalize(Util.FromAToB(closestObject.Position, pointLight.Position));
 
                     brightnessDiffuse +=
                         pointLight.Brightness * Math.Max(0f, Vec3.Dot(objectToLight, surfaceNormal));
 
                     // Blinn-Phong specular reflection
                     // TODO: Replace with glossiness of surface
-                    Vec3 surfaceToLight  = Util.FromAToB(intersection, pointLight.Position);
-                    Vec3 surfaceToCamera = Util.FromAToB(intersection, Camera.Position);
+                    Vector3 surfaceToLight  = Util.FromAToB(intersection, pointLight.Position);
+                    Vector3 surfaceToCamera = Util.FromAToB(intersection, Camera.Position);
 
-                    Vec3  halfVector  = Vec3.Normalize(surfaceToLight + surfaceToCamera);
-                    float facingRatio = Vec3.Dot(halfVector, surfaceNormal);
+                    Vector3 halfVector  = Vec3.Normalize(surfaceToLight + surfaceToCamera);
+                    float   facingRatio = Vec3.Dot(halfVector, surfaceNormal);
 
                     brightnessSpecular += (float) Math.Pow(Math.Max(0f, facingRatio), specularExponent);
 
@@ -332,8 +331,9 @@ namespace LEA_2021
 
                 if (closestObject.Shape.GetType() == typeof(Sphere))
                 {
-                    Point2 uv = Sphere.GetUvCoordinates(intersection, closestObject.Position);
-                    colorOrig = background.GetPixel((int) (uv.X * 1920), (int) (uv.Y * 1080));
+                    Vector2 uv     = Sphere.GetUvCoordinates(intersection, closestObject.Position);
+                    Bitmap  albedo = closestObject.Material.Albedo;
+                    colorOrig = albedo.GetPixel((int) (uv.X * albedo.Width), (int) (uv.Y * albedo.Height));
                 }
 
 
@@ -362,13 +362,13 @@ namespace LEA_2021
         {
             // Build Normalized Device Coordinates (NDC)
             // Value range is [0,1], 0.5f makes points appear in the center of a pixel
-            var ndcX = (row    + 0.5f) / Metadata.Width;
-            var ndcY = (column + 0.5f) / Metadata.Height;
+            float ndcX = (row    + 0.5f) / Metadata.Width;
+            float ndcY = (column + 0.5f) / Metadata.Height;
 
             // Convert NDC to Screen space by remapping increasing x values to the range [-1,1]
             // and increasing y-values to the range [1,1-]
-            var screenX = 2f * ndcX - 1f;
-            var screenY = 1f        - 2f * ndcY;
+            float screenX = 2f * ndcX - 1f;
+            float screenY = 1f        - 2f * ndcY;
 
             // Because the image is not square (Usually images are wider than they are high),
             // pixels are now rectangular.
@@ -376,18 +376,18 @@ namespace LEA_2021
             screenX *= Metadata.GetAspectRatio();
 
             // Transform to camera space by accounting for field of view
-            var cameraX = screenX * (float) Math.Tan(Camera.Fov / 2f);
-            var cameraY = screenY * (float) Math.Tan(Camera.Fov / 2f);
+            float cameraX = screenX * (float) Math.Tan(Camera.Fov / 2f);
+            float cameraY = screenY * (float) Math.Tan(Camera.Fov / 2f);
 
             // For now, the camara always faces forward, hence we set the z-component to -1
             // TODO: Camera to world transformation
-            var rayDirection = Vec3.Normalize(Util.FromAToB(Camera.Position,
-                                                            new Vector3(cameraX,
-                                                                        cameraY,
-                                                                        -1f
-                                                                       )
-                                                           )
-                                             )
+            Vector3 rayDirection = Vec3.Normalize(Util.FromAToB(Camera.Position,
+                                                                new Vector3(cameraX,
+                                                                            cameraY,
+                                                                            -1f
+                                                                           )
+                                                               )
+                                                 )
                 ;
 
             return new Ray(Camera.Position, rayDirection);
@@ -400,18 +400,18 @@ namespace LEA_2021
             DetectBackground();
             Percentage = 0;
 
-            for (var i = 0; i < Metadata.NumIterations; ++i)
+            for (int i = 0; i < Metadata.NumIterations; ++i)
             {
                 Percentage = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
                 OnPropertyChanged("Percentage");
 
-                for (var column = 0; column < Metadata.Height; ++column)
+                for (int column = 0; column < Metadata.Height; ++column)
                 {
-                    for (var row = 0; row < Metadata.Width; ++row)
+                    for (int row = 0; row < Metadata.Width; ++row)
                     {
                         Ray primaryRay = CastPrimaryRay(row, column);
 
-                        var pixel = TraceRay(new LightBeam(primaryRay), new Color());
+                        Color pixel = TraceRay(new LightBeam(primaryRay), new Color());
                         Image.SetPixel(row, column, pixel);
                     }
                 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Numerics;
+using System.Reflection;
 
 
 namespace LEA_2021
@@ -58,25 +59,25 @@ namespace LEA_2021
         {
             Name = name;
 
-            var neededBitmaps = new List<string>
-                                {
-                                    "albedo",
-                                    "metalness",
-                                    "roughness",
-                                    "ambientOcclusion",
-                                    "normal",
-                                    "bump",
-                                    "emission"
-                                };
+            List<string> neededBitmaps = new List<string>
+                                         {
+                                             "albedo",
+                                             "metalness",
+                                             "roughness",
+                                             "ambientOcclusion",
+                                             "normal",
+                                             "bump",
+                                             "emission"
+                                         };
 
-            if (Directory.Exists($"..\\..\\..\\scenes\\materials\\{name}"))
+            if (Directory.Exists($"../../../scenes/materials/{name}"))
             {
-                foreach (var file in Directory.GetFiles($"..\\..\\..\\scenes\\materials\\{name}"))
+                foreach (string file in Directory.GetFiles($"../../../scenes/materials/{name}"))
                 {
-                    var bitmapName = Path.GetFileNameWithoutExtension(file);
+                    string? bitmapName = Path.GetFileNameWithoutExtension(file);
                     neededBitmaps.Remove(bitmapName);
 
-                    var propInfo =
+                    PropertyInfo? propInfo =
                         typeof(Material).GetProperty(char.ToUpper(bitmapName[0]) + bitmapName.Substring(1));
 
                     propInfo.SetValue(this, Image.FromFile(file), null);
@@ -85,9 +86,9 @@ namespace LEA_2021
 
 
             // iterate non-found bitmaps to set default values
-            foreach (var bitmap in neededBitmaps)
+            foreach (string bitmap in neededBitmaps)
             {
-                var propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]) + bitmap.Substring(1));
+                PropertyInfo? propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]) + bitmap.Substring(1));
                 propInfo.SetValue(this, new Bitmap(1, 1), null);
             }
         }

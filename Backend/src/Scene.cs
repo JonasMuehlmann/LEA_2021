@@ -306,23 +306,33 @@ namespace LEA_2021
                 // Calculate direct illumination
                 foreach (var pointLight in PointLights)
                 {
-                    // Lambertian diffuse lighting
-                    Vector3 objectToLight = Vec3.Normalize(Util.FromAToB(closestObject.Position, pointLight.Position));
+                    Vector3 objectToLight  = Vec3.Normalize(Util.FromAToB(closestObject.Position, pointLight.Position));
+                    Vector3 surfaceToLight = Util.FromAToB(intersection, pointLight.Position);
 
+
+                    // Cast shadows by not adding specular or diffuse light, if path to light is not clear
+                    float distanceToLight = Vec3.Distance(intersection, pointLight.Position);
+                    // Raise point above objects surface to prevent self-intersection
+                    Point3 intersectionOffset = intersection + float.Epsilon * surfaceNormal;
+
+                    if (FindClosestHit(new Ray(intersectionOffset, Vec3.Normalize(surfaceToLight))).Distance
+                      < distanceToLight)
+                    {
+                        continue;
+                    }
+
+                    // Lambertian diffuse lighting
                     brightnessDiffuse +=
                         pointLight.Brightness * Math.Max(0f, Vec3.Dot(objectToLight, surfaceNormal));
 
                     // Blinn-Phong specular reflection
                     // TODO: Replace with glossiness of surface
-                    Vector3 surfaceToLight  = Util.FromAToB(intersection, pointLight.Position);
                     Vector3 surfaceToCamera = Util.FromAToB(intersection, Camera.Position);
 
                     Vector3 halfVector  = Vec3.Normalize(surfaceToLight + surfaceToCamera);
                     float   facingRatio = Vec3.Dot(halfVector, surfaceNormal);
 
                     brightnessSpecular += (float) Math.Pow(Math.Max(0f, facingRatio), specularExponent);
-
-                    // TODO: Shadows
                 }
 
                 // TODO: Specular highlights are broken for colors that have 0 values

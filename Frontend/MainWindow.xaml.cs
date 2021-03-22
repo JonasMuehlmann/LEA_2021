@@ -126,7 +126,7 @@ namespace LEA_2021
 
         public void getScenes()
         {
-            foreach (string file in Directory.GetFiles("../../../../Backend/scenes"))
+            foreach (string file in Directory.GetFiles(Constants.sceneDir))
             {
                 if (Path.GetExtension(file) == ".json")
                 {

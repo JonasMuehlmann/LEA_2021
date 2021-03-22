@@ -67,13 +67,12 @@ namespace LEA_2021
                                              "ambientOcclusion",
                                              "normal",
                                              "displacement",
-                                             "displacement",
                                              "emission"
                                          };
 
-            if (Directory.Exists($"../../../scenes/materials/{name}"))
+            if (Directory.Exists($"{Constants.SceneDir}/{name}"))
             {
-                foreach (string file in Directory.GetFiles($"../../../scenes/materials/{name}"))
+                foreach (string file in Directory.GetFiles($"{Constants.SceneDir}/{name}"))
                 {
                     string? bitmapName = Path.GetFileNameWithoutExtension(file);
                     neededBitmaps.Remove(bitmapName);

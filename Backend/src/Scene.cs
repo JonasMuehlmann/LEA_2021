@@ -46,7 +46,7 @@ namespace LEA_2021
 
         public Color BackgroundColor { get; set; }
 
-        public string backgroundValue { get; set; }
+        public string BackgroundValue { get; set; }
 
         #endregion
 
@@ -61,7 +61,7 @@ namespace LEA_2021
             Camera   = camera;
 
             Name            = "Untitled";
-            backgroundValue = "Black";
+            BackgroundValue = "Black";
             SetBackground(Color.Black);
             PointLights     = new List<PointLight>();
             Rng             = new Random();
@@ -78,7 +78,7 @@ namespace LEA_2021
             Camera   = new Camera();
 
             Name            = "Untitled";
-            backgroundValue = "Black";
+            BackgroundValue = "Black";
             SetBackground(Color.Black);
             PointLights     = new List<PointLight>();
             Rng             = new Random();
@@ -89,7 +89,7 @@ namespace LEA_2021
         // Default background color is black
         public Scene(string configName)
         {
-            JsonValue value = JsonValue.Parse(File.ReadAllText($@"../../../../Backend/scenes/{configName}.json"));
+            JsonValue value = JsonValue.Parse(File.ReadAllText($@"{Constants.SceneDir}/{configName}.json"));
             Name = configName;
 
             Metadata = new Metadata((int) value["Metadata"]["Width"],
@@ -180,7 +180,7 @@ namespace LEA_2021
             PointLights     = new List<PointLight>();
             Rng             = new Random();
             BackgroundColor = Color.Black;
-            backgroundValue = value["Background"];
+            BackgroundValue = value["Background"];
             DetectBackground();
         }
 
@@ -191,20 +191,20 @@ namespace LEA_2021
 
         public void DetectBackground()
         {
-            if (Regex.IsMatch(backgroundValue, @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
+            if (Regex.IsMatch(BackgroundValue, @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
             {
                 // Background is hex color
-                SetBackground(ColorTranslator.FromHtml(backgroundValue));
+                SetBackground(ColorTranslator.FromHtml(BackgroundValue));
             }
-            else if (Regex.IsMatch(backgroundValue, @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
+            else if (Regex.IsMatch(BackgroundValue, @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
             {
                 // background is path to image
-                SetBackground(backgroundValue);
+                SetBackground(BackgroundValue);
             }
             else
             {
                 // background must be color word
-                SetBackground(Color.FromName(backgroundValue));
+                SetBackground(Color.FromName(BackgroundValue));
             }
         }
 
@@ -306,11 +306,14 @@ namespace LEA_2021
                 // Calculate direct illumination
                 foreach (var pointLight in PointLights)
                 {
-                    // Lambertian diffuse lighting
                     Vector3 objectToLight = Vec3.Normalize(Util.FromAToB(closestObject.Position, pointLight.Position));
 
-                    brightnessDiffuse +=
-                        pointLight.Brightness * Math.Max(0f, Vec3.Dot(objectToLight, surfaceNormal));
+                    if (Vec3.Dot(surfaceNormal, objectToLight) < 0)
+                        // Lambertian diffuse lighting
+                    {
+                        brightnessDiffuse +=
+                            pointLight.Brightness * Math.Max(0f, Vec3.Dot(objectToLight, surfaceNormal));
+                    }
 
                     // Blinn-Phong specular reflection
                     // TODO: Replace with glossiness of surface
@@ -409,7 +412,7 @@ namespace LEA_2021
                     }
                 }
 
-                Image.Save($"../../../../Backend/out/{Name}.png", ImageFormat.Png);
+                Image.Save($"{Constants.OutputDir}/{Name}.png", ImageFormat.Png);
                 OnPropertyChanged("Image");
             }
         }

@@ -5,17 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LEA_2021"
         mc:Ignorable="d"
-        Title="3D Renderer - LEA 2021" WindowStartupLocation="CenterOwner" 
-        ResizeMode="NoResize" 
-        Closing="OnWindowClosing"
-        Height="500" 
+        Title="3D Renderer - LEA 2021"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Height="500"
         Width="800">
-    
+
     <Window.Resources>
         <local:ImageConverter x:Key="ImageConverter" />
     </Window.Resources>
-    
+
     <Grid>
+        <MenuItem Header="_New" Name="New" Command="{Binding NewCommand}" InputGestureText="Ctrl+N" />
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500" />
             <ColumnDefinition />
@@ -23,13 +24,18 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Margin="20">
             <StackPanel DockPanel.Dock="Top">
-                <ProgressBar Value="{Binding Percentage, Mode=OneWay}" Height="0px" x:Name="ProgressBar" Maximum="100" Minimum="1" />
+                <ProgressBar Value="{Binding Percentage, Mode=OneWay}" Height="0px" x:Name="ProgressBar" Maximum="100"
+                             Minimum="1" />
 
                 <!-- <Rectangle Height="330px" Fill="Blue" /> -->
-                <Image Source="{Binding Image, Mode=OneWay, Converter={StaticResource ImageConverter}}" Height="330px" Name="OutputImage" />
+                <Image Source="{Binding Image, Mode=OneWay, Converter={StaticResource ImageConverter}}" Height="330px"
+                       Name="OutputImage" />
             </StackPanel>
 
-            <Button x:Name="RenderButton" IsEnabled="False" DockPanel.Dock="Bottom" FontSize="16px" FontWeight="Medium" Margin="0,20,0,0" Click="RenderButton_Click">Rendern</Button>
+            <Button x:Name="RenderButton" IsEnabled="False" DockPanel.Dock="Bottom" FontSize="16px" FontWeight="Medium"
+                    Margin="0,20,0,0" Click="RenderButton_Click">
+                Rendern
+            </Button>
         </DockPanel>
 
         <StackPanel Grid.Column="1" Margin="0, 20, 20, 20">
@@ -46,7 +52,7 @@
                     <Setter Property="Padding" Value="5" />
                 </Style>
             </StackPanel.Resources>
-            
+
             <StackPanel>
                 <Label>Szene laden</Label>
                 <ComboBox SelectionChanged="sceneBox_SelectionChanged" x:Name="SceneBox" />
@@ -54,24 +60,28 @@
 
             <StackPanel>
                 <Label>Iterationen</Label>
-                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Minimum="5" Maximum="1000" Value="{Binding Metadata.NumIterations}" x:Name="OptionIterationSlider" />
+                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Minimum="5" Maximum="1000"
+                        Value="{Binding Metadata.NumIterations}" x:Name="OptionIterationSlider" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Width="128px">
-                    <Label>Höhe</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionHeight" Text="{Binding Metadata.Height}" />
+                    <Label>Breite</Label>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionWidth"
+                             Text="{Binding Metadata.Width}" />
                 </StackPanel>
 
                 <StackPanel Width="128px" Margin="5px, 0, 0, 0">
-                    <Label>Breite</Label>
-                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionWidth" Text="{Binding Metadata.Width}" />
+                    <Label>Höhe</Label>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="OptionHeight"
+                             Text="{Binding Metadata.Height}" />
                 </StackPanel>
             </StackPanel>
 
             <StackPanel>
                 <Label>Objekte</Label>
-                <ListBox x:Name="ObjectList" ItemsSource="{Binding Objects}" SelectionChanged="objectList_SelectionChanged" />
+                <ListBox x:Name="ObjectList" ItemsSource="{Binding Objects}"
+                         SelectionChanged="objectList_SelectionChanged" />
             </StackPanel>
 
             <Button x:Name="CameraEditButton" Padding="10" FontSize="15px" Click="cameraEditButton_Click">

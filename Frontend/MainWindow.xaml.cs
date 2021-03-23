@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,6 +21,8 @@ namespace LEA_2021
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Fields
+
         private cameraEditor cameraEditorWindow;
 
         private Scene currentScene;
@@ -29,6 +32,10 @@ namespace LEA_2021
 
         public List<Scene> sceneItems;
 
+        #endregion
+
+        #region Constructors
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,10 +44,7 @@ namespace LEA_2021
             getScenes();
         }
 
-        public void OnWindowClosing(object sender, CancelEventArgs e)
-        {
-            closeSubWindows();
-        }
+        #endregion
 
         public void closeSubWindows()
         {
@@ -67,6 +71,8 @@ namespace LEA_2021
 
         private void RenderButton_Click(object sender, RoutedEventArgs e)
         {
+            currentScene.Save();
+
             Button btn = sender as Button;
 
             btn.IsEnabled = false;
@@ -130,7 +136,9 @@ namespace LEA_2021
             {
                 if (Path.GetExtension(file) == ".json")
                 {
-                    sceneItems.Add(new Scene(Path.GetFileNameWithoutExtension(file)));
+                    Scene scene = new Scene(Path.GetFileNameWithoutExtension(file));
+                    scene.PointLights.Add(new PointLight(new Vector3(20, 20, 20), 1f));
+                    sceneItems.Add(scene);
                 }
             }
 

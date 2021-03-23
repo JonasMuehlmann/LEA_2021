@@ -1,52 +1,80 @@
 {
     "Background": "../../../../Backend/scenes/bg.png",
-    "Metadata":   {
-        "Width":          1920,
-        "Height":         1080,
-        "Num_Iterations": 1
+    "Metadata": {
+        "Width": 1920,
+        "Height": 1080,
+        "Num_Iterations": 139
     },
-    "Camera":     {
-        "Position":  [0, 0, 0],
-        "Direction": [0, 0, 1],
-        "FOV": 90
+    "Camera": {
+        "Position": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+        },
+        "Direction": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 1.0
+        },
+        "FOV": 90.0
     },
-    "Objects":    [
+    "Objects": [
         {
-            "Name":       "Brick 01",
-            "Shape":      "Sphere",
-            "Material":   "brick",
+            "Name": "Brick 01",
+            "Shape": "Sphere",
+            "Material": "brick",
             "Properties": {
-                "Radius":   10,
-                "Position": [10, 0, -20]
+                "Radius": 10.0
+            },
+            "Position": {
+                "X": 10.0,
+                "Y": 0.0,
+                "Z": -20.0
             }
         },
         {
-            "Name":       "Wood 01",
-            "Shape":      "Sphere",
-            "Material":   "wood",
+            "Name": "Wood 01",
+            "Shape": "Sphere",
+            "Material": "wood",
             "Properties": {
-                "Radius":   10,
-                "Position": [-20, -10, -35]
+                "Radius": 10.0
+            },
+            "Position": {
+                "X": -20.0,
+                "Y": -10.0,
+                "Z": -35.0
             }
         },
         {
-            "Name":       "Gem 01",
-            "Shape":      "Sphere",
-            "Material":   "gem_agate",
+            "Name": "Gem 01",
+            "Shape": "Sphere",
+            "Material": "gem_agate",
             "Properties": {
-                "Radius":   15,
-                "Position": [-25, 15, -50]
+                "Radius": 15.0
+            },
+            "Position": {
+                "X": -25.0,
+                "Y": 15.0,
+                "Z": -50.0
             }
         },
         {
-            "Name":       "Gold",
-            "Shape":      "FinitePlane",
-            "Material":   "gold",
+            "Name": "Gold",
+            "Shape": "FinitePlane",
+            "Material": "gold",
             "Properties": {
-                "Orientation": [0, 0, 1],
-                "Width":       50,
-                "Length":      70,
-                "Position":    [0, 0, -60]
+                "Width": 50,
+                "Length": 70,
+                "Orientation": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                }
+            },
+            "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -60.0
             }
         }
     ]

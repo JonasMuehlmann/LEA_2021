@@ -6,8 +6,16 @@
         "Num_Iterations": 25
     },
     "Camera": {
-        "Position": [0, 0, 0],
-        "Direction": [0, 0, 1],
+        "Position": {
+            "X": 0,
+            "Y": 0,
+            "Z": 0
+        },
+        "Direction": {
+            "X": 0,
+            "Y": 0,
+            "Z": 1
+        },
         "FOV": 100
     },
     "Objects": [
@@ -16,8 +24,12 @@
             "Shape": "Sphere",
             "Material": "brick",
             "Properties": {
-                "Radius": 10,
-                "Position": [-20, -10, 50]
+                "Radius": 10
+            },
+            "Position": {
+                "X": -20,
+                "Y": -10,
+                "Z": 50
             }
         },
         {
@@ -25,8 +37,12 @@
             "Shape": "Sphere",
             "Material": "brick",
             "Properties": {
-                "Radius": 8,
-                "Position": [-25, -15, 40]
+                "Radius": 8
+            },
+            "Position": {
+                "X": -25,
+                "Y": -15,
+                "Z": 40
             }
         }
     ]

@@ -31,6 +31,13 @@
               <e p="roughness.jpg" t="Include" />
             </e>
             <e p="checkerboard.jpg" t="Include" />
+            <e p="floor_tiles" t="Include">
+              <e p="albedo.jpg" t="Include" />
+              <e p="ambientOcclusion.jpg" t="Include" />
+              <e p="displacement.jpg" t="Include" />
+              <e p="normal.jpg" t="Include" />
+              <e p="roughness.jpg" t="Include" />
+            </e>
             <e p="gem_agate" t="Include">
               <e p="albedo.jpg" t="Include" />
               <e p="ambientOcclusion.jpg" t="Include" />
@@ -42,6 +49,13 @@
               <e p="albedo.jpg" t="Include" />
               <e p="ambientOcclusion.jpg" t="Include" />
               <e p="displacement.jpg" t="Include" />
+              <e p="normal.jpg" t="Include" />
+              <e p="roughness.jpg" t="Include" />
+            </e>
+            <e p="mirror" t="Include">
+              <e p="albedo.jpg" t="Include" />
+              <e p="ambientOcclusion.jpg" t="Include" />
+              <e p="displacement.png" t="Include" />
               <e p="normal.jpg" t="Include" />
               <e p="roughness.jpg" t="Include" />
             </e>

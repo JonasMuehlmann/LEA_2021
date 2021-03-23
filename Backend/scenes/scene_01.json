@@ -8,45 +8,81 @@
     "Camera":     {
         "Position":  [0, 0, 0],
         "Direction": [0, 0, 1],
-        "FOV": 90
+        "FOV": 80
     },
     "Objects":    [
         {
-            "Name":       "Brick 01",
+            "Name":       "Brick Sphere 01",
             "Shape":      "Sphere",
             "Material":   "brick",
             "Properties": {
                 "Radius":   10,
-                "Position": [10, 0, -20]
+                "Position": [20, -10, -35]
             }
         },
         {
-            "Name":       "Wood 01",
+            "Name":       "Wood Sphere 01",
             "Shape":      "Sphere",
             "Material":   "wood",
             "Properties": {
                 "Radius":   10,
-                "Position": [-20, -10, -35]
+                "Position": [-20, -10, -30]
             }
         },
         {
-            "Name":       "Gem 01",
+            "Name":       "Wood Sphere 02",
+            "Shape":      "Sphere",
+            "Material":   "wood",
+            "Properties": {
+                "Radius":   15,
+                "Position": [-25, 1, -60]
+            }
+        }, {
+            "Name":       "Mirror Sphere",
+            "Shape":      "Sphere",
+            "Material":   "mirror",
+            "Properties": {
+                "Radius":   80,
+                "Position": [10, 50, -150]
+            }
+        }, {
+            "Name":       "Gem Sphere",
             "Shape":      "Sphere",
             "Material":   "gem_agate",
             "Properties": {
-                "Radius":   15,
-                "Position": [-25, 15, -50]
+                "Radius":   20,
+                "Position": [50, 0, -20]
             }
         },
         {
-            "Name":       "Gold",
+            "Name":       "Floor",
+            "Shape":      "FinitePlane",
+            "Material":   "wood",
+            "Properties": {
+                "Orientation": [0, 1, 0],
+                "Width":       800,
+                "Length":      1200,
+                "Position":    [0, -30, -300]
+            }
+        }, {
+            "Name":       "Back Wall",
             "Shape":      "FinitePlane",
             "Material":   "gold",
             "Properties": {
+                "Orientation": [0, 0, -1],
+                "Width":       1200,
+                "Length":      800,
+                "Position":    [0, -30, 300]
+            }
+        }, {
+            "Name":       "Front wall",
+            "Shape":      "FinitePlane",
+            "Material":   "brick",
+            "Properties": {
                 "Orientation": [0, 0, 1],
-                "Width":       50,
-                "Length":      70,
-                "Position":    [0, 0, -60]
+                "Width":       1200,
+                "Length":      800,
+                "Position":    [0, -30, -350]
             }
         }
     ]

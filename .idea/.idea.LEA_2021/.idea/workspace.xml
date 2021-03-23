@@ -14,10 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/scenes/materials/gold/albedo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/materials/gold/albedo.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/scenes/materials/gold/roughness.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/materials/gold/roughness.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Constants.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Program.cs" afterDir="false" />
@@ -75,10 +72,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/FinitePlane.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Material.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/bb/1030436c/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/E6052F63-69FB-4011-8A1B-EEAD82CB51D1/65/Gdiplus.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
@@ -86,7 +86,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/CE392B59-909B-4D07-850B-C6313D6CF5E7/3/System.Drawing.Common.notsupported.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Sphere.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/87DBB896-6B20-4A14-9B6A-7AB43642646D/c0/4329e721/Math.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/FinitePlane.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EB73B25A-F6A9-4F97-8FA5-C1DBA8EB133D/0c/84a91204/Color.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Material.cs" root0="SKIP_HIGHLIGHTING" />
@@ -95,9 +97,13 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/E6052F63-69FB-4011-8A1B-EEAD82CB51D1/1/Bitmap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/03CDD8B5-17F3-4DEA-8229-F6B98322B93D/4b/10b0d5e5/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Constants.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/FinitePlane.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1D674F4A-076F-4038-B05A-10EA7AA10D43/b6/d3ed923a/FileSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1D674F4A-076F-4038-B05A-10EA7AA10D43/a5/5062051d/Interop.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/03CDD8B5-17F3-4DEA-8229-F6B98322B93D/14/6aff9a1f/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/FinitePlane.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/ba/837964ae/TlsOverPerCoreLockedStacksArrayPool`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Material.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/94/5f3fb676/String.cs" root0="SKIP_HIGHLIGHTING" />
@@ -108,6 +114,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1D674F4A-076F-4038-B05A-10EA7AA10D43/54/afbb25b5/ValueUtf8Converter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Cuboid.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Shape.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Constants.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/7a/506383ef/ArrayPool`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" root0="FORCE_HIGHLIGHTING" />
@@ -125,6 +132,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/8a/49a91079/Math.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1D674F4A-076F-4038-B05A-10EA7AA10D43/dd/fbee6b9d/Directory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Sphere.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Constants.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Material.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C488B081-68C8-4EF6-A644-2F1DC798FAF7/02/a8491a98/SortedDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
@@ -167,10 +176,10 @@
       <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" />
-      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
       <option value="$PROJECT_DIR$/Backend/src/Constants.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
     </changedPaths>
   </component>
@@ -184,12 +193,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.78761905" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.7013064" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="XThreadsFramesViewSplitterKey" value="0.97959185" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.5435294" />
     <property name="do_not_show_solution_notification" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Frontend/bin/Debug/net5.0-windows/Frontend.dll" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -395,7 +404,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616422116264</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Add new materials">
+      <created>1616491066298</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1616491066298</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,12 +455,30 @@
     <MESSAGE value="Add constants for file paths" />
     <MESSAGE value="Add shadows" />
     <MESSAGE value="Add reflections" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add reflections" />
+    <MESSAGE value="Add new materials" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new materials" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs</url>
+          <line>62</line>
+          <properties documentPath="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" initialLine="62" containingFunctionPresentation="method 'IsInBounds'">
+            <startOffsets>
+              <option value="1353" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1354" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#LEA_2021.Scene" memberName="BackgroundValue" />

@@ -65,8 +65,8 @@ namespace LEA_2021
                 Math.Abs(Orientation.Y) == 1f
             )
             {
-                if (Math.Abs(Util.ScalarDistance(center.X, intersection.X)) > Length / 2f
-                 || Math.Abs(Util.ScalarDistance(center.Z, intersection.Z)) > Width  / 2f)
+                if (Math.Abs(Util.ScalarDistance(center.X, intersection.X)) > Length * 0.5f
+                 || Math.Abs(Util.ScalarDistance(center.Z, intersection.Z)) > Width  * 0.5f)
                 {
                     return false;
                 }
@@ -76,18 +76,17 @@ namespace LEA_2021
                 Math.Abs(Orientation.X) == 1f
             )
             {
-                if (Math.Abs(Util.ScalarDistance(center.Z, intersection.Z)) > Length / 2f
-                 || Math.Abs(Util.ScalarDistance(center.Y, intersection.Y)) > Width  / 2f)
+                if (Math.Abs(Util.ScalarDistance(center.Z, intersection.Z)) > Length * 0.5f
+                 || Math.Abs(Util.ScalarDistance(center.Y, intersection.Y)) > Width  * 0.5f)
                 {
                     return false;
                 }
             }
 
-            if (Math.Abs(Orientation.Z) == 1f
-            )
+            else
             {
-                if (Math.Abs(Util.ScalarDistance(center.Y, intersection.Y)) > Length / 2f
-                 || Math.Abs(Util.ScalarDistance(center.X, intersection.X)) > Width  / 2f)
+                if (Math.Abs(Util.ScalarDistance(center.Y, intersection.Y)) > Length * 0.5f
+                 || Math.Abs(Util.ScalarDistance(center.X, intersection.X)) > Width  * 0.5f)
                 {
                     return false;
                 }
@@ -101,24 +100,57 @@ namespace LEA_2021
         {
             if (Math.Abs(Orientation.Y) == 1f)
             {
-                float u = Util.RescaleToRange(Util.ScalarDistance(center.Z, intersection.Z), -Length, Length, 0, 1);
-                float v = Util.RescaleToRange(Util.ScalarDistance(center.X, intersection.X), -Width,  Width,  0, 1);
+                float u = Util.RescaleToRange(Util.ScalarDistance(center.Z, intersection.Z),
+                                              -Length * 0.5f,
+                                              Length  * 0.5f,
+                                              0,
+                                              1
+                                             );
+
+                float v = Util.RescaleToRange(Util.ScalarDistance(center.X, intersection.X),
+                                              -Width * 0.5f,
+                                              Width  * 0.5f,
+                                              0,
+                                              1
+                                             );
 
                 return new Point2(u, v);
             }
 
             if (Math.Abs(Orientation.X) == 1f)
             {
-                float u = Util.RescaleToRange(Util.ScalarDistance(center.Z, intersection.Z), -Length, Length, 0, 1);
-                float v = Util.RescaleToRange(Util.ScalarDistance(center.Y, intersection.Y), -Width,  Width,  0, 1);
+                float u = Util.RescaleToRange(Util.ScalarDistance(center.Z, intersection.Z),
+                                              -Length * 0.5f,
+                                              Length  * 0.5f,
+                                              0,
+                                              1
+                                             );
+
+                float v = Util.RescaleToRange(Util.ScalarDistance(center.Y, intersection.Y),
+                                              -Width * 0.5f,
+                                              Width  * 0.5f,
+                                              0,
+                                              1
+                                             );
 
                 return new Point2(u, v);
             }
 
             else
             {
-                float u = Util.RescaleToRange(Util.ScalarDistance(center.Y, intersection.Y), -Length, Length, 0, 1);
-                float v = Util.RescaleToRange(Util.ScalarDistance(center.X, intersection.X), -Width,  Width,  0, 1);
+                float u = Util.RescaleToRange(Util.ScalarDistance(center.Y, intersection.Y),
+                                              -Length * 0.5f,
+                                              Length  * 0.5f,
+                                              0,
+                                              1
+                                             );
+
+                float v = Util.RescaleToRange(Util.ScalarDistance(center.X, intersection.X),
+                                              -Width * 0.5f,
+                                              Width  * 0.5f,
+                                              0,
+                                              1
+                                             );
 
                 return new Point2(u, v);
             }
@@ -129,8 +161,8 @@ namespace LEA_2021
         {
             float denominator = Vec3.Dot(Orientation, ray.Direction);
 
-            // Check if denominator is approximately 0
 
+            // If the denominator is 0, the ray and plane are parallel
             if (Math.Abs(denominator) < float.Epsilon)
             {
                 // Ray does not intersect with plane
@@ -141,13 +173,14 @@ namespace LEA_2021
 
             if (t < float.Epsilon)
             {
-                // Ray intersects, but is shot away from the sphere
+                // Ray intersects, but is shot away from the plane
                 return -1f;
             }
 
 
             // Ray intersects with the infinite plane, check if it also intersects with the bounded plane
             Point3 intersection = ray.At(t);
+
 
             if (!IsInBounds(center, intersection))
             {

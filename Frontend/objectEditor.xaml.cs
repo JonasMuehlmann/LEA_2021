@@ -8,20 +8,24 @@ using System.Windows.Input;
 namespace LEA_2021
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class objectEditor : Window
     {
+        #region Constructors
+
         public objectEditor()
         {
             InitializeComponent();
 
-            MessageBox.Show(DataContext.ToString());
+            // MessageBox.Show(DataContext.ToString());
         }
+
+        #endregion
 
         private void TextBoxNumberValidation(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            var regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
     }

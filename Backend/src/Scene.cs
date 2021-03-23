@@ -173,7 +173,6 @@ namespace LEA_2021
 
             PointLights = new List<PointLight>();
             Rng = new Random();
-            BackgroundColor = Color.Black;
             backgroundValue = value["Background"];
             DetectBackground();
         }
@@ -356,7 +355,7 @@ namespace LEA_2021
             }
             else
             {
-                currentColor = BackgroundColor;
+                currentColor = Color.FromName(backgroundValue);
             }
 
             // return TraceRay(lightBeam, currentColor, currentDepth + 1);

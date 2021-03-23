@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -26,6 +27,8 @@ namespace LEA_2021
         private cameraEditor cameraEditorWindow;
 
         private Scene currentScene;
+
+        private bool materialViewerActive = false;
         private objectEditor objectEditorWindow;
 
         private Task renderTask;
@@ -45,6 +48,11 @@ namespace LEA_2021
         }
 
         #endregion
+
+        public void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            closeSubWindows();
+        }
 
         public void closeSubWindows()
         {
@@ -151,6 +159,28 @@ namespace LEA_2021
             DataContext = currentScene;
             RenderButton.IsEnabled = true;
             closeSubWindows();
+        }
+
+        private void MaterialViewerButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            materialViewerActive = !materialViewerActive;
+
+            if (materialViewerActive)
+            {
+                sceneContainer.Visibility = Visibility.Hidden;
+
+                currentScene = new Scene("system_materialviewer");
+                currentScene.PointLights.Add(new PointLight(new Vector3(20, 20, 20), 1f));
+                DataContext = currentScene;
+
+                RenderButton.Visibility = Visibility.Collapsed;
+                RenderButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            else
+            {
+                sceneContainer.Visibility = Visibility.Visible;
+                RenderButton.Visibility = Visibility.Visible;
+            }
         }
     }
 

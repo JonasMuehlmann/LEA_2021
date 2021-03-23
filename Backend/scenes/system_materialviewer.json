@@ -1,0 +1,36 @@
+{
+    "Background": "Green",
+    "Metadata": {
+        "Width": 400,
+        "Height": 400,
+        "Num_Iterations": 5
+    },
+    "Camera": {
+        "Position": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+        },
+        "Direction": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 1.0
+        },
+        "FOV": 90.0
+    },
+    "Objects": [
+        {
+            "Name": "Sphere",
+            "Shape": "Sphere",
+            "Material": "wood",
+            "Properties": {
+                "Radius": 17.0
+            },
+            "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -25.0
+            }
+        }
+    ]
+}

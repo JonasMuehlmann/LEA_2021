@@ -96,6 +96,13 @@ namespace LEA_2021
         }
 
 
+        // Not an elegant function, but the compiler was not satisfied with others
+        public override Vector3 GetSurfaceNormal(Vector3 intersection, Vector3 position)
+        {
+            return Orientation;
+        }
+
+
         public override Point2 GetUvCoordinates(Point3 center, Point3 intersection)
         {
             if (Math.Abs(Orientation.Y) == 1f)

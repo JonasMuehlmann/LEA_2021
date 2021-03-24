@@ -84,5 +84,11 @@ namespace LEA_2021
         {
             throw new NotImplementedException();
         }
+
+
+        public override Vector3 GetSurfaceNormal(Vector3 intersection, Vector3 position)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

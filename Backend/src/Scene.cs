@@ -300,9 +300,13 @@ namespace LEA_2021
             {
                 Vector3 intersection = lightBeam.Ray.At(closestDistance);
 
-                Vector3 surfaceNormal      = Vec3.Normalize(Util.FromAToB(closestObject.Position, intersection));
-                float   brightnessDiffuse  = 0f;
-                float   brightnessSpecular = 0f;
+
+                Vector3 surfaceNormal =
+                    closestObject.GetSurfaceNormal(intersection);
+
+
+                float brightnessDiffuse  = 0f;
+                float brightnessSpecular = 0f;
 
 
                 // Calculate direct illumination
@@ -320,8 +324,6 @@ namespace LEA_2021
                     // Cast shadows by not adding specular or diffuse light if path to light is not clear
                     closestDistance = FindClosestHit(new Ray(intersectionOffset, Vec3.Normalize(surfaceToLight)))
                        .Distance;
-
-                    // Console.WriteLine(closestDistance);
 
                     if (closestDistance
                       < distanceToLight)
@@ -383,6 +385,8 @@ namespace LEA_2021
                 //              );
             }
             else
+
+
             {
                 currentColor = BackgroundColor;
             }
@@ -444,6 +448,7 @@ namespace LEA_2021
                     {
                         Ray primaryRay = CastPrimaryRay(column, row);
 
+                        // TODO: Debug pixel at row 5 column 8
                         Color pixel = TraceRay(new LightBeam(primaryRay), new Color());
                         Image.SetPixel(column, row, pixel);
                     }

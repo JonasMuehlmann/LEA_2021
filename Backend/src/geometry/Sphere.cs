@@ -95,5 +95,11 @@ namespace LEA_2021
 
             return closestT;
         }
+
+
+        public override Vec3 GetSurfaceNormal(Point3 intersection, Point3 position)
+        {
+            return Vec3.Normalize(Util.FromAToB(position, intersection));
+        }
     }
 }

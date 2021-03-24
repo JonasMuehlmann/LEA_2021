@@ -30,9 +30,9 @@
             }
         },
         {
-            "Name":       "Wood Sphere 02",
+            "Name":       "Tiles Sphere 01",
             "Shape":      "Sphere",
-            "Material":   "wood",
+            "Material":   "floor_tiles",
             "Properties": {
                 "Radius":   15,
                 "Position": [-25, 1, -60]
@@ -67,17 +67,17 @@
         }, {
             "Name":       "Back Wall",
             "Shape":      "FinitePlane",
-            "Material":   "gold",
+            "Material":   "mirror",
             "Properties": {
                 "Orientation": [0, 0, -1],
-                "Width":       1200,
+                "Width":       1000,
                 "Length":      800,
-                "Position":    [0, -30, 300]
+                "Position":    [0, -30, 30]
             }
         }, {
             "Name":       "Front wall",
             "Shape":      "FinitePlane",
-            "Material":   "brick",
+            "Material":   "gold",
             "Properties": {
                 "Orientation": [0, 0, 1],
                 "Width":       1200,

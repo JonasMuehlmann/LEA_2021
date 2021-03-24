@@ -13,5 +13,7 @@ namespace LEA_2021
         public abstract float Intersect(Ray ray, Point3 center);
 
         public abstract Point2 GetUvCoordinates(Point3 intersection, Point3 position);
+
+        public abstract Vec3 GetSurfaceNormal(Point3 intersection, Point3 position);
     }
 }

@@ -68,5 +68,11 @@ namespace LEA_2021
         {
             return Shape.GetUvCoordinates(intersection, position);
         }
+
+
+        public Vec3 GetSurfaceNormal(Point3 intersection)
+        {
+            return Shape.GetSurfaceNormal(intersection, Position);
+        }
     }
 }

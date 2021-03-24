@@ -16,9 +16,9 @@ namespace LEA_2021
 
 
             scene.SetBackground(Color.Black);
-            scene.PointLights.Add(new PointLight(new Point3(-20, 15, 20),   0.6f));
-            scene.PointLights.Add(new PointLight(new Point3(20,  15, 20),   0.6f));
-            scene.PointLights.Add(new PointLight(new Point3(0,   0,  -320), 0.8f));
+            scene.PointLights.Add(new PointLight(new Point3(-20, 15, 20),  0.4f));
+            scene.PointLights.Add(new PointLight(new Point3(20,  15, 20),  0.4f));
+            scene.PointLights.Add(new PointLight(new Point3(0,   60, -60), 0.7f));
             scene.Render();
         }
     }

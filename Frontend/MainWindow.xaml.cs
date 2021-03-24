@@ -145,7 +145,7 @@ namespace LEA_2021
         public void getScenes()
         {
             foreach (var file in Directory.GetFiles("../../../../Backend/scenes"))
-                if (Path.GetExtension(file) == ".json")
+                if (Path.GetExtension(file) == ".json" && !Path.GetFileNameWithoutExtension(file).StartsWith("system_"))
                 {
                     var scene = new Scene(Path.GetFileNameWithoutExtension(file));
                     scene.PointLights.Add(new PointLight(new Vector3(20, 20, 20), 1f));
@@ -214,21 +214,31 @@ namespace LEA_2021
         public object Convert(
             object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var image = new BitmapImage();
-            var ms = new MemoryStream();
-
-            var buffer = value as Bitmap;
-            lock (buffer)
+            do
             {
-                buffer.Save(ms, ImageFormat.Png);
-            }
+                try
+                {
+                    var image = new BitmapImage();
+                    var ms = new MemoryStream();
 
-            image.BeginInit();
-            ms.Seek(0, SeekOrigin.Begin);
-            image.StreamSource = ms;
-            image.EndInit();
+                    var buffer = value as Bitmap;
+                    lock (buffer)
+                    {
+                        buffer.Save(ms, ImageFormat.Png);
+                    }
 
-            return image;
+                    image.BeginInit();
+                    ms.Seek(0, SeekOrigin.Begin);
+                    image.StreamSource = ms;
+                    image.EndInit();
+
+                    return image;
+                }
+                catch (InvalidOperationException e)
+                {
+                    Console.WriteLine(e);
+                }
+            } while (true);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

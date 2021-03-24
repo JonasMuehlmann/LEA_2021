@@ -1,5 +1,5 @@
 {
-    "Background": "White",
+    "Background": "#fefefe",
     "Metadata": {
         "Width": 400,
         "Height": 400,
@@ -22,7 +22,7 @@
         {
             "Name": "Sphere",
             "Shape": "Sphere",
-            "Material": "wood",
+            "Material": "floor_tiles",
             "Properties": {
                 "Radius": 17.0
             },

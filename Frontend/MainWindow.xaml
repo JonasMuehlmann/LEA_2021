@@ -94,6 +94,15 @@
             <Button x:Name="MaterialViewerButton" Padding="10" FontSize="15px" Click="MaterialViewerButton_OnClick">
                 Material-Viewer starten
             </Button>
+
+
+            <StackPanel x:Name="materialViewerContainer" Visibility="Collapsed">
+
+                <StackPanel>
+                    <Label>Material wählen</Label>
+                    <ComboBox SelectionChanged="MaterialBox_OnSelectionChanged" x:Name="MaterialBox" />
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

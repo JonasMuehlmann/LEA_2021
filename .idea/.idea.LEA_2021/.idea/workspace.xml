@@ -14,8 +14,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Util.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Util.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Material.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Material.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,17 +147,18 @@
       <option value="$PROJECT_DIR$/Backend/src/geometry/Ray.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" />
       <option value="$PROJECT_DIR$/Backend/src/HitRecord.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Constants.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" />
-      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
       <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_02.json" />
       <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -236,7 +241,7 @@
       <workItem from="1616230887636" duration="22498000" />
       <workItem from="1616321287766" duration="5035000" />
       <workItem from="1616332100267" duration="23453000" />
-      <workItem from="1616569055375" duration="16996000" />
+      <workItem from="1616569055375" duration="34015000" />
     </task>
     <task id="LOCAL-00001" summary="Created repo.">
       <created>1615793301147</created>
@@ -427,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616575926853</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Add extra utility functions and overloads">
+      <created>1616586530360</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1616586530360</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +463,6 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add documentation dir with initial class diagram" />
     <MESSAGE value="Unspecified changes" />
     <MESSAGE value="unspecified changes" />
     <MESSAGE value="unspecified changes, yet again..." />
@@ -476,7 +487,8 @@
     <MESSAGE value="Fix Shadow acne and implement shape specific surface-normal calculations" />
     <MESSAGE value="Adjust config format for new parsing" />
     <MESSAGE value="Fix config format errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix config format errors" />
+    <MESSAGE value="Add extra utility functions and overloads" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add extra utility functions and overloads" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -496,19 +508,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Backend/src/Program.cs</url>
-          <line>18</line>
-          <properties documentPath="$PROJECT_DIR$/Backend/src/Program.cs" initialLine="18" containingFunctionPresentation="method 'Main'">
-            <startOffsets>
-              <option value="319" />
-            </startOffsets>
-            <endOffsets>
-              <option value="384" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -18,6 +18,7 @@
         <e p="out" t="Include">
           <e p="foo.png" t="Include" />
           <e p="scene_01.png" t="Include" />
+          <e p="scene_02.png" t="Include" />
         </e>
         <e p="scenes" t="Include">
           <e p="bg.png" t="Include" />
@@ -39,6 +40,13 @@
               <e p="roughness.jpg" t="Include" />
             </e>
             <e p="gem_agate" t="Include">
+              <e p="albedo.jpg" t="Include" />
+              <e p="ambientOcclusion.jpg" t="Include" />
+              <e p="displacement.png" t="Include" />
+              <e p="normal.jpg" t="Include" />
+              <e p="roughness.jpg" t="Include" />
+            </e>
+            <e p="glass" t="Include">
               <e p="albedo.jpg" t="Include" />
               <e p="ambientOcclusion.jpg" t="Include" />
               <e p="displacement.png" t="Include" />
@@ -68,6 +76,7 @@
             </e>
           </e>
           <e p="scene_01.json" t="Include" />
+          <e p="scene_02.json" t="Include" />
           <e p="system_materialviewer.json" t="Include" />
         </e>
         <e p="src" t="Include">

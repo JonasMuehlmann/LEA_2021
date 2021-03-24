@@ -150,7 +150,7 @@ namespace LEA_2021
                         break;
                 }
 
-                Objects.Add(new Object(new Material(obj["Material"]),
+                Objects.Add(new Object(new Material(obj["Material"], obj["RefractiveIndex"], obj["Transparency"]),
                                        shapeClass,
                                        new Vector3(obj["Position"]["X"],
                                                    obj["Position"]["Y"],
@@ -239,9 +239,36 @@ namespace LEA_2021
         }
 
 
-        private Vec3 Refract(Vec3 direction, Vec3 surfaceNormal)
+        // Refraction according to snell's law
+        public Vec3 Refract(
+            Vec3  direction,
+            Vec3  surfaceNormal,
+            float refractiveIndexIntersected,
+            float refractiveIndexCurrent = 1f
+        )
         {
-            throw new NotImplementedException();
+            float cos_i = -Vec3.Dot(surfaceNormal, direction);
+
+            // Ray is inside of the object, invert the refraction
+            if (cos_i < 0)
+            {
+                return Refract(direction,
+                               -surfaceNormal,
+                               refractiveIndexCurrent,
+                               refractiveIndexIntersected
+                              );
+            }
+
+            float refractiveRatio = refractiveIndexCurrent / refractiveIndexIntersected;
+
+            float k = 1f - Util.Square(refractiveRatio) * (1 - Util.Square(cos_i));
+
+            // TODO: Handle total internal reflection (0 vector)
+            return k < 0
+                ? Vec3.Zero
+                : Vec3.Normalize(direction     * refractiveRatio
+                               + surfaceNormal * (refractiveRatio * cos_i - (float) Math.Sqrt(k))
+                                );
         }
 
 
@@ -356,10 +383,20 @@ namespace LEA_2021
                 float gloss = 1f
                             - Util.RescaleToRange(roughnessRaw, 0f, 255f, 0f, 1f);
 
-                lightBeam.Ray.Origin    = intersectionOffset;
-                lightBeam.Ray.Direction = Vec3.Reflect(lightBeam.Ray.Direction, surfaceNormal);
+                lightBeam.Ray.Origin = intersectionOffset;
+
+                Vec3 directionOrig = lightBeam.Ray.Direction;
+
+                lightBeam.Ray.Direction = Vec3.Reflect(directionOrig, surfaceNormal);
 
                 Color reflectionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
+
+                lightBeam.Ray.Direction = Refract(directionOrig,
+                                                  surfaceNormal,
+                                                  closestObject.Material.RefractiveIndex
+                                                 );
+
+                Color refractionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
 
                 currentColor = Util.ClampedColorScale(colorOrig, brightnessDiffuse);
 
@@ -369,6 +406,11 @@ namespace LEA_2021
 
                 currentColor =
                     Util.ClampedColorAdd(currentColor, Util.ClampedColorScale(reflectionColor, gloss));
+
+                currentColor =
+                    Util.ClampedColorAdd(currentColor,
+                                         Util.ClampedColorScale(refractionColor, closestObject.Material.Transparency)
+                                        );
 
                 // // Gamma correction
                 // color = Color.FromArgb(255,

@@ -31,6 +31,10 @@ namespace LEA_2021
 
         public Bitmap Emission { get; set; }
 
+        public float RefractiveIndex { get; set; }
+
+        public float Transparency { get; set; }
+
         #endregion
 
         #region Constructors
@@ -42,7 +46,9 @@ namespace LEA_2021
             Bitmap ambientOcclusion,
             Bitmap normal,
             Bitmap displacement,
-            Bitmap emission
+            Bitmap emission,
+            float  refractiveIndex,
+            float  transparency
         )
         {
             Albedo           = albedo;
@@ -52,12 +58,16 @@ namespace LEA_2021
             Normal           = normal;
             Displacement     = displacement;
             Emission         = emission;
+            RefractiveIndex  = refractiveIndex;
+            Transparency     = transparency;
         }
 
 
-        public Material(string name)
+        public Material(string name, float refractiveIndex, float transparency)
         {
-            Name = name;
+            Name            = name;
+            RefractiveIndex = refractiveIndex;
+            Transparency    = transparency;
 
             List<string> neededBitmaps = new()
                                          {

@@ -15,8 +15,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/Util.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Util.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +87,7 @@
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Cuboid.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/7a/506383ef/ArrayPool`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/09/baaca014/Interop.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/CE392B59-909B-4D07-850B-C6313D6CF5E7/3/System.Drawing.Common.notsupported.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/87DBB896-6B20-4A14-9B6A-7AB43642646D/dc/f253005c/Vector`1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -102,6 +102,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9A625919-60D0-4309-B061-98634ED8683B/4c/3b9bb348/SortedDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/8a/49a91079/Math.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1D674F4A-076F-4038-B05A-10EA7AA10D43/dd/fbee6b9d/Directory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EB73B25A-F6A9-4F97-8FA5-C1DBA8EB133D/0c/84a91204/Color.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C488B081-68C8-4EF6-A644-2F1DC798FAF7/02/a8491a98/SortedDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
@@ -143,16 +144,16 @@
       <option value="$PROJECT_DIR$/Backend/src/geometry/Oriented.cs" />
       <option value="$PROJECT_DIR$/Backend/src/HitRecord.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Constants.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
+      <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
-      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -235,7 +236,7 @@
       <workItem from="1616230887636" duration="22498000" />
       <workItem from="1616321287766" duration="5035000" />
       <workItem from="1616332100267" duration="23453000" />
-      <workItem from="1616569055375" duration="6802000" />
+      <workItem from="1616569055375" duration="16996000" />
     </task>
     <task id="LOCAL-00001" summary="Created repo.">
       <created>1615793301147</created>
@@ -419,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616575249091</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Fix config format errors">
+      <created>1616575926853</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1616575926853</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,7 +451,6 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add exemplary directory structure" />
     <MESSAGE value="Add documentation dir with initial class diagram" />
     <MESSAGE value="Unspecified changes" />
     <MESSAGE value="unspecified changes" />
@@ -468,7 +475,8 @@
     <MESSAGE value="Fix swapped row and column variable" />
     <MESSAGE value="Fix Shadow acne and implement shape specific surface-normal calculations" />
     <MESSAGE value="Adjust config format for new parsing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjust config format for new parsing" />
+    <MESSAGE value="Fix config format errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix config format errors" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -488,6 +496,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Backend/src/Program.cs</url>
+          <line>18</line>
+          <properties documentPath="$PROJECT_DIR$/Backend/src/Program.cs" initialLine="18" containingFunctionPresentation="method 'Main'">
+            <startOffsets>
+              <option value="319" />
+            </startOffsets>
+            <endOffsets>
+              <option value="384" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

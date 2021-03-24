@@ -117,6 +117,16 @@ namespace LEA_2021
         }
 
 
+        public static Color ClampedColorScale(Color color, int value)
+        {
+            return Color.FromArgb(255,
+                                  Math.Clamp(color.R * value, 0, 255),
+                                  Math.Clamp(color.G * value, 0, 255),
+                                  Math.Clamp(color.B * value, 0, 255)
+                                 );
+        }
+
+
         public static Color ClampedColorAdd(Color color, Color color2)
         {
             return Color.FromArgb(255,
@@ -130,9 +140,29 @@ namespace LEA_2021
         public static Color ClampedColorAdd(Color color, int value)
         {
             return Color.FromArgb(255,
-                                  Math.Clamp(+color.R * value, 0, 255),
-                                  Math.Clamp(+color.G * value, 0, 255),
-                                  Math.Clamp(+color.B * value, 0, 255)
+                                  Math.Clamp(color.R + value, 0, 255),
+                                  Math.Clamp(color.G + value, 0, 255),
+                                  Math.Clamp(color.B + value, 0, 255)
+                                 );
+        }
+
+
+        public static Color ClampedColorSubtract(Color color, Color color2)
+        {
+            return Color.FromArgb(255,
+                                  Math.Clamp(color.R - color2.R, 0, 255),
+                                  Math.Clamp(color.G - color2.G, 0, 255),
+                                  Math.Clamp(color.B - color2.B, 0, 255)
+                                 );
+        }
+
+
+        public static Color ClampedColorSubtract(Color color, int value)
+        {
+            return Color.FromArgb(255,
+                                  Math.Clamp(color.R - value, 0, 255),
+                                  Math.Clamp(color.G - value, 0, 255),
+                                  Math.Clamp(color.B - value, 0, 255)
                                  );
         }
     }

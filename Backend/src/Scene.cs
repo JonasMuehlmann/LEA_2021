@@ -9,7 +9,7 @@ using System.IO;
 using System.Json;
 using System.Numerics;
 using System.Text.RegularExpressions;
-
+using Newtonsoft.Json;
 
 namespace LEA_2021
 {
@@ -99,16 +99,16 @@ namespace LEA_2021
 
             Image = new Bitmap(Metadata.Width, Metadata.Height);
 
-            Camera = new Camera(new Point3(value["Camera"]["Position"][0],
-                                           value["Camera"]["Position"][1],
-                                           value["Camera"]["Position"][1]
-                                          ),
-                                new Vec3(value["Camera"]["Direction"][0],
-                                         value["Camera"]["Direction"][1],
-                                         value["Camera"]["Direction"][1]
-                                        ),
-                                Util.DegreesToRadians((int) value["Camera"]["FOV"])
-                               );
+            Camera = new Camera(new Point3(value["Camera"]["Position"]["X"],
+                    value["Camera"]["Position"]["Y"],
+                    value["Camera"]["Position"]["Z"]
+                ),
+                new Vec3(value["Camera"]["Direction"]["X"],
+                    value["Camera"]["Direction"]["Y"],
+                    value["Camera"]["Direction"]["Z"]
+                ),
+                Util.DegreesToRadians((int) value["Camera"]["FOV"])
+            );
 
 
             // create object classes
@@ -122,13 +122,13 @@ namespace LEA_2021
                 {
                     case "Cuboid":
                         shapeClass = new Cuboid((int) obj["Properties"]["Width"],
-                                                (int) obj["Properties"]["Height"],
-                                                (int) obj["Properties"]["Length"],
-                                                new Vec3(obj["Properties"]["Orientation"][0],
-                                                         obj["Properties"]["Orientation"][1],
-                                                         obj["Properties"]["Orientation"][2]
-                                                        )
-                                               );
+                            (int) obj["Properties"]["Height"],
+                            (int) obj["Properties"]["Length"],
+                            new Vec3(obj["Properties"]["Orientation"]["X"],
+                                obj["Properties"]["Orientation"]["Y"],
+                                obj["Properties"]["Orientation"]["Z"]
+                            )
+                        );
 
                         break;
 
@@ -138,26 +138,26 @@ namespace LEA_2021
                         break;
 
                     case "FinitePlane":
-                        shapeClass = new FinitePlane(new Vec3(obj["Properties"]["Orientation"][0],
-                                                              obj["Properties"]["Orientation"][1],
-                                                              obj["Properties"]["Orientation"][2]
-                                                             ),
-                                                     (int) obj["Properties"]["Width"],
-                                                     (int) obj["Properties"]["Length"]
-                                                    );
+                        shapeClass = new FinitePlane(new Vec3(obj["Properties"]["Orientation"]["X"],
+                                obj["Properties"]["Orientation"]["Y"],
+                                obj["Properties"]["Orientation"]["Z"]
+                            ),
+                            (int) obj["Properties"]["Width"],
+                            (int) obj["Properties"]["Length"]
+                        );
 
                         break;
                 }
 
                 Objects.Add(new Object(new Material(obj["Material"]),
-                                       shapeClass,
-                                       new Vector3(obj["Properties"]["Position"][0],
-                                                   obj["Properties"]["Position"][1],
-                                                   obj["Properties"]["Position"][2]
-                                                  ),
-                                       obj["Name"]
-                                      )
-                           );
+                        shapeClass,
+                        new Vector3(obj["Position"]["X"],
+                            obj["Position"]["Y"],
+                            obj["Position"]["Z"]
+                        ),
+                        obj["Name"]
+                    )
+                );
             }
 
 
@@ -179,7 +179,6 @@ namespace LEA_2021
 
             PointLights     = new List<PointLight>();
             Rng             = new Random();
-            BackgroundColor = Color.Black;
             backgroundValue = value["Background"];
             DetectBackground();
         }
@@ -385,10 +384,8 @@ namespace LEA_2021
                 //              );
             }
             else
-
-
             {
-                currentColor = BackgroundColor;
+                currentColor = Color.FromName(backgroundValue);
             }
 
             // return TraceRay(lightBeam, currentColor, currentDepth + 1);
@@ -448,16 +445,47 @@ namespace LEA_2021
                     {
                         Ray primaryRay = CastPrimaryRay(column, row);
 
-                        // TODO: Debug pixel at row 5 column 8
                         Color pixel = TraceRay(new LightBeam(primaryRay), new Color());
                         Image.SetPixel(column, row, pixel);
                     }
                 }
-
                 OnPropertyChanged("Image");
             }
-
             Image.Save($"{Constants.OutputDir}/{Name}.png", ImageFormat.Png);
+        }
+
+        public void Save()
+        {
+            Dictionary<dynamic, dynamic> jsonData = new();
+            List<Dictionary<dynamic, dynamic>> objectList = new();
+
+            jsonData.Add("Background", backgroundValue);
+            jsonData.Add("Metadata",
+                new Dictionary<string, int>
+                {
+                    {"Width", Metadata.Width}, {"Height", Metadata.Height}, {"Num_Iterations", Metadata.NumIterations}
+                });
+            jsonData.Add("Camera",
+                new Dictionary<string, dynamic>
+                {
+                    {"Position", Camera.Position}, {"Direction", Camera.Direction},
+                    {"FOV", Util.RadiansToDegree(Camera.Fov)}
+                });
+
+            foreach (Object o in Objects)
+                objectList.Add(new Dictionary<dynamic, dynamic>
+                {
+                    {"Name", o.Name},
+                    {"Shape", o.Shape.GetType().Name},
+                    {"Material", o.Material.Name},
+                    {"Properties", o.Shape},
+                    {"Position", o.Position}
+                });
+
+            jsonData.Add("Objects", objectList);
+
+            File.WriteAllText($@"{Constants.SceneDir}/{Name}.json",
+                JsonConvert.SerializeObject(jsonData, Formatting.Indented));
         }
     }
 }

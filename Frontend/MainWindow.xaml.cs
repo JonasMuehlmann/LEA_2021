@@ -5,10 +5,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -20,14 +22,22 @@ namespace LEA_2021
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Fields
+
         private cameraEditor cameraEditorWindow;
 
         private Scene currentScene;
+
+        private bool materialViewerActive = false;
         private objectEditor objectEditorWindow;
 
         private Task renderTask;
 
         public List<Scene> sceneItems;
+
+        #endregion
+
+        #region Constructors
 
         public MainWindow()
         {
@@ -36,6 +46,8 @@ namespace LEA_2021
             sceneItems = new List<Scene>();
             getScenes();
         }
+
+        #endregion
 
         public void OnWindowClosing(object sender, CancelEventArgs e)
         {
@@ -67,6 +79,8 @@ namespace LEA_2021
 
         private void RenderButton_Click(object sender, RoutedEventArgs e)
         {
+            currentScene.Save();
+
             Button btn = sender as Button;
 
             btn.IsEnabled = false;
@@ -130,7 +144,9 @@ namespace LEA_2021
             {
                 if (Path.GetExtension(file) == ".json")
                 {
-                    sceneItems.Add(new Scene(Path.GetFileNameWithoutExtension(file)));
+                    Scene scene = new Scene(Path.GetFileNameWithoutExtension(file));
+                    scene.PointLights.Add(new PointLight(new Vector3(20, 20, 20), 1f));
+                    sceneItems.Add(scene);
                 }
             }
 
@@ -143,6 +159,28 @@ namespace LEA_2021
             DataContext = currentScene;
             RenderButton.IsEnabled = true;
             closeSubWindows();
+        }
+
+        private void MaterialViewerButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            materialViewerActive = !materialViewerActive;
+
+            if (materialViewerActive)
+            {
+                sceneContainer.Visibility = Visibility.Hidden;
+
+                currentScene = new Scene("system_materialviewer");
+                currentScene.PointLights.Add(new PointLight(new Vector3(20, 20, 20), 1f));
+                DataContext = currentScene;
+
+                RenderButton.Visibility = Visibility.Collapsed;
+                RenderButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            else
+            {
+                sceneContainer.Visibility = Visibility.Visible;
+                RenderButton.Visibility = Visibility.Visible;
+            }
         }
     }
 

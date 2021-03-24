@@ -20,29 +20,49 @@
     },
     "Objects": [
         {
-            "Name": "Tree 01",
+            "Name": "Brick Sphere 01",
             "Shape": "Sphere",
             "Material": "brick",
             "Properties": {
-                "Radius": 10.0
+                "Radius": 20.0
             },
             "Position": {
-                "X": -20.0,
+                "X": 20.0,
                 "Y": -10.0,
-                "Z": 50.0
+                "Z": -35.0
             }
         },
         {
-            "Name": "Tree 02",
+            "Name": "Tiles Sphere 01",
             "Shape": "Sphere",
-            "Material": "brick",
+            "Material": "floor_tiles",
             "Properties": {
-                "Radius": 8.0
+                "Radius": 25.0
             },
             "Position": {
                 "X": -25.0,
-                "Y": -15.0,
-                "Z": 40.0
+                "Y": 30.0,
+                "Z": -60.0
+            }
+        }
+    ],
+    "PointLights": [
+        {
+            "Color": "Red",
+            "Brightness": 1.0,
+            "Position": {
+                "X": 20.0,
+                "Y": 20.0,
+                "Z": 20.0
+            }
+        },
+        {
+            "Color": "Red",
+            "Brightness": 1.0,
+            "Position": {
+                "X": 20.0,
+                "Y": -20.0,
+                "Z": 20.0
             }
         }
     ]

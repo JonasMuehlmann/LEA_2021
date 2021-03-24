@@ -5,6 +5,17 @@
         "Height": 1080,
         "Num_Iterations": 1
     },
+    "PointLights": [
+        {
+            "Color": "Red",
+            "Brightness": 1,
+            "Position": {
+                "X": 20.0,
+                "Y": 12.0,
+                "Z": 10.0
+            }
+        }
+    ],
     "Camera": {
         "Position": {
             "X": 0.0,

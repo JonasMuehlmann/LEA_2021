@@ -7,7 +7,6 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -148,7 +147,6 @@ namespace LEA_2021
                 if (Path.GetExtension(file) == ".json" && !Path.GetFileNameWithoutExtension(file).StartsWith("system_"))
                 {
                     var scene = new Scene(Path.GetFileNameWithoutExtension(file));
-                    scene.PointLights.Add(new PointLight(new Vector3(20, 20, 20), 1f));
                     sceneItems.Add(scene);
                 }
 
@@ -182,7 +180,6 @@ namespace LEA_2021
                 MaterialViewerButton.Content = "Material-Viewer beenden";
 
                 currentScene = new Scene("system_materialviewer");
-                currentScene.PointLights.Add(new PointLight(new Vector3(20, 20, 20), 1f));
                 DataContext = currentScene;
 
                 getMaterials();

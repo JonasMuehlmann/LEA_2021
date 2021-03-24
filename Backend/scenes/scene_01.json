@@ -5,19 +5,19 @@
         "Height":         1080,
         "Num_Iterations": 1
     },
-    "Camera":     {
-        "Position":  [0, 0, 0],
-        "Direction": [0, 0, 1],
-        "FOV": 80
+    "Camera":  {
+        "Position":  {"X": 0.0, "Y": 0.0, "Z": 0.0},
+        "Direction": {"X": 0.0, "Y": 0.0, "Z": 1.0},
+        "FOV":       80.0
     },
-    "Objects":    [
+    "Objects": [
         {
             "Name":       "Brick Sphere 01",
             "Shape":      "Sphere",
             "Material":   "brick",
             "Properties": {
-                "Radius":   10,
-                "Position": [20, -10, -35]
+                "Radius":   10.0,
+                "Position": {"X": 20.0, "Y": -10.0, "Z": -35.0}
             }
         },
         {
@@ -25,8 +25,8 @@
             "Shape":      "Sphere",
             "Material":   "wood",
             "Properties": {
-                "Radius":   10,
-                "Position": [-20, -10, -30]
+                "Radius":   10.0,
+                "Position": {"X": -20.0, "Y": -10.0, "Z": -30.0}
             }
         },
         {
@@ -34,24 +34,24 @@
             "Shape":      "Sphere",
             "Material":   "floor_tiles",
             "Properties": {
-                "Radius":   15,
-                "Position": [-25, 1, -60]
+                "Radius":   15.0,
+                "Position": {"X": -25, "Y": 1, "Z": -60}
             }
         }, {
             "Name":       "Mirror Sphere",
             "Shape":      "Sphere",
             "Material":   "mirror",
             "Properties": {
-                "Radius":   80,
-                "Position": [10, 50, -150]
+                "Radius":   80.0,
+                "Position": {"X": 10.0, "Y": 50.0, "Z": -150.0}
             }
         }, {
             "Name":       "Gem Sphere",
             "Shape":      "Sphere",
             "Material":   "gem_agate",
             "Properties": {
-                "Radius":   20,
-                "Position": [50, 0, -20]
+                "Radius":   20.0,
+                "Position": {"X": 50.0, "Y": 0.0, "Z": -20.0}
             }
         },
         {
@@ -59,30 +59,30 @@
             "Shape":      "FinitePlane",
             "Material":   "wood",
             "Properties": {
-                "Orientation": [0, 1, 0],
-                "Width":       800,
-                "Length":      1200,
-                "Position":    [0, -30, -300]
+                "Orientation": {"X": 0.0, "Y": 1.0, "Z": 0.0},
+                "Width":       800.0,
+                "Length":      1200.0,
+                "Position":    {"X": 0.0, "Y": -30.0, "Z": -300.0}
             }
         }, {
             "Name":       "Back Wall",
             "Shape":      "FinitePlane",
             "Material":   "mirror",
             "Properties": {
-                "Orientation": [0, 0, -1],
-                "Width":       1000,
-                "Length":      800,
-                "Position":    [0, -30, 30]
+                "Orientation": {"X": 0.0, "Y": 0.0, "Z": -1.0},
+                "Width":       1000.0,
+                "Length":      800.0,
+                "Position":    {"X": 0.0, "Y": -30.0, "Z": 30.0}
             }
         }, {
             "Name":       "Front wall",
             "Shape":      "FinitePlane",
             "Material":   "gold",
             "Properties": {
-                "Orientation": [0, 0, 1],
-                "Width":       1200,
-                "Length":      800,
-                "Position":    [0, -30, -350]
+                "Orientation": {"X": 0.0, "Y": 0.0, "Z": 1.0},
+                "Width":       1200.0,
+                "Length":      800.0,
+                "Position":    {"X": 0.0, "Y": -30.0, "Z": -350.0}
             }
         }
     ]

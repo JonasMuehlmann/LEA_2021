@@ -68,6 +68,7 @@
             </e>
           </e>
           <e p="scene_01.json" t="Include" />
+          <e p="system_materialviewer.json" t="Include" />
         </e>
         <e p="src" t="Include">
           <e p="Camera.cs" t="Include" />

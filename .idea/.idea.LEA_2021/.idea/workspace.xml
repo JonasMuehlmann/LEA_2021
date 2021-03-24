@@ -14,15 +14,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Object.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Object.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +70,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Shape.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1D674F4A-076F-4038-B05A-10EA7AA10D43/b6/d3ed923a/FileSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/bb/1030436c/List`1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -87,6 +83,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/94/5f3fb676/String.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/src/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1D674F4A-076F-4038-B05A-10EA7AA10D43/54/afbb25b5/ValueUtf8Converter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Cuboid.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/7a/506383ef/ArrayPool`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/09/baaca014/Interop.cs" root0="SKIP_HIGHLIGHTING" />
@@ -99,11 +98,14 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/39/22730e3d/Path.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/87DBB896-6B20-4A14-9B6A-7AB43642646D/c0/4329e721/Math.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/FinitePlane.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9A625919-60D0-4309-B061-98634ED8683B/4c/3b9bb348/SortedDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/8a/49a91079/Math.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1D674F4A-076F-4038-B05A-10EA7AA10D43/dd/fbee6b9d/Directory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EB73B25A-F6A9-4F97-8FA5-C1DBA8EB133D/0c/84a91204/Color.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C488B081-68C8-4EF6-A644-2F1DC798FAF7/02/a8491a98/SortedDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/E6052F63-69FB-4011-8A1B-EEAD82CB51D1/1/Bitmap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/03CDD8B5-17F3-4DEA-8229-F6B98322B93D/4b/10b0d5e5/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/E6052F63-69FB-4011-8A1B-EEAD82CB51D1/E/Image.cs" root0="SKIP_HIGHLIGHTING" />
@@ -147,10 +149,10 @@
       <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" />
-      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
       <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -233,7 +235,7 @@
       <workItem from="1616230887636" duration="22498000" />
       <workItem from="1616321287766" duration="5035000" />
       <workItem from="1616332100267" duration="23453000" />
-      <workItem from="1616569055375" duration="4542000" />
+      <workItem from="1616569055375" duration="6169000" />
     </task>
     <task id="LOCAL-00001" summary="Created repo.">
       <created>1615793301147</created>
@@ -403,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616569581925</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fix Shadow acne and implement shape specific surface-normal calculations">
+      <created>1616573928236</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1616573928236</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +460,8 @@
     <MESSAGE value="Added ShadowOffset and MaxReflectionDepth constants" />
     <MESSAGE value="Fix a bug in the plane's bounds check" />
     <MESSAGE value="Fix swapped row and column variable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix swapped row and column variable" />
+    <MESSAGE value="Fix Shadow acne and implement shape specific surface-normal calculations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Shadow acne and implement shape specific surface-normal calculations" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -471,45 +481,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Backend/src/Scene.cs</url>
-          <line>293</line>
-          <properties documentPath="$PROJECT_DIR$/Backend/src/Scene.cs" initialLine="293" containingFunctionPresentation="method 'TraceRay'">
-            <startOffsets>
-              <option value="9768" />
-            </startOffsets>
-            <endOffsets>
-              <option value="9826" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Backend/src/Scene.cs</url>
-          <line>271</line>
-          <properties documentPath="$PROJECT_DIR$/Backend/src/Scene.cs" initialLine="271" containingFunctionPresentation="method 'FindClosestHit'">
-            <startOffsets>
-              <option value="9093" />
-            </startOffsets>
-            <endOffsets>
-              <option value="9146" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Backend/src/Scene.cs</url>
-          <line>300</line>
-          <properties documentPath="$PROJECT_DIR$/Backend/src/Scene.cs" initialLine="300" containingFunctionPresentation="method 'TraceRay'">
-            <startOffsets>
-              <option value="10068" />
-            </startOffsets>
-            <endOffsets>
-              <option value="10125" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -438,14 +438,14 @@ namespace LEA_2021
                 Percentage = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
                 OnPropertyChanged("Percentage");
 
-                for (int column = 0; column < Metadata.Height; ++column)
+                for (int column = 0; column < Metadata.Width; ++column)
                 {
-                    for (int row = 0; row < Metadata.Width; ++row)
+                    for (int row = 0; row < Metadata.Height; ++row)
                     {
-                        Ray primaryRay = CastPrimaryRay(row, column);
+                        Ray primaryRay = CastPrimaryRay(column, row);
 
                         Color pixel = TraceRay(new LightBeam(primaryRay), new Color());
-                        Image.SetPixel(row, column, pixel);
+                        Image.SetPixel(column, row, pixel);
                     }
                 }
 

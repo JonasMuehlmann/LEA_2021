@@ -1,16 +1,16 @@
 {
-    "Background": "../../../../Backend/scenes/bg.png",
-    "Metadata":   {
+    "Background":  "Black",
+    "Metadata":    {
         "Width":          1920,
         "Height":         1080,
         "Num_Iterations": 1
     },
-    "Camera":  {
+    "Camera":      {
         "Position":  {"X": 0.0, "Y": 0.0, "Z": 0.0},
         "Direction": {"X": 0.0, "Y": 0.0, "Z": 1.0},
         "FOV":       80.0
     },
-    "Objects": [
+    "Objects":     [
         {
             "Name":            "Brick Sphere 01",
             "Shape":           "Sphere",
@@ -28,9 +28,9 @@
             "Material":        "glass",
             "RefractiveIndex": 1.5,
             "Transparency":    0.9,
-            "Position":        {"X": -15.0, "Y": 0.0, "Z": -15.0},
+            "Position":        {"X": -15.0, "Y": -10.0, "Z": -15.0},
             "Properties":      {
-                "Radius": 5.0
+                "Radius": 2.0
             }
         },
         {
@@ -110,6 +110,33 @@
                 "Orientation": {"X": 0.0, "Y": 0.0, "Z": 1.0},
                 "Width":       1200.0,
                 "Length":      800.0
+            }
+        }
+    ],
+    "PointLights": [
+        {
+            "Color":      "White",
+            "Brightness": 0.4,
+            "Position":   {
+                "X": -20.0,
+                "Y": 15.0,
+                "Z": 20.0
+            }
+        }, {
+            "Color":      "White",
+            "Brightness": 0.4,
+            "Position":   {
+                "X": 20.0,
+                "Y": 15.0,
+                "Z": 20.0
+            }
+        }, {
+            "Color":      "White",
+            "Brightness": 0.4,
+            "Position":   {
+                "X": 0.0,
+                "Y": 60.0,
+                "Z": -60.0
             }
         }
     ]

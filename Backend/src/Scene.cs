@@ -11,6 +11,7 @@ using System.Numerics;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
+
 namespace LEA_2021
 {
     using Vec3 = Vector3;
@@ -90,7 +91,7 @@ namespace LEA_2021
         {
             JsonValue value = JsonValue.Parse(File.ReadAllText($@"../../../../Backend/scenes/{configName}.json"));
             PointLights = new List<PointLight>();
-            Name = configName;
+            Name        = configName;
 
             Metadata = new Metadata((int) value["Metadata"]["Width"],
                                     (int) value["Metadata"]["Height"],
@@ -161,17 +162,18 @@ namespace LEA_2021
             }
 
             foreach (JsonValue obj in value["PointLights"])
-                PointLights.Add(new PointLight(
-                    new Vector3(
-                        obj["Position"]["X"],
-                        obj["Position"]["Y"],
-                        obj["Position"]["Z"]
-                    ),
-                    Color.FromName(obj["Color"]),
-                    (float) obj["Brightness"]
-                ));
+            {
+                PointLights.Add(new PointLight(new Vector3(obj["Position"]["X"],
+                                                           obj["Position"]["Y"],
+                                                           obj["Position"]["Z"]
+                                                          ),
+                                               Color.FromName(obj["Color"]),
+                                               (float) obj["Brightness"]
+                                              )
+                               );
+            }
 
-            Rng = new Random();
+            Rng             = new Random();
             backgroundValue = value["Background"];
             DetectBackground();
         }
@@ -239,6 +241,7 @@ namespace LEA_2021
             float refractiveIndexCurrent = 1f
         )
         {
+            // TODO: Debug with center pixel of screen
             float cos_i = -Vec3.Dot(surfaceNormal, direction);
 
             // Ray is inside of the object, invert the refraction
@@ -252,8 +255,7 @@ namespace LEA_2021
             }
 
             float refractiveRatio = refractiveIndexCurrent / refractiveIndexIntersected;
-
-            float k = 1f - Util.Square(refractiveRatio) * (1 - Util.Square(cos_i));
+            float k               = 1f - Util.Square(refractiveRatio) * (1 - Util.Square(cos_i));
 
             // TODO: Handle total internal reflection (0 vector)
             return k < 0
@@ -487,8 +489,8 @@ namespace LEA_2021
 
         public void Save()
         {
-            Dictionary<dynamic, dynamic>       jsonData   = new();
-            List<Dictionary<dynamic, dynamic>> objectList = new();
+            Dictionary<dynamic, dynamic>       jsonData       = new();
+            List<Dictionary<dynamic, dynamic>> objectList     = new();
             List<Dictionary<dynamic, dynamic>> pointLightList = new();
 
             jsonData.Add("Background", backgroundValue);
@@ -514,33 +516,36 @@ namespace LEA_2021
             foreach (Object o in Objects)
             {
                 objectList.Add(new Dictionary<dynamic, dynamic>
-                    {
-                        {"Name", o.Name},
-                        {"Shape", o.Shape.GetType().Name},
-                        {"Material", o.Material.Name},
-                        {"Properties", o.Shape},
-                        {"Position", o.Position}
-                    }
-                );
+                               {
+                                   {"Name", o.Name},
+                                   {"Shape", o.Shape.GetType().Name},
+                                   {"Material", o.Material.Name},
+                                   {"Properties", o.Shape},
+                                   {"Position", o.Position}
+                               }
+                              );
 
-            jsonData.Add("Objects", objectList);
-
-
-            foreach (PointLight light in PointLights)
-                pointLightList.Add(new Dictionary<dynamic, dynamic>
-                    {
-                        {"Color", light.Color},
-                        {"Brightness", light.Brightness},
-                        {"Position", light.Position}
-                    }
-                );
-
-            jsonData.Add("PointLights", pointLightList);
+                jsonData.Add("Objects", objectList);
 
 
-            File.WriteAllText($@"{Constants.SceneDir}/{Name}.json",
-                JsonConvert.SerializeObject(jsonData, Formatting.Indented)
-            );
+                foreach (PointLight light in PointLights)
+                {
+                    pointLightList.Add(new Dictionary<dynamic, dynamic>
+                                       {
+                                           {"Color", light.Color},
+                                           {"Brightness", light.Brightness},
+                                           {"Position", light.Position}
+                                       }
+                                      );
+                }
+
+                jsonData.Add("PointLights", pointLightList);
+
+
+                File.WriteAllText($@"{Constants.SceneDir}/{Name}.json",
+                                  JsonConvert.SerializeObject(jsonData, Formatting.Indented)
+                                 );
+            }
         }
     }
 }

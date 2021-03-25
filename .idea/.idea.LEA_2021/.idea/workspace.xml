@@ -14,12 +14,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/albedo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/ambientOcclusion.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/displacement.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/normal.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/roughness.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/scenes/materials/checkerboard.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/materials/checkerboard.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Material.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Material.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +95,9 @@
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/Cuboid.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/7a/506383ef/ArrayPool`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/09/baaca014/Interop.cs" root0="SKIP_HIGHLIGHTING" />
@@ -99,7 +107,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/633820B9-579F-4675-BABE-D79321255F17/7b/a85d73d0/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/141D9D1C-3870-47F6-9905-F27C705D16A3/e4/fd46d102/Color.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CF522214-B35B-4F27-A55F-712081BB28BE/39/22730e3d/Path.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/Scene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/87DBB896-6B20-4A14-9B6A-7AB43642646D/c0/4329e721/Math.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Frontend/MainWindow.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/jonas/RiderProjects/LEA_2021/Backend/src/geometry/FinitePlane.cs" root0="SKIP_HIGHLIGHTING" />
@@ -150,15 +160,15 @@
       <option value="$PROJECT_DIR$/Backend/src/Constants.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Shape.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Object.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/FinitePlane.cs" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
-      <option value="$PROJECT_DIR$/Backend/scenes/scene_02.json" />
-      <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
       <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_02.json" />
+      <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
+      <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -181,7 +191,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Frontend/bin/Debug/net5.0-windows/Frontend.dll" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.Backend">
@@ -241,7 +251,7 @@
       <workItem from="1616230887636" duration="22498000" />
       <workItem from="1616321287766" duration="5035000" />
       <workItem from="1616332100267" duration="23453000" />
-      <workItem from="1616569055375" duration="34015000" />
+      <workItem from="1616569055375" duration="44632000" />
     </task>
     <task id="LOCAL-00001" summary="Created repo.">
       <created>1615793301147</created>
@@ -439,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616586530360</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Implement transparency and refractions for">
+      <created>1616610753350</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1616610753350</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,7 +480,6 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Unspecified changes" />
     <MESSAGE value="unspecified changes" />
     <MESSAGE value="unspecified changes, yet again..." />
     <MESSAGE value="Fix renderloop" />
@@ -488,7 +504,8 @@
     <MESSAGE value="Adjust config format for new parsing" />
     <MESSAGE value="Fix config format errors" />
     <MESSAGE value="Add extra utility functions and overloads" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add extra utility functions and overloads" />
+    <MESSAGE value="Implement transparency and refractions for" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement transparency and refractions for" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

@@ -76,12 +76,13 @@ namespace LEA_2021
             float t1 = tca - thc;
             float t2 = tca + thc;
 
-            // Both intersections are behind the rays origin, the object is behind the rays direction
+            // Both intersections are behind the rays origin, the object is opposite of the rays direction
             if (t1 < float.Epsilon && t2 < float.Epsilon)
             {
                 return -1f;
             }
 
+            // TODO: Try to uncomment for refraction
             // One intersection is behind the rays origin, we must be inside the sphere
             if (t1 < float.Epsilon || t2 < float.Epsilon)
             {

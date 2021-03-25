@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Json;
 using System.Numerics;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 
@@ -458,7 +458,6 @@ namespace LEA_2021
         }
 
 
-        [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH")]
         public void Render()
         {
             DetectBackground();
@@ -469,16 +468,19 @@ namespace LEA_2021
                 Percentage = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
                 OnPropertyChanged("Percentage");
 
-                for (int column = 0; column < Metadata.Width; ++column)
-                {
-                    for (int row = 0; row < Metadata.Height; ++row)
-                    {
-                        Ray primaryRay = CastPrimaryRay(column, row);
+                Parallel.For(0,
+                             Metadata.Width,
+                             column =>
+                             {
+                                 for (int row = 0; row < Metadata.Height; ++row)
+                                 {
+                                     Ray primaryRay = CastPrimaryRay(column, row);
 
-                        Color pixel = TraceRay(new LightBeam(primaryRay), new Color());
-                        Image.SetPixel(column, row, pixel);
-                    }
-                }
+                                     Color pixel = TraceRay(new LightBeam(primaryRay), new Color());
+                                     Image.SetPixel(column, row, pixel);
+                                 }
+                             }
+                            );
 
                 OnPropertyChanged("Image");
             }

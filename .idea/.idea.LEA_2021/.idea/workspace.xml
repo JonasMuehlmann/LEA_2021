@@ -14,18 +14,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f244043-631a-4b76-8899-4f1dd8508bbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/albedo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/ambientOcclusion.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/displacement.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/normal.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/scenes/materials/glass/roughness.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LEA_2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/scenes/materials/checkerboard.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/materials/checkerboard.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/scenes/scene_01.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/scenes/scene_01.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,11 +156,11 @@
       <option value="$PROJECT_DIR$/Backend/src/geometry/Cuboid.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Util.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Material.cs" />
-      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
-      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
-      <option value="$PROJECT_DIR$/Backend/scenes/scene_02.json" />
       <option value="$PROJECT_DIR$/Backend/src/geometry/Sphere.cs" />
       <option value="$PROJECT_DIR$/Backend/src/Program.cs" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_02.json" />
+      <option value="$PROJECT_DIR$/Backend/scenes/scene_01.json" />
+      <option value="$PROJECT_DIR$/Backend/src/Scene.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1pmdiVjg4ly19PwXEReJyfML4iK" />
@@ -191,7 +183,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Frontend/bin/Debug/net5.0-windows/Frontend.dll" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.Backend">
@@ -251,7 +243,7 @@
       <workItem from="1616230887636" duration="22498000" />
       <workItem from="1616321287766" duration="5035000" />
       <workItem from="1616332100267" duration="23453000" />
-      <workItem from="1616569055375" duration="44632000" />
+      <workItem from="1616569055375" duration="46809000" />
     </task>
     <task id="LOCAL-00001" summary="Created repo.">
       <created>1615793301147</created>
@@ -456,7 +448,21 @@
       <option name="project" value="LOCAL" />
       <updated>1616610753350</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Add glass material">
+      <created>1616662053994</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1616662053994</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Extend config">
+      <created>1616662136424</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1616662136424</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,11 +473,41 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/home/jonas/RiderProjects/LEA_2021/Backend/scenes/materials/glass" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
           </value>
         </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1" value="TOOL_WINDOW" />
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
@@ -480,8 +516,6 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="unspecified changes" />
-    <MESSAGE value="unspecified changes, yet again..." />
     <MESSAGE value="Fix renderloop" />
     <MESSAGE value="Add multiple iterations to Scene.Render()" />
     <MESSAGE value="Add IDE configs" />
@@ -505,7 +539,9 @@
     <MESSAGE value="Fix config format errors" />
     <MESSAGE value="Add extra utility functions and overloads" />
     <MESSAGE value="Implement transparency and refractions for" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement transparency and refractions for" />
+    <MESSAGE value="Add glass material" />
+    <MESSAGE value="Extend config" />
+    <option name="LAST_COMMIT_MESSAGE" value="Extend config" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

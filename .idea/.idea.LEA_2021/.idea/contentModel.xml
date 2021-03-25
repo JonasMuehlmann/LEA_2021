@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\info\AppData\local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\info\AppData\local\JetBrains\Rider2020.3\resharper-host\local\Transient\Rider\v203\SolutionCaches\_LEA_2021.821250035.00" t="ExcludeRecursive" />
-    <e p="C:\Users\info\RiderProjects\LEA_2021" t="IncludeFlat">
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.3/resharper-host/local/Transient/Rider/v203/SolutionCaches/_LEA_2021.-1019692653.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Backend" t="IncludeRecursive">
         <e p="Annotations.cs" t="Include" />
         <e p="Backend.csproj" t="IncludeRecursive" />
@@ -19,7 +19,7 @@
           <e p="foo.png" t="Include" />
           <e p="forest.png" t="Include" />
           <e p="scene_01.png" t="Include" />
-          <e p="system_materialviewer.png" t="Include" />
+          <e p="scene_02.png" t="Include" />
         </e>
         <e p="scenes" t="Include">
           <e p="bg.png" t="Include" />
@@ -34,6 +34,14 @@
               <e p="roughness.jpg" t="Include" />
             </e>
             <e p="checkerboard.jpg" t="Include" />
+            <e p="debug" t="Include">
+              <e p="albedo.jpg" t="Include" />
+              <e p="ambientOcclusion.jpg" t="Include" />
+              <e p="config.json" t="Include" />
+              <e p="displacement.png" t="Include" />
+              <e p="normal.jpg" t="Include" />
+              <e p="roughness.jpg" t="Include" />
+            </e>
             <e p="floor_tiles" t="Include">
               <e p="albedo.jpg" t="Include" />
               <e p="ambientOcclusion.jpg" t="Include" />
@@ -84,11 +92,20 @@
             </e>
           </e>
           <e p="scene_01.json" t="Include" />
+          <e p="scene_02.json" t="Include" />
           <e p="system_materialviewer.json" t="Include" />
         </e>
         <e p="src" t="Include">
           <e p="Camera.cs" t="Include" />
           <e p="Constants.cs" t="Include" />
+          <e p="HitRecord.cs" t="Include" />
+          <e p="LightBeam.cs" t="Include" />
+          <e p="Material.cs" t="Include" />
+          <e p="Metadata.cs" t="Include" />
+          <e p="Object.cs" t="Include" />
+          <e p="Program.cs" t="Include" />
+          <e p="Scene.cs" t="Include" />
+          <e p="Util.cs" t="Include" />
           <e p="geometry" t="Include">
             <e p="Cuboid.cs" t="Include" />
             <e p="FinitePlane.cs" t="Include" />
@@ -98,41 +115,10 @@
             <e p="Shape.cs" t="Include" />
             <e p="Sphere.cs" t="Include" />
           </e>
-          <e p="HitRecord.cs" t="Include" />
-          <e p="LightBeam.cs" t="Include" />
-          <e p="Material.cs" t="Include" />
-          <e p="Metadata.cs" t="Include" />
-          <e p="Object.cs" t="Include" />
-          <e p="Program.cs" t="Include" />
-          <e p="Scene.cs" t="Include" />
-          <e p="Util.cs" t="Include" />
         </e>
       </e>
       <e p="Frontend" t="IncludeRecursive">
-        <e p="App.xaml" t="Include" />
-        <e p="App.xaml.cs" t="Include" />
-        <e p="AssemblyInfo.cs" t="Include" />
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="cameraEditor.xaml" t="Include" />
-        <e p="cameraEditor.xaml.cs" t="Include" />
         <e p="Frontend.csproj" t="IncludeRecursive" />
-        <e p="MainWindow.xaml" t="Include" />
-        <e p="MainWindow.xaml.cs" t="Include" />
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Release" t="Include">
-            <e p="net5.0-windows" t="Include">
-              <e p="App.g.cs" t="Include" />
-              <e p="cameraEditor.g.cs" t="Include" />
-              <e p="Frontend.AssemblyInfo.cs" t="Include" />
-              <e p="GeneratedInternalTypeHelper.g.cs" t="Include" />
-              <e p="MainWindow.g.cs" t="Include" />
-              <e p="objectEditor.g.cs" t="Include" />
-            </e>
-          </e>
-        </e>
-        <e p="objectEditor.xaml" t="Include" />
-        <e p="objectEditor.xaml.cs" t="Include" />
-        <e p="VectorConverter.cs" t="Include" />
       </e>
       <e p="LEA_2021.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />

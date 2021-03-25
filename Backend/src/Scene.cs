@@ -238,32 +238,39 @@ namespace LEA_2021
         public Vec3 Refract(
             Vec3  direction,
             Vec3  surfaceNormal,
-            float refractiveIndexIntersected,
-            float refractiveIndexCurrent = 1f
+            float n2,
+            float n1 = 1f
         )
         {
             // TODO: Debug with center pixel of screen
-            float cos_i = -Vec3.Dot(surfaceNormal, direction);
+            float cos_i = Vec3.Dot(-surfaceNormal, direction);
 
             // Ray is inside of the object, invert the refraction
             if (cos_i < 0)
             {
-                return Refract(direction,
-                               -surfaceNormal,
-                               refractiveIndexCurrent,
-                               refractiveIndexIntersected
-                              );
+                surfaceNormal = -surfaceNormal;
+
+                Util.Swap(ref n1, ref n2);
+            }
+            else
+            {
+                cos_i = -cos_i;
             }
 
-            float refractiveRatio = refractiveIndexCurrent / refractiveIndexIntersected;
-            float k               = 1f - Util.Square(refractiveRatio) * (1 - Util.Square(cos_i));
+            float refractiveRatio = n1 / n2;
+            float radicand        = 1f - Util.Square(refractiveRatio) * (1 - Util.Square(cos_i));
 
-            // TODO: Handle total internal reflection (0 vector)
-            return k < 0
-                ? Vec3.Zero
-                : Vec3.Normalize(direction     * refractiveRatio
-                               + surfaceNormal * (refractiveRatio * cos_i - (float) Math.Sqrt(k))
-                                );
+            // Internal reflection, ray won't leave object
+            if (radicand < 0)
+            {
+                return Vec3.Reflect(direction, surfaceNormal);
+            }
+
+            float cos_o = (float) Math.Sqrt(radicand);
+
+            Vec3 refracted = refractiveRatio * direction + surfaceNormal * (refractiveRatio * cos_i - cos_o);
+
+            return Vec3.Normalize(refracted);
         }
 
 
@@ -326,7 +333,7 @@ namespace LEA_2021
 
                 // Calculate direct illumination
                 // Raise point above objects surface to prevent self-intersection
-                Vector3 intersectionOffset = intersection + Constants.ShadowOffset * surfaceNormal;
+                Vector3 intersectionOffsetShadow = intersection + Constants.ShadowOffset * surfaceNormal;
 
                 foreach (var pointLight in PointLights)
                 {
@@ -337,7 +344,7 @@ namespace LEA_2021
                     float distanceToLight = Vec3.Distance(intersection, pointLight.Position);
 
                     // Cast shadows by not adding specular or diffuse light if path to light is not clear
-                    closestDistance = FindClosestHit(new Ray(intersectionOffset, Vec3.Normalize(surfaceToLight)))
+                    closestDistance = FindClosestHit(new Ray(intersectionOffsetShadow, Vec3.Normalize(surfaceToLight)))
                        .Distance;
 
                     if (closestDistance
@@ -378,13 +385,15 @@ namespace LEA_2021
                 float gloss = 1f
                             - Util.RescaleToRange(roughnessRaw, 0f, 255f, 0f, 1f);
 
-                lightBeam.Ray.Origin = intersectionOffset;
-
                 Vector3 directionOrig = lightBeam.Ray.Direction;
 
+                lightBeam.Ray.Origin    = intersectionOffsetShadow;
                 lightBeam.Ray.Direction = Vec3.Reflect(directionOrig, surfaceNormal);
 
                 Color reflectionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
+
+                Vec3 intersectionOffsetRefraction = intersection - 1 * surfaceNormal;
+                lightBeam.Ray.Origin = intersectionOffsetRefraction;
 
                 lightBeam.Ray.Direction = Refract(directionOrig,
                                                   surfaceNormal,
@@ -393,7 +402,9 @@ namespace LEA_2021
 
                 Color refractionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
 
-                currentColor = Util.ClampedColorScale(colorOrig, brightnessDiffuse);
+                currentColor = Util.ClampedColorScale(colorOrig, 1 - closestObject.Material.Transparency);
+
+                currentColor = Util.ClampedColorScale(currentColor, brightnessDiffuse);
 
                 currentColor =
                     Util.ClampedColorAdd(currentColor, Util.ClampedColorScale(currentColor, brightnessSpecular));

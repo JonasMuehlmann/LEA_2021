@@ -1,4 +1,4 @@
 {
-  "refractiveIndex": 1.0,
-  "transparency": 0.4
+    "refractiveIndex": 1.5,
+    "transparency": 0.9
 }

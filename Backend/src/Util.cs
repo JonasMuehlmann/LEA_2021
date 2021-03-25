@@ -165,5 +165,13 @@ namespace LEA_2021
                                   Math.Clamp(color.B - value, 0, 255)
                                  );
         }
+
+
+        public static void Swap<T>(ref T a, ref T b)
+        {
+            T tmp = a;
+            a = b;
+            b = tmp;
+        }
     }
 }

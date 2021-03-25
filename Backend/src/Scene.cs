@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -150,7 +151,7 @@ namespace LEA_2021
                         break;
                 }
 
-                Objects.Add(new Object(new Material(obj["Material"], obj["RefractiveIndex"], obj["Transparency"]),
+                Objects.Add(new Object(new Material(obj["Material"]),
                                        shapeClass,
                                        new Vector3(obj["Position"]["X"],
                                                    obj["Position"]["Y"],

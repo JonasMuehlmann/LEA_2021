@@ -17,6 +17,7 @@
         </e>
         <e p="out" t="Include">
           <e p="foo.png" t="Include" />
+          <e p="forest.png" t="Include" />
           <e p="scene_01.png" t="Include" />
           <e p="scene_02.png" t="Include" />
         </e>
@@ -36,6 +37,7 @@
             <e p="debug" t="Include">
               <e p="albedo.jpg" t="Include" />
               <e p="ambientOcclusion.jpg" t="Include" />
+              <e p="config.json" t="Include" />
               <e p="displacement.png" t="Include" />
               <e p="normal.jpg" t="Include" />
               <e p="roughness.jpg" t="Include" />

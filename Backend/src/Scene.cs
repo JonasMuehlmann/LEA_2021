@@ -247,7 +247,6 @@ namespace LEA_2021
             // Ray is inside of the object, invert the refraction
             if (cos_i < 0)
             {
-                // Console.WriteLine("Leaving material");
                 surfaceNormal = -surfaceNormal;
 
                 Util.Swap(ref n1, ref n2);
@@ -263,7 +262,6 @@ namespace LEA_2021
             // Internal reflection, ray won't leave object
             if (radicand < 0)
             {
-                // Console.WriteLine("Internal reflection");
                 return Vec3.Reflect(direction, surfaceNormal);
             }
 

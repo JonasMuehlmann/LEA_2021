@@ -37,11 +37,11 @@
             "Shape": "Sphere",
             "Material": "glass",
             "Properties": {
-                "Radius": 2.0
+                "Radius": 5.0
             },
-            "Position": {
-                "X": -15.0,
-                "Y": -10.0,
+            "Position":   {
+                "X": 15.0,
+                "Y": -5.0,
                 "Z": -15.0
             }
         },

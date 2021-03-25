@@ -11,7 +11,6 @@ using System.Numerics;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-
 namespace LEA_2021
 {
     using Vec3 = Vector3;
@@ -87,10 +86,10 @@ namespace LEA_2021
         }
 
 
-        // Default background color is black
         public Scene(string configName)
         {
             JsonValue value = JsonValue.Parse(File.ReadAllText($@"../../../../Backend/scenes/{configName}.json"));
+            PointLights = new List<PointLight>();
             Name = configName;
 
             Metadata = new Metadata((int) value["Metadata"]["Width"],
@@ -161,25 +160,18 @@ namespace LEA_2021
                            );
             }
 
+            foreach (JsonValue obj in value["PointLights"])
+                PointLights.Add(new PointLight(
+                    new Vector3(
+                        obj["Position"]["X"],
+                        obj["Position"]["Y"],
+                        obj["Position"]["Z"]
+                    ),
+                    Color.FromName(obj["Color"]),
+                    (float) obj["Brightness"]
+                ));
 
-            if (Regex.IsMatch(value["Background"], @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
-            {
-                // Background is hex color
-                SetBackground(ColorTranslator.FromHtml(value["Background"]));
-            }
-            else if (Regex.IsMatch(value["Background"], @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
-            {
-                // background is path to image
-                SetBackground(value["Background"]);
-            }
-            else
-            {
-                // background must be color word
-                SetBackground(Color.FromName(value["Background"]));
-            }
-
-            PointLights     = new List<PointLight>();
-            Rng             = new Random();
+            Rng = new Random();
             backgroundValue = value["Background"];
             DetectBackground();
         }
@@ -497,6 +489,7 @@ namespace LEA_2021
         {
             Dictionary<dynamic, dynamic>       jsonData   = new();
             List<Dictionary<dynamic, dynamic>> objectList = new();
+            List<Dictionary<dynamic, dynamic>> pointLightList = new();
 
             jsonData.Add("Background", backgroundValue);
 
@@ -521,21 +514,33 @@ namespace LEA_2021
             foreach (Object o in Objects)
             {
                 objectList.Add(new Dictionary<dynamic, dynamic>
-                               {
-                                   {"Name", o.Name},
-                                   {"Shape", o.Shape.GetType().Name},
-                                   {"Material", o.Material.Name},
-                                   {"Properties", o.Shape},
-                                   {"Position", o.Position}
-                               }
-                              );
-            }
+                    {
+                        {"Name", o.Name},
+                        {"Shape", o.Shape.GetType().Name},
+                        {"Material", o.Material.Name},
+                        {"Properties", o.Shape},
+                        {"Position", o.Position}
+                    }
+                );
 
             jsonData.Add("Objects", objectList);
 
+
+            foreach (PointLight light in PointLights)
+                pointLightList.Add(new Dictionary<dynamic, dynamic>
+                    {
+                        {"Color", light.Color},
+                        {"Brightness", light.Brightness},
+                        {"Position", light.Position}
+                    }
+                );
+
+            jsonData.Add("PointLights", pointLightList);
+
+
             File.WriteAllText($@"{Constants.SceneDir}/{Name}.json",
-                              JsonConvert.SerializeObject(jsonData, Formatting.Indented)
-                             );
+                JsonConvert.SerializeObject(jsonData, Formatting.Indented)
+            );
         }
     }
 }

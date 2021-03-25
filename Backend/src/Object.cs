@@ -1,6 +1,5 @@
 using System.Numerics;
 
-
 namespace LEA_2021
 {
     using Vec3 = Vector3;
@@ -27,16 +26,16 @@ namespace LEA_2021
         public Object(Material material, Shape shape, Point3 position, string name)
         {
             Material = material;
-            Shape    = shape;
+            Shape = shape;
             Position = position;
-            Name     = name;
+            Name = name;
         }
 
 
         public Object(Material material, Shape shape, Point3 position)
         {
             Material = material;
-            Shape    = shape;
+            Shape = shape;
             Position = position;
         }
 
@@ -45,7 +44,7 @@ namespace LEA_2021
         public Object(Material material, Shape shape)
         {
             Material = material;
-            Shape    = shape;
+            Shape = shape;
             Position = Vec3.Zero;
         }
 
@@ -54,7 +53,7 @@ namespace LEA_2021
 
         public override string ToString()
         {
-            return $"{Name} (Material: {Material})";
+            return $"{Name} (Material: {Material.Name})";
         }
 
 

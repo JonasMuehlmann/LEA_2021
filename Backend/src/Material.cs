@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Json;
 using System.Numerics;
-using System.Reflection;
-
 
 namespace LEA_2021
 {
@@ -47,59 +46,61 @@ namespace LEA_2021
             Bitmap normal,
             Bitmap displacement,
             Bitmap emission,
-            float  refractiveIndex,
-            float  transparency
+            float refractiveIndex,
+            float transparency
         )
         {
-            Albedo           = albedo;
-            Metalness        = metalness;
-            Roughness        = roughness;
+            Albedo = albedo;
+            Metalness = metalness;
+            Roughness = roughness;
             AmbientOcclusion = ambientOcclusion;
-            Normal           = normal;
-            Displacement     = displacement;
-            Emission         = emission;
-            RefractiveIndex  = refractiveIndex;
-            Transparency     = transparency;
+            Normal = normal;
+            Displacement = displacement;
+            Emission = emission;
+            RefractiveIndex = refractiveIndex;
+            Transparency = transparency;
         }
 
 
-        public Material(string name, float refractiveIndex, float transparency)
+        public Material(string name)
         {
-            Name            = name;
-            RefractiveIndex = refractiveIndex;
-            Transparency    = transparency;
+            var materialConfig = JsonValue.Parse(File.ReadAllText($"{Constants.MaterialsDir}/{name}/config.json"));
+
+            Name = name;
+            RefractiveIndex = materialConfig["refractiveIndex"];
+            Transparency = materialConfig["transparency"];
 
             List<string> neededBitmaps = new()
-                                         {
-                                             "albedo",
-                                             "metalness",
-                                             "roughness",
-                                             "ambientOcclusion",
-                                             "normal",
-                                             "displacement",
-                                             "displacement",
-                                             "emission"
-                                         };
+            {
+                "albedo",
+                "metalness",
+                "roughness",
+                "ambientOcclusion",
+                "normal",
+                "displacement",
+                "displacement",
+                "emission"
+            };
 
             if (Directory.Exists($"{Constants.MaterialsDir}/{name}"))
-            {
-                foreach (string file in Directory.GetFiles($"{Constants.MaterialsDir}/{name}"))
+                foreach (var file in Directory.GetFiles($"{Constants.MaterialsDir}/{name}"))
                 {
-                    string? bitmapName = Path.GetFileNameWithoutExtension(file);
+                    if (Path.GetExtension(file) == ".json") continue;
+
+                    var bitmapName = Path.GetFileNameWithoutExtension(file);
                     neededBitmaps.Remove(bitmapName);
 
-                    PropertyInfo? propInfo =
+                    var propInfo =
                         typeof(Material).GetProperty(char.ToUpper(bitmapName[0]) + bitmapName.Substring(1));
 
                     propInfo.SetValue(this, Image.FromFile(file), null);
                 }
-            }
 
 
             // iterate non-found bitmaps to set default values
-            foreach (string bitmap in neededBitmaps)
+            foreach (var bitmap in neededBitmaps)
             {
-                PropertyInfo? propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]) + bitmap.Substring(1));
+                var propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]) + bitmap.Substring(1));
                 propInfo.SetValue(this, new Bitmap($"{Constants.MaterialsDir}/checkerboard.jpg"), null);
             }
         }

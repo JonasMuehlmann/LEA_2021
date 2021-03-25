@@ -11,7 +11,6 @@ using System.Numerics;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-
 namespace LEA_2021
 {
     using Vec3 = Vector3;
@@ -57,15 +56,15 @@ namespace LEA_2021
         public Scene(Metadata metadata, Camera camera)
         {
             Metadata = metadata;
-            Objects  = new List<Object>();
-            Image    = new Bitmap(metadata.Width, metadata.Height);
-            Camera   = camera;
+            Objects = new List<Object>();
+            Image = new Bitmap(metadata.Width, metadata.Height);
+            Camera = camera;
 
-            Name            = "Untitled";
+            Name = "Untitled";
             backgroundValue = "Black";
             SetBackground(Color.Black);
-            PointLights     = new List<PointLight>();
-            Rng             = new Random();
+            PointLights = new List<PointLight>();
+            Rng = new Random();
             BackgroundColor = Color.Black;
         }
 
@@ -74,15 +73,15 @@ namespace LEA_2021
         public Scene(Metadata metadata)
         {
             Metadata = metadata;
-            Objects  = new List<Object>();
-            Image    = new Bitmap(metadata.Width, metadata.Height);
-            Camera   = new Camera();
+            Objects = new List<Object>();
+            Image = new Bitmap(metadata.Width, metadata.Height);
+            Camera = new Camera();
 
-            Name            = "Untitled";
+            Name = "Untitled";
             backgroundValue = "Black";
             SetBackground(Color.Black);
-            PointLights     = new List<PointLight>();
-            Rng             = new Random();
+            PointLights = new List<PointLight>();
+            Rng = new Random();
             BackgroundColor = Color.Black;
         }
 
@@ -91,25 +90,25 @@ namespace LEA_2021
         {
             JsonValue value = JsonValue.Parse(File.ReadAllText($@"../../../../Backend/scenes/{configName}.json"));
             PointLights = new List<PointLight>();
-            Name        = configName;
+            Name = configName;
 
             Metadata = new Metadata((int) value["Metadata"]["Width"],
-                                    (int) value["Metadata"]["Height"],
-                                    (int) value["Metadata"]["Num_Iterations"]
-                                   );
+                (int) value["Metadata"]["Height"],
+                (int) value["Metadata"]["Num_Iterations"]
+            );
 
             Image = new Bitmap(Metadata.Width, Metadata.Height);
 
             Camera = new Camera(new Point3(value["Camera"]["Position"]["X"],
-                                           value["Camera"]["Position"]["Y"],
-                                           value["Camera"]["Position"]["Z"]
-                                          ),
-                                new Vec3(value["Camera"]["Direction"]["X"],
-                                         value["Camera"]["Direction"]["Y"],
-                                         value["Camera"]["Direction"]["Z"]
-                                        ),
-                                Util.DegreesToRadians((int) value["Camera"]["FOV"])
-                               );
+                    value["Camera"]["Position"]["Y"],
+                    value["Camera"]["Position"]["Z"]
+                ),
+                new Vec3(value["Camera"]["Direction"]["X"],
+                    value["Camera"]["Direction"]["Y"],
+                    value["Camera"]["Direction"]["Z"]
+                ),
+                Util.DegreesToRadians((int) value["Camera"]["FOV"])
+            );
 
 
             // create object classes
@@ -123,13 +122,13 @@ namespace LEA_2021
                 {
                     case "Cuboid":
                         shapeClass = new Cuboid((int) obj["Properties"]["Width"],
-                                                (int) obj["Properties"]["Height"],
-                                                (int) obj["Properties"]["Length"],
-                                                new Vec3(obj["Properties"]["Orientation"]["X"],
-                                                         obj["Properties"]["Orientation"]["Y"],
-                                                         obj["Properties"]["Orientation"]["Z"]
-                                                        )
-                                               );
+                            (int) obj["Properties"]["Height"],
+                            (int) obj["Properties"]["Length"],
+                            new Vec3(obj["Properties"]["Orientation"]["X"],
+                                obj["Properties"]["Orientation"]["Y"],
+                                obj["Properties"]["Orientation"]["Z"]
+                            )
+                        );
 
                         break;
 
@@ -140,40 +139,38 @@ namespace LEA_2021
 
                     case "FinitePlane":
                         shapeClass = new FinitePlane(new Vec3(obj["Properties"]["Orientation"]["X"],
-                                                              obj["Properties"]["Orientation"]["Y"],
-                                                              obj["Properties"]["Orientation"]["Z"]
-                                                             ),
-                                                     (int) obj["Properties"]["Width"],
-                                                     (int) obj["Properties"]["Length"]
-                                                    );
+                                obj["Properties"]["Orientation"]["Y"],
+                                obj["Properties"]["Orientation"]["Z"]
+                            ),
+                            (int) obj["Properties"]["Width"],
+                            (int) obj["Properties"]["Length"]
+                        );
 
                         break;
                 }
 
-                Objects.Add(new Object(new Material(obj["Material"], obj["RefractiveIndex"], obj["Transparency"]),
-                                       shapeClass,
-                                       new Vector3(obj["Position"]["X"],
-                                                   obj["Position"]["Y"],
-                                                   obj["Position"]["Z"]
-                                                  ),
-                                       obj["Name"]
-                                      )
-                           );
+                Objects.Add(new Object(new Material(obj["Material"]),
+                        shapeClass,
+                        new Vector3(obj["Position"]["X"],
+                            obj["Position"]["Y"],
+                            obj["Position"]["Z"]
+                        ),
+                        obj["Name"]
+                    )
+                );
             }
 
             foreach (JsonValue obj in value["PointLights"])
-            {
                 PointLights.Add(new PointLight(new Vector3(obj["Position"]["X"],
-                                                           obj["Position"]["Y"],
-                                                           obj["Position"]["Z"]
-                                                          ),
-                                               Color.FromName(obj["Color"]),
-                                               (float) obj["Brightness"]
-                                              )
-                               );
-            }
+                            obj["Position"]["Y"],
+                            obj["Position"]["Z"]
+                        ),
+                        Color.FromName(obj["Color"]),
+                        (float) obj["Brightness"]
+                    )
+                );
 
-            Rng             = new Random();
+            Rng = new Random();
             backgroundValue = value["Background"];
             DetectBackground();
         }
@@ -186,20 +183,14 @@ namespace LEA_2021
         public void DetectBackground()
         {
             if (Regex.IsMatch(backgroundValue, @"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"))
-            {
                 // Background is hex color
                 SetBackground(ColorTranslator.FromHtml(backgroundValue));
-            }
             else if (Regex.IsMatch(backgroundValue, @"[A-Za-z0-9 -_\/]*[\/.](gif|jpg|jpeg|tiff|png)$"))
-            {
                 // background is path to image
                 SetBackground(backgroundValue);
-            }
             else
-            {
                 // background must be color word
                 SetBackground(Color.FromName(backgroundValue));
-            }
         }
 
 
@@ -223,62 +214,56 @@ namespace LEA_2021
 
         public void SetBackground(Color color)
         {
-            for (int i = 0; i < Image.Width; i++)
-            {
-                for (int j = 0; j < Image.Height; j++)
-                {
-                    Image.SetPixel(i, j, color);
-                }
-            }
+            for (var i = 0; i < Image.Width; i++)
+            for (var j = 0; j < Image.Height; j++)
+                Image.SetPixel(i, j, color);
         }
 
 
         // Refraction according to snell's law
         public Vec3 Refract(
-            Vec3  direction,
-            Vec3  surfaceNormal,
+            Vec3 direction,
+            Vec3 surfaceNormal,
             float refractiveIndexIntersected,
             float refractiveIndexCurrent = 1f
         )
         {
             // TODO: Debug with center pixel of screen
-            float cos_i = -Vec3.Dot(surfaceNormal, direction);
+            var cos_i = -Vec3.Dot(surfaceNormal, direction);
 
             // Ray is inside of the object, invert the refraction
             if (cos_i < 0)
-            {
                 return Refract(direction,
-                               -surfaceNormal,
-                               refractiveIndexCurrent,
-                               refractiveIndexIntersected
-                              );
-            }
+                    -surfaceNormal,
+                    refractiveIndexCurrent,
+                    refractiveIndexIntersected
+                );
 
-            float refractiveRatio = refractiveIndexCurrent / refractiveIndexIntersected;
-            float k               = 1f - Util.Square(refractiveRatio) * (1 - Util.Square(cos_i));
+            var refractiveRatio = refractiveIndexCurrent / refractiveIndexIntersected;
+            var k = 1f - Util.Square(refractiveRatio) * (1 - Util.Square(cos_i));
 
             // TODO: Handle total internal reflection (0 vector)
             return k < 0
                 ? Vec3.Zero
-                : Vec3.Normalize(direction     * refractiveRatio
-                               + surfaceNormal * (refractiveRatio * cos_i - (float) Math.Sqrt(k))
-                                );
+                : Vec3.Normalize(direction * refractiveRatio
+                                 + surfaceNormal * (refractiveRatio * cos_i - (float) Math.Sqrt(k))
+                );
         }
 
 
         private HitRecord FindClosestHit(Ray ray)
         {
-            Object closestObject   = null;
-            float  closestDistance = float.PositiveInfinity;
+            Object closestObject = null;
+            var closestDistance = float.PositiveInfinity;
 
             foreach (var currentObject in Objects)
             {
-                float currentDistance = currentObject.Intersect(ray);
+                var currentDistance = currentObject.Intersect(ray);
 
                 // We hit an object
                 if (currentDistance > float.Epsilon && currentDistance < closestDistance)
                 {
-                    closestObject   = currentObject;
+                    closestObject = currentObject;
                     closestDistance = currentDistance;
                 }
             }
@@ -298,52 +283,47 @@ namespace LEA_2021
             //
             // lightBeam.Brightness *= 1 / lightBeam.Brightness;
 
-            if (currentDepth > Constants.MaxReflectionDepth)
-            {
-                return currentColor;
-            }
+            if (currentDepth > Constants.MaxReflectionDepth) return currentColor;
             // TODO: Generate random ray
 
 
-            HitRecord closestHit      = FindClosestHit(lightBeam.Ray);
-            Object?   closestObject   = closestHit.Object;
-            float     closestDistance = closestHit.Distance;
+            var closestHit = FindClosestHit(lightBeam.Ray);
+            var closestObject = closestHit.Object;
+            var closestDistance = closestHit.Distance;
 
 
             if (!float.IsPositiveInfinity(closestDistance) && closestObject is not null)
             {
-                Vector3 intersection = lightBeam.Ray.At(closestDistance);
+                var intersection = lightBeam.Ray.At(closestDistance);
 
 
-                Vector3 surfaceNormal =
+                var surfaceNormal =
                     closestObject.GetSurfaceNormal(intersection);
 
 
-                float brightnessDiffuse  = 0f;
-                float brightnessSpecular = 0f;
+                var brightnessDiffuse = 0f;
+                var brightnessSpecular = 0f;
 
 
                 // Calculate direct illumination
                 // Raise point above objects surface to prevent self-intersection
-                Vec3 intersectionOffset = intersection + Constants.ShadowOffset * surfaceNormal;
+                var intersectionOffset = intersection + Constants.ShadowOffset * surfaceNormal;
 
                 foreach (var pointLight in PointLights)
                 {
-                    Vector3 objectToLight  = Vec3.Normalize(Util.FromAToB(closestObject.Position, pointLight.Position));
-                    Vector3 surfaceToLight = Util.FromAToB(intersection, pointLight.Position);
+                    var objectToLight = Vec3.Normalize(Util.FromAToB(closestObject.Position, pointLight.Position));
+                    var surfaceToLight = Util.FromAToB(intersection, pointLight.Position);
 
 
-                    float distanceToLight = Vec3.Distance(intersection, pointLight.Position);
+                    var distanceToLight = Vec3.Distance(intersection, pointLight.Position);
 
                     // Cast shadows by not adding specular or diffuse light if path to light is not clear
                     closestDistance = FindClosestHit(new Ray(intersectionOffset, Vec3.Normalize(surfaceToLight)))
-                       .Distance;
+                        .Distance;
 
                     if (closestDistance
-                      < distanceToLight)
-                    {
+                        < distanceToLight)
                         continue;
-                    }
 
                     // TODO: Build diffuse color instead
                     // Lambertian diffuse lighting
@@ -351,46 +331,46 @@ namespace LEA_2021
                         pointLight.Brightness * Math.Max(0f, Vec3.Dot(objectToLight, surfaceNormal));
 
                     // Blinn-Phong specular reflection
-                    Vector3 surfaceToCamera = Util.FromAToB(intersection, Camera.Position);
+                    var surfaceToCamera = Util.FromAToB(intersection, Camera.Position);
 
-                    Vector3 halfVector  = Vec3.Normalize(surfaceToLight + surfaceToCamera);
-                    float   facingRatio = Vec3.Dot(halfVector, surfaceNormal);
+                    var halfVector = Vec3.Normalize(surfaceToLight + surfaceToCamera);
+                    var facingRatio = Vec3.Dot(halfVector, surfaceNormal);
 
                     brightnessSpecular += (float) Math.Pow(Math.Max(0f, facingRatio), specularExponent);
                 }
 
-                Vector2 uv     = closestObject.GetUvCoordinates(intersection, closestObject.Position);
-                Bitmap  albedo = closestObject.Material.Albedo;
+                var uv = closestObject.GetUvCoordinates(intersection, closestObject.Position);
+                Bitmap albedo = closestObject.Material.Albedo;
 
-                Color colorOrig =
+                var colorOrig =
                     albedo.GetPixel((int) (uv.X * (albedo.Width - 1)), (int) (uv.Y * (albedo.Height - 1)));
 
                 Bitmap roughness = closestObject.Material.Roughness;
 
                 // Since the roughness map is monochrome, we can pick any of its color channels
-                int roughnessRaw = roughness.GetPixel((int) uv.X * (roughness.Width  - 1),
-                                                      (int) uv.Y * (roughness.Height - 1)
-                                                     )
-                                            .R;
+                int roughnessRaw = roughness.GetPixel((int) uv.X * (roughness.Width - 1),
+                        (int) uv.Y * (roughness.Height - 1)
+                    )
+                    .R;
 
                 // Gloss is opposite of roughness
-                float gloss = 1f
+                var gloss = 1f
                             - Util.RescaleToRange(roughnessRaw, 0f, 255f, 0f, 1f);
 
                 lightBeam.Ray.Origin = intersectionOffset;
 
-                Vec3 directionOrig = lightBeam.Ray.Direction;
+                var directionOrig = lightBeam.Ray.Direction;
 
                 lightBeam.Ray.Direction = Vec3.Reflect(directionOrig, surfaceNormal);
 
-                Color reflectionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
+                var reflectionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
 
                 lightBeam.Ray.Direction = Refract(directionOrig,
-                                                  surfaceNormal,
-                                                  closestObject.Material.RefractiveIndex
-                                                 );
+                    surfaceNormal,
+                    closestObject.Material.RefractiveIndex
+                );
 
-                Color refractionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
+                var refractionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
 
                 currentColor = Util.ClampedColorScale(colorOrig, brightnessDiffuse);
 
@@ -403,8 +383,8 @@ namespace LEA_2021
 
                 currentColor =
                     Util.ClampedColorAdd(currentColor,
-                                         Util.ClampedColorScale(refractionColor, closestObject.Material.Transparency)
-                                        );
+                        Util.ClampedColorScale(refractionColor, closestObject.Material.Transparency)
+                    );
 
                 // // Gamma correction
                 // color = Color.FromArgb(255,
@@ -427,13 +407,13 @@ namespace LEA_2021
         {
             // Build Normalized Device Coordinates (NDC)
             // Value range is [0,1], 0.5f makes points appear in the center of a pixel
-            float ndcX = (row    + 0.5f) / Metadata.Width;
-            float ndcY = (column + 0.5f) / Metadata.Height;
+            var ndcX = (row + 0.5f) / Metadata.Width;
+            var ndcY = (column + 0.5f) / Metadata.Height;
 
             // Convert NDC to Screen space by remapping increasing x values to the range [-1,1]
             // and increasing y-values to the range [1,1-]
-            float screenX = 2f * ndcX - 1f;
-            float screenY = 1f        - 2f * ndcY;
+            var screenX = 2f * ndcX - 1f;
+            var screenY = 1f - 2f * ndcY;
 
             // Because the image is not square (Usually images are wider than they are high),
             // pixels are now rectangular.
@@ -441,17 +421,17 @@ namespace LEA_2021
             screenX *= Metadata.GetAspectRatio();
 
             // Transform to camera space by accounting for field of view
-            float cameraX = screenX * (float) Math.Tan(Camera.Fov / 2f);
-            float cameraY = screenY * (float) Math.Tan(Camera.Fov / 2f);
+            var cameraX = screenX * (float) Math.Tan(Camera.Fov / 2f);
+            var cameraY = screenY * (float) Math.Tan(Camera.Fov / 2f);
 
             // For now, the camara always faces forward, hence we set the z-component to -1
-            Vector3 rayDirection = Vec3.Normalize(Util.FromAToB(Camera.Position,
-                                                                new Vector3(cameraX,
-                                                                            cameraY,
-                                                                            -1f
-                                                                           )
-                                                               )
-                                                 )
+            var rayDirection = Vec3.Normalize(Util.FromAToB(Camera.Position,
+                        new Vector3(cameraX,
+                            cameraY,
+                            -1f
+                        )
+                    )
+                )
                 ;
 
             return new Ray(Camera.Position, rayDirection);
@@ -464,20 +444,18 @@ namespace LEA_2021
             DetectBackground();
             Percentage = 0;
 
-            for (int i = 0; i < Metadata.NumIterations; ++i)
+            for (var i = 0; i < Metadata.NumIterations; ++i)
             {
                 Percentage = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
                 OnPropertyChanged("Percentage");
 
-                for (int column = 0; column < Metadata.Width; ++column)
+                for (var column = 0; column < Metadata.Width; ++column)
+                for (var row = 0; row < Metadata.Height; ++row)
                 {
-                    for (int row = 0; row < Metadata.Height; ++row)
-                    {
-                        Ray primaryRay = CastPrimaryRay(column, row);
+                    Ray primaryRay = CastPrimaryRay(column, row);
 
-                        Color pixel = TraceRay(new LightBeam(primaryRay), new Color());
-                        Image.SetPixel(column, row, pixel);
-                    }
+                    var pixel = TraceRay(new LightBeam(primaryRay), new Color());
+                    Image.SetPixel(column, row, pixel);
                 }
 
                 OnPropertyChanged("Image");
@@ -489,63 +467,59 @@ namespace LEA_2021
 
         public void Save()
         {
-            Dictionary<dynamic, dynamic>       jsonData       = new();
-            List<Dictionary<dynamic, dynamic>> objectList     = new();
+            Dictionary<dynamic, dynamic> jsonData = new();
+            List<Dictionary<dynamic, dynamic>> objectList = new();
             List<Dictionary<dynamic, dynamic>> pointLightList = new();
 
             jsonData.Add("Background", backgroundValue);
 
             jsonData.Add("Metadata",
-                         new Dictionary<string, int>
-                         {
-                             {"Width", Metadata.Width},
-                             {"Height", Metadata.Height},
-                             {"Num_Iterations", Metadata.NumIterations}
-                         }
-                        );
+                new Dictionary<string, int>
+                {
+                    {"Width", Metadata.Width},
+                    {"Height", Metadata.Height},
+                    {"Num_Iterations", Metadata.NumIterations}
+                }
+            );
 
             jsonData.Add("Camera",
-                         new Dictionary<string, dynamic>
-                         {
-                             {"Position", Camera.Position},
-                             {"Direction", Camera.Direction},
-                             {"FOV", Util.RadiansToDegree(Camera.Fov)}
-                         }
-                        );
+                new Dictionary<string, dynamic>
+                {
+                    {"Position", Camera.Position},
+                    {"Direction", Camera.Direction},
+                    {"FOV", Util.RadiansToDegree(Camera.Fov)}
+                }
+            );
 
             foreach (Object o in Objects)
-            {
                 objectList.Add(new Dictionary<dynamic, dynamic>
-                               {
-                                   {"Name", o.Name},
-                                   {"Shape", o.Shape.GetType().Name},
-                                   {"Material", o.Material.Name},
-                                   {"Properties", o.Shape},
-                                   {"Position", o.Position}
-                               }
-                              );
+                    {
+                        {"Name", o.Name},
+                        {"Shape", o.Shape.GetType().Name},
+                        {"Material", o.Material.Name},
+                        {"Properties", o.Shape},
+                        {"Position", o.Position}
+                    }
+                );
 
-                jsonData.Add("Objects", objectList);
-
-
-                foreach (PointLight light in PointLights)
-                {
-                    pointLightList.Add(new Dictionary<dynamic, dynamic>
-                                       {
-                                           {"Color", light.Color},
-                                           {"Brightness", light.Brightness},
-                                           {"Position", light.Position}
-                                       }
-                                      );
-                }
-
-                jsonData.Add("PointLights", pointLightList);
+            jsonData.Add("Objects", objectList);
 
 
-                File.WriteAllText($@"{Constants.SceneDir}/{Name}.json",
-                                  JsonConvert.SerializeObject(jsonData, Formatting.Indented)
-                                 );
-            }
+            foreach (PointLight light in PointLights)
+                pointLightList.Add(new Dictionary<dynamic, dynamic>
+                    {
+                        {"Color", light.Color},
+                        {"Brightness", light.Brightness},
+                        {"Position", light.Position}
+                    }
+                );
+
+            jsonData.Add("PointLights", pointLightList);
+
+
+            File.WriteAllText($@"{Constants.SceneDir}/{Name}.json",
+                JsonConvert.SerializeObject(jsonData, Formatting.Indented)
+            );
         }
     }
 }

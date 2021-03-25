@@ -211,6 +211,7 @@ namespace LEA_2021
 
         protected void OnPropertyChanged(string name)
         {
+            // Console.WriteLine(name);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
@@ -465,11 +466,11 @@ namespace LEA_2021
 
             for (int i = 0; i < Metadata.NumIterations; ++i)
             {
-                Percentage = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
-                OnPropertyChanged("Percentage");
-
-                for (int column = 0; column < Metadata.Height; ++column)
+                for (int column = 0; column < Metadata.Width; ++column)
                 {
+                    Percentage = Convert.ToInt32((column + i * Metadata.Width) / (float) (Metadata.Width * Metadata.NumIterations) * 100);
+                    OnPropertyChanged("Percentage");
+                    
                     for (int row = 0; row < Metadata.Height; ++row)
                     {
                         Ray primaryRay = CastPrimaryRay(column, row);
@@ -478,10 +479,9 @@ namespace LEA_2021
                         Image.SetPixel(column, row, pixel);
                     }
                 }
-
-                OnPropertyChanged("Image");
             }
 
+            OnPropertyChanged("Image");
             Image.Save($"{Constants.OutputDir}/{Name}.png", ImageFormat.Png);
         }
 

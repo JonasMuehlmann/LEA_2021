@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -14,7 +15,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media.Imaging;
+using Newtonsoft.Json;
 
 namespace LEA_2021
 {
@@ -89,7 +92,7 @@ namespace LEA_2021
             btn.IsEnabled = false;
             ProgressBar.Height = 10;
 
-            renderTask = Task.Run(currentScene.Render);
+            renderTask = Task.Run(() => currentScene.Render(true));
 
             renderTask.GetAwaiter().OnCompleted(() =>
             {
@@ -191,6 +194,7 @@ namespace LEA_2021
                 currentScene = null;
                 DataContext = null;
                 MaterialViewerButton.Content = "Material-Viewer starten";
+                SceneBox.SelectedIndex = -1;
                 sceneContainer.Visibility = Visibility.Visible;
                 materialViewerContainer.Visibility = Visibility.Collapsed;
                 RenderButton.Visibility = Visibility.Visible;
@@ -202,11 +206,52 @@ namespace LEA_2021
             var material = MaterialBox.SelectedItem as Material;
             currentScene.Objects.First().Material = material;
             RenderButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+
+            RefractiveIndexInput.Text = material.RefractiveIndex.ToString();
+            TransparencySlider.Value = (float) material.Transparency;
+        }
+
+        private void MaterialSaveButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!materialViewerActive)
+            {
+                throw new ArgumentException("Material-Viewer not active");
+            }
+
+            if (MaterialBox.SelectedItem == null)
+            {
+                MessageBox.Show("Bitte ein Material auswählen");
+                return;
+            }
+
+            float refractiveIndex = float.Parse(RefractiveIndexInput.Text);
+            float transparency = (float) TransparencySlider.Value;
+
+            Dictionary<dynamic, dynamic> jsonData = new();
+
+            jsonData.Add("refractiveIndex", refractiveIndex);
+            jsonData.Add("transparency", transparency);
+
+            File.WriteAllText($"{Constants.MaterialsDir}/{currentScene.Objects.First().Material.Name}/config.json",
+                JsonConvert.SerializeObject(jsonData, Formatting.Indented)
+            );
+
+            currentScene.Objects.First().Material.RefractiveIndex = refractiveIndex;
+            currentScene.Objects.First().Material.Transparency = transparency;
+            RenderButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+        }
+
+        private void MaterialFolderButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer", $@"C:\Users\info\RiderProjects\LEA_2021\Backend\scenes\materials\{currentScene.Objects.First().Material.Name}");
         }
     }
 
     public class ImageConverter : IValueConverter
     {
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        public static extern bool DeleteObject(IntPtr hObject);
+
         [SuppressMessage("ReSharper.DPA", "DPA0003: Excessive memory allocations in LOH")]
         public object Convert(
             object value, Type targetType, object parameter, CultureInfo culture)
@@ -233,7 +278,6 @@ namespace LEA_2021
                 }
                 catch (InvalidOperationException e)
                 {
-                    Console.WriteLine(e);
                 }
             } while (true);
         }

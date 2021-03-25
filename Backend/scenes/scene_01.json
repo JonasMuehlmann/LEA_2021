@@ -1,187 +1,187 @@
 {
-    "Background": "Black",
-    "Metadata": {
-        "Width": 1920,
-        "Height": 1080,
-        "Num_Iterations": 1
+  "Background": "Black",
+  "Metadata": {
+    "Width": 1920,
+    "Height": 1080,
+    "Num_Iterations": 1
+  },
+  "Camera": {
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
     },
-    "Camera": {
-        "Position": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 0.0
-        },
-        "Direction": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 1.0
-        },
-        "FOV": 80.0
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 1.0
     },
-    "Objects": [
-        {
-            "Name": "Brick Sphere 01",
-            "Shape": "Sphere",
-            "Material": "brick",
-            "Properties": {
-                "Radius": 10.0
-            },
-            "Position": {
-                "X": 20.0,
-                "Y": -10.0,
-                "Z": -35.0
-            }
-        },
-        {
-            "Name": "Glass sphere 01",
-            "Shape": "Sphere",
-            "Material": "glass",
-            "Properties": {
-                "Radius": 2.0
-            },
-            "Position": {
-                "X": -15.0,
-                "Y": -10.0,
-                "Z": -15.0
-            }
-        },
-        {
-            "Name": "Wood Sphere 01",
-            "Shape": "Sphere",
-            "Material": "wood",
-            "Properties": {
-                "Radius": 10.0
-            },
-            "Position": {
-                "X": -20.0,
-                "Y": -10.0,
-                "Z": -30.0
-            }
-        },
-        {
-            "Name": "Tiles Sphere 01",
-            "Shape": "Sphere",
-            "Material": "floor_tiles",
-            "Properties": {
-                "Radius": 15.0
-            },
-            "Position": {
-                "X": -25.0,
-                "Y": 1.0,
-                "Z": -60.0
-            }
-        },
-        {
-            "Name": "Mirror Sphere",
-            "Shape": "Sphere",
-            "Material": "mirror",
-            "Properties": {
-                "Radius": 80.0
-            },
-            "Position": {
-                "X": 10.0,
-                "Y": 50.0,
-                "Z": -150.0
-            }
-        },
-        {
-            "Name": "Gem Sphere",
-            "Shape": "Sphere",
-            "Material": "gem_agate",
-            "Properties": {
-                "Radius": 20.0
-            },
-            "Position": {
-                "X": 50.0,
-                "Y": 0.0,
-                "Z": -20.0
-            }
-        },
-        {
-            "Name": "Floor",
-            "Shape": "FinitePlane",
-            "Material": "wood",
-            "Properties": {
-                "Width": 800,
-                "Length": 1200,
-                "Orientation": {
-                    "X": 0.0,
-                    "Y": 1.0,
-                    "Z": 0.0
-                }
-            },
-            "Position": {
-                "X": 0.0,
-                "Y": -30.0,
-                "Z": -300.0
-            }
-        },
-        {
-            "Name": "Back Wall",
-            "Shape": "FinitePlane",
-            "Material": "mirror",
-            "Properties": {
-                "Width": 1000,
-                "Length": 800,
-                "Orientation": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Z": -1.0
-                }
-            },
-            "Position": {
-                "X": 0.0,
-                "Y": -30.0,
-                "Z": 30.0
-            }
-        },
-        {
-            "Name": "Front wall",
-            "Shape": "FinitePlane",
-            "Material": "gold",
-            "Properties": {
-                "Width": 1200,
-                "Length": 800,
-                "Orientation": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Z": 1.0
-                }
-            },
-            "Position": {
-                "X": 0.0,
-                "Y": -30.0,
-                "Z": -350.0
-            }
+    "FOV": 80.0
+  },
+  "Objects": [
+    {
+      "Name": "Brick Sphere 01",
+      "Shape": "Sphere",
+      "Material": "brick",
+      "Properties": {
+        "Radius": 10.0
+      },
+      "Position": {
+        "X": 20.0,
+        "Y": -10.0,
+        "Z": -35.0
+      }
+    },
+    {
+      "Name": "Glass sphere 01",
+      "Shape": "Sphere",
+      "Material": "glass",
+      "Properties": {
+        "Radius": 2.0
+      },
+      "Position": {
+        "X": -15.0,
+        "Y": -10.0,
+        "Z": -15.0
+      }
+    },
+    {
+      "Name": "Wood Sphere 01",
+      "Shape": "Sphere",
+      "Material": "wood",
+      "Properties": {
+        "Radius": 10.0
+      },
+      "Position": {
+        "X": -20.0,
+        "Y": -10.0,
+        "Z": -30.0
+      }
+    },
+    {
+      "Name": "Tiles Sphere 01",
+      "Shape": "Sphere",
+      "Material": "floor_tiles",
+      "Properties": {
+        "Radius": 15.0
+      },
+      "Position": {
+        "X": -25.0,
+        "Y": 1.0,
+        "Z": -60.0
+      }
+    },
+    {
+      "Name": "Mirror Sphere",
+      "Shape": "Sphere",
+      "Material": "mirror",
+      "Properties": {
+        "Radius": 80.0
+      },
+      "Position": {
+        "X": 10.0,
+        "Y": 50.0,
+        "Z": -150.0
+      }
+    },
+    {
+      "Name": "Gem Sphere",
+      "Shape": "Sphere",
+      "Material": "gem_agate",
+      "Properties": {
+        "Radius": 20.0
+      },
+      "Position": {
+        "X": 50.0,
+        "Y": 0.0,
+        "Z": -20.0
+      }
+    },
+    {
+      "Name": "Floor",
+      "Shape": "FinitePlane",
+      "Material": "wood",
+      "Properties": {
+        "Width": 800,
+        "Length": 1200,
+        "Orientation": {
+          "X": 0.0,
+          "Y": 1.0,
+          "Z": 0.0
         }
-    ],
-    "PointLights": [
-        {
-            "Color": "White",
-            "Brightness": 0.4,
-            "Position": {
-                "X": -20.0,
-                "Y": 15.0,
-                "Z": 20.0
-            }
-        },
-        {
-            "Color": "White",
-            "Brightness": 0.4,
-            "Position": {
-                "X": 20.0,
-                "Y": 15.0,
-                "Z": 20.0
-            }
-        },
-        {
-            "Color": "White",
-            "Brightness": 0.4,
-            "Position": {
-                "X": 0.0,
-                "Y": 60.0,
-                "Z": -60.0
-            }
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": -30.0,
+        "Z": -300.0
+      }
+    },
+    {
+      "Name": "Back Wall",
+      "Shape": "FinitePlane",
+      "Material": "mirror",
+      "Properties": {
+        "Width": 1000,
+        "Length": 800,
+        "Orientation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
         }
-    ]
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": -30.0,
+        "Z": 30.0
+      }
+    },
+    {
+      "Name": "Front wall",
+      "Shape": "FinitePlane",
+      "Material": "gold",
+      "Properties": {
+        "Width": 1200,
+        "Length": 800,
+        "Orientation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 1.0
+        }
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": -30.0,
+        "Z": -350.0
+      }
+    }
+  ],
+  "PointLights": [
+    {
+      "Color": "White",
+      "Brightness": 0.4,
+      "Position": {
+        "X": -20.0,
+        "Y": 15.0,
+        "Z": 20.0
+      }
+    },
+    {
+      "Color": "White",
+      "Brightness": 0.4,
+      "Position": {
+        "X": 20.0,
+        "Y": 15.0,
+        "Z": 20.0
+      }
+    },
+    {
+      "Color": "White",
+      "Brightness": 0.4,
+      "Position": {
+        "X": 0.0,
+        "Y": 60.0,
+        "Z": -60.0
+      }
+    }
+  ]
 }

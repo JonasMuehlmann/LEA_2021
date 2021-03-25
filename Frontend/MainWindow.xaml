@@ -8,7 +8,7 @@
         Title="3D Renderer - LEA 2021"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        Height="500"
+        Height="520"
         Width="800">
 
     <Window.Resources>
@@ -23,13 +23,13 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Margin="20">
             <StackPanel DockPanel.Dock="Top">
-                <ProgressBar Value="{Binding Percentage, Mode=OneWay}" Height="0px" x:Name="ProgressBar" Maximum="100"
-                             Minimum="1" />
+                <ProgressBar Value="{Binding Percentage, Mode=OneWay}" Height="0px" x:Name="ProgressBar" Maximum="100" Minimum="1" Margin="0, 0, 0, 20"/>
 
                 <!-- <Rectangle Height="330px" Fill="Blue" /> -->
                 <Image Source="{Binding Image, Mode=OneWay, Converter={StaticResource ImageConverter}}" Height="330px"
                        Name="OutputImage" />
             </StackPanel>
+
 
             <Button x:Name="RenderButton" IsEnabled="False" DockPanel.Dock="Bottom" FontSize="16px" FontWeight="Medium"
                     Margin="0,20,0,0" Click="RenderButton_Click">
@@ -53,8 +53,6 @@
             </StackPanel.Resources>
 
             <StackPanel x:Name="sceneContainer">
-
-
                 <StackPanel>
                     <Label>Szene laden</Label>
                     <ComboBox SelectionChanged="sceneBox_SelectionChanged" x:Name="SceneBox" />
@@ -62,7 +60,7 @@
 
                 <StackPanel>
                     <Label>Iterationen</Label>
-                    <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Minimum="5" Maximum="1000"
+                    <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Minimum="1" Maximum="100"
                             Value="{Binding Metadata.NumIterations}" x:Name="OptionIterationSlider" />
                 </StackPanel>
 
@@ -102,6 +100,24 @@
                     <Label>Material wählen</Label>
                     <ComboBox SelectionChanged="MaterialBox_OnSelectionChanged" x:Name="MaterialBox" />
                 </StackPanel>
+                
+                <StackPanel>
+                    <Label>Brechnungs-Index</Label>
+                    <TextBox PreviewTextInput="TextBoxNumberValidation" x:Name="RefractiveIndexInput" />
+                </StackPanel>
+                
+                <StackPanel>
+                    <Label>Transparenz</Label>
+                    <Slider TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" x:Name="TransparencySlider" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" Minimum="0" Maximum="1"/>
+                </StackPanel>
+
+                <Button x:Name="MaterialFolderButton" Padding="10" FontSize="15px" Click="MaterialFolderButton_OnClick" Margin="0, 0, 0, 10">
+                    Material-Order öffnen
+                </Button>
+
+                <Button x:Name="MaterialSaveButton" Background="Green" Foreground="White" Padding="10" FontSize="15px" Click="MaterialSaveButton_OnClick">
+                    Material speichern
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

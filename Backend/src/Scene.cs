@@ -344,34 +344,29 @@ namespace LEA_2021
             Vector3 surfaceNormal =
                 closestObject.GetSurfaceNormal(intersection);
 
-
-            float brightnessDiffuse  = 0f;
-            float brightnessSpecular = 0f;
-
-
             // Raise point above objects surface to prevent self-intersection
             Vector3 intersectionOffsetShadow = intersection + Constants.ShadowOffset * surfaceNormal;
 
             // Calculate direct illumination
+            float brightnessDiffuse  = 0f;
+            float brightnessSpecular = 0f;
+
             foreach (var pointLight in PointLights)
             {
                 Vector3 objectToLight  = Vec3.Normalize(Util.FromAToB(closestObject.Position, pointLight.Position));
                 Vector3 surfaceToLight = Util.FromAToB(intersection, pointLight.Position);
 
 
-                float distanceToLight = Vec3.Distance(intersection, pointLight.Position);
-
                 // Cast shadows by not adding specular or diffuse light if path to light is not clear
                 closestDistance = FindClosestHit(new Ray(intersectionOffsetShadow, Vec3.Normalize(surfaceToLight)))
                    .Distance;
 
                 if (closestDistance
-                  < distanceToLight)
+                  < surfaceToLight.Length())
                 {
                     continue;
                 }
 
-                // TODO: Build diffuse color instead
                 // Lambertian diffuse lighting
                 brightnessDiffuse +=
                     pointLight.Brightness * Math.Max(0f, Vec3.Dot(objectToLight, surfaceNormal));
@@ -385,13 +380,15 @@ namespace LEA_2021
                 brightnessSpecular += (float) Math.Pow(Math.Max(0f, facingRatio), Constants.SpecularExponent);
             }
 
-            Vector2 uv     = closestObject.GetUvCoordinates(intersection);
-            Bitmap  albedo = closestObject.Material.Albedo;
+            Vector2 uv              = closestObject.GetUvCoordinates(intersection);
+            Bitmap  albedo          = closestObject.Material.Albedo;
+            Bitmap  roughness       = closestObject.Material.Roughness;
+            float   refractiveIndex = closestObject.Material.RefractiveIndex;
+            float   transparency    = closestObject.Material.Transparency;
 
             Color colorOrig =
                 albedo.GetPixel((int) (uv.X * (albedo.Width - 1)), (int) (uv.Y * (albedo.Height - 1)));
 
-            Bitmap roughness = closestObject.Material.Roughness;
 
             // Since the roughness map is monochrome, we can pick any of its color channels
             int roughnessRaw = roughness.GetPixel((int) uv.X * (roughness.Width  - 1),
@@ -405,35 +402,42 @@ namespace LEA_2021
 
             Vector3 directionOrig = lightBeam.Ray.Direction;
 
+            // Calculate shadows
             lightBeam.Ray.Origin    = intersectionOffsetShadow;
             lightBeam.Ray.Direction = Vec3.Reflect(directionOrig, surfaceNormal);
 
             Color reflectionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
 
-            Vec3 intersectionOffsetRefraction = intersection - 1 * surfaceNormal;
+            // Calculate Refraction
+            Vec3 intersectionOffsetRefraction = intersection + Constants.RefractionOffset * surfaceNormal;
             lightBeam.Ray.Origin = intersectionOffsetRefraction;
 
             lightBeam.Ray.Direction = Refract(directionOrig,
                                               surfaceNormal,
-                                              closestObject.Material.RefractiveIndex
+                                              refractiveIndex
                                              );
 
             Color refractionColor = TraceRay(lightBeam, currentColor, currentDepth + 1);
 
-            currentColor = Util.ColorScale(colorOrig, 1 - closestObject.Material.Transparency);
+            currentColor = Util.ColorScale(colorOrig, 1 - transparency);
 
             currentColor = Util.ColorScale(currentColor, brightnessDiffuse);
 
+            // Add specular highlights
             currentColor =
-                Util.ColorAdd(currentColor, Util.ColorScale(currentColor, brightnessSpecular));
+                Util.ColorAdd(currentColor,
+                              Util.ColorScale(currentColor, brightnessSpecular)
+                             );
 
-
-            currentColor =
-                Util.ColorAdd(currentColor, Util.ColorScale(reflectionColor, gloss));
 
             currentColor =
                 Util.ColorAdd(currentColor,
-                              Util.ColorScale(refractionColor, closestObject.Material.Transparency)
+                              Util.ColorScale(reflectionColor, gloss)
+                             );
+
+            currentColor =
+                Util.ColorAdd(currentColor,
+                              Util.ColorScale(refractionColor, transparency)
                              );
 
             return currentColor;

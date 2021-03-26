@@ -1,5 +1,6 @@
 using System.Numerics;
 
+
 namespace LEA_2021
 {
     using Vec3 = Vector3;
@@ -26,25 +27,25 @@ namespace LEA_2021
         public Object(Material material, Shape shape, Point3 position, string name)
         {
             Material = material;
-            Shape = shape;
+            Shape    = shape;
             Position = position;
-            Name = name;
+            Name     = name;
         }
 
 
         public Object(Material material, Shape shape, Point3 position)
         {
             Material = material;
-            Shape = shape;
+            Shape    = shape;
             Position = position;
         }
 
 
-        // Centered at origin
+        /// Centered at origin
         public Object(Material material, Shape shape)
         {
             Material = material;
-            Shape = shape;
+            Shape    = shape;
             Position = Vec3.Zero;
         }
 
@@ -57,21 +58,36 @@ namespace LEA_2021
         }
 
 
+        /// <summary>
+        ///     Make an intersection test with the ray and this object
+        /// </summary>
+        /// <param name="ray">A ray to test for intersection with the object</param>
+        /// <returns>A value >0 representing the distance to intersection along the ray or -1f if no intersection occurs</returns>
         public float Intersect(Ray ray)
         {
             return Shape.Intersect(ray, Position);
         }
 
 
-        public Point2 GetUvCoordinates(Point3 intersection, Point3 position)
+        /// <summary>
+        ///     Get the UV coordinates of the surfacePoint
+        /// </summary>
+        /// <param name="surfacePoint">A point on the surface of the object</param>
+        /// <returns>UV-coordinates of the surfacePoint</returns>
+        public Vector2 GetUvCoordinates(Vector3 surfacePoint)
         {
-            return Shape.GetUvCoordinates(intersection, position);
+            return Shape.GetUvCoordinates(surfacePoint, Position);
         }
 
 
-        public Vec3 GetSurfaceNormal(Point3 intersection)
+        /// <summary>
+        ///     Get the surface normal at the given surfacePoint
+        /// </summary>
+        /// <param name="surfacePoint">A point on the surface of the object</param>
+        /// <returns>The surface normal at the surfacePoint</returns>
+        public Vec3 GetSurfaceNormal(Point3 surfacePoint)
         {
-            return Shape.GetSurfaceNormal(intersection, Position);
+            return Shape.GetSurfaceNormal(surfacePoint, Position);
         }
     }
 }

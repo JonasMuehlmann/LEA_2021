@@ -31,7 +31,7 @@ namespace LEA_2021
         }
 
 
-        // Default Brightness is 100%
+        /// Brightness is 100%
         public PointLight(Point3 position, Color color)
         {
             Position   = position;
@@ -40,7 +40,7 @@ namespace LEA_2021
         }
 
 
-        // Default color is white
+        /// Color is white
         public PointLight(Point3 position, float brightness)
         {
             Position   = position;
@@ -49,7 +49,7 @@ namespace LEA_2021
         }
 
 
-        // Default color is white, default intensity is 100%
+        /// Color is white, brightness is 100%
         public PointLight(Point3 position)
         {
             Position   = position;

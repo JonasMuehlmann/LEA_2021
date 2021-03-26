@@ -11,7 +11,7 @@ namespace LEA_2021
     {
         #region Properties
 
-        public Vec3 Origin { get; set; }
+        public Point3 Origin { get; set; }
 
         public Vec3 Direction { get; set; }
 
@@ -19,14 +19,14 @@ namespace LEA_2021
 
         #region Constructors
 
-        public Ray(Vec3 origin, Vec3 direction)
+        public Ray(Point3 origin, Vec3 direction)
         {
             Origin    = origin;
             Direction = direction;
         }
 
 
-        // Originates in global origin  (0,0,0)
+        /// Originates in global origin  (0,0,0)
         public Ray(Vec3 direction)
         {
             Origin    = Vec3.Zero;
@@ -36,6 +36,11 @@ namespace LEA_2021
         #endregion
 
 
+        /// <summary>
+        ///     Get the point at Origin + t * Direction
+        /// </summary>
+        /// <param name="t">A distance to go along the ray</param>
+        /// <returns>The point t units along the ray</returns>
         public Point3 At(float t)
         {
             return Origin + t * Direction;

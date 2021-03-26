@@ -3,6 +3,8 @@ using System.Drawing;
 using System.IO;
 using System.Json;
 using System.Numerics;
+using System.Reflection;
+
 
 namespace LEA_2021
 {
@@ -46,61 +48,71 @@ namespace LEA_2021
             Bitmap normal,
             Bitmap displacement,
             Bitmap emission,
-            float refractiveIndex,
-            float transparency
+            float  refractiveIndex,
+            float  transparency
         )
         {
-            Albedo = albedo;
-            Metalness = metalness;
-            Roughness = roughness;
+            Albedo           = albedo;
+            Metalness        = metalness;
+            Roughness        = roughness;
             AmbientOcclusion = ambientOcclusion;
-            Normal = normal;
-            Displacement = displacement;
-            Emission = emission;
-            RefractiveIndex = refractiveIndex;
-            Transparency = transparency;
+            Normal           = normal;
+            Displacement     = displacement;
+            Emission         = emission;
+            RefractiveIndex  = refractiveIndex;
+            Transparency     = transparency;
         }
 
 
+        /// <summary>
+        ///     Construct a material from the name of a material configuration.
+        ///     Sets a checkerboard pattern for all texture maps that are not found in the given material's directory
+        /// </summary>
+        /// <param name="name">The name of a material to construct</param>
         public Material(string name)
         {
-            var materialConfig = JsonValue.Parse(File.ReadAllText($"{Constants.MaterialsDir}/{name}/config.json"));
+            JsonValue materialConfig =
+                JsonValue.Parse(File.ReadAllText($"{Constants.MaterialsDir}/{name}/config.json"));
 
-            Name = name;
+            Name            = name;
             RefractiveIndex = materialConfig["refractiveIndex"];
-            Transparency = materialConfig["transparency"];
+            Transparency    = materialConfig["transparency"];
 
             List<string> neededBitmaps = new()
-            {
-                "albedo",
-                "metalness",
-                "roughness",
-                "ambientOcclusion",
-                "normal",
-                "displacement",
-                "displacement",
-                "emission"
-            };
+                                         {
+                                             "albedo",
+                                             "metalness",
+                                             "roughness",
+                                             "ambientOcclusion",
+                                             "normal",
+                                             "displacement",
+                                             "emission"
+                                         };
 
             if (Directory.Exists($"{Constants.MaterialsDir}/{name}"))
-                foreach (var file in Directory.GetFiles($"{Constants.MaterialsDir}/{name}"))
+            {
+                foreach (string file in Directory.GetFiles($"{Constants.MaterialsDir}/{name}"))
                 {
-                    if (Path.GetExtension(file) == ".json") continue;
+                    if (Path.GetExtension(file) == ".json")
+                    {
+                        continue;
+                    }
 
-                    var bitmapName = Path.GetFileNameWithoutExtension(file);
+                    string? bitmapName = Path.GetFileNameWithoutExtension(file);
                     neededBitmaps.Remove(bitmapName);
 
-                    var propInfo =
+                    PropertyInfo? propInfo =
                         typeof(Material).GetProperty(char.ToUpper(bitmapName[0]) + bitmapName.Substring(1));
 
                     propInfo.SetValue(this, Image.FromFile(file), null);
                 }
+            }
 
 
-            // iterate non-found bitmaps to set default values
-            foreach (var bitmap in neededBitmaps)
+            // Set defaults for missing texture maps
+            foreach (string bitmap in neededBitmaps)
             {
-                var propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]) + bitmap.Substring(1));
+                PropertyInfo? propInfo = typeof(Material).GetProperty(char.ToUpper(bitmap[0]) + bitmap.Substring(1));
                 propInfo.SetValue(this, new Bitmap($"{Constants.MaterialsDir}/checkerboard.jpg"), null);
             }
         }
@@ -108,7 +120,7 @@ namespace LEA_2021
         #endregion
 
 
-        // TODO: Find sensible defaults for texture maps to implement constructor with default maps
+        // TODO: Find sensible defaults for texture maps to implement constructor with
         public override string ToString()
         {
             return $"{Name}";

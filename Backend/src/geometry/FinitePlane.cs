@@ -21,7 +21,7 @@ namespace LEA_2021
 
         #region Constructors
 
-        // Oriented, rectangular plane
+        /// Oriented, rectangular plane
         public FinitePlane(Vec3 orientation, int width, int height)
         {
             Orientation = orientation;
@@ -30,16 +30,16 @@ namespace LEA_2021
         }
 
 
-        // Oriented, square plane
-        public FinitePlane(Vec3 orientation, int dimensions)
+        /// Oriented, square plane
+        public FinitePlane(Vec3 orientation, int sideLengths)
         {
             Orientation = orientation;
-            Width       = dimensions;
-            Length      = dimensions;
+            Width       = sideLengths;
+            Length      = sideLengths;
         }
 
 
-        // Y-axis aligned, rectangular plane
+        /// Y-axis aligned, rectangular plane
         public FinitePlane(int width, int height)
         {
             Orientation = Vec3.UnitY;
@@ -48,25 +48,31 @@ namespace LEA_2021
         }
 
 
-        // Y-axis aligned, square plane
-        public FinitePlane(int dimensions)
+        /// Y-axis aligned, square plane
+        public FinitePlane(int sideLengths)
         {
             Orientation = Vec3.UnitY;
-            Width       = dimensions;
-            Length      = dimensions;
+            Width       = sideLengths;
+            Length      = sideLengths;
         }
 
         #endregion
 
 
-        private bool IsInBounds(Point3 center, Point3 intersection)
+        /// <summary>
+        ///     Check if the surfacePoint is in bounds of the Finite Plane
+        /// </summary>
+        /// <param name="center">The center position of the plane</param>
+        /// <param name="surfacePoint">A point on the oriented face of the Plane</param>
+        /// <returns>True, when the surfacePoint is withing the planes bounds, false otherwise</returns>
+        private bool IsInBounds(Point3 center, Point3 surfacePoint)
         {
             if (
                 Math.Abs(Orientation.Y) == 1f
             )
             {
-                if (Math.Abs(Util.ScalarDistance(center.X, intersection.X)) > Length * 0.5f
-                 || Math.Abs(Util.ScalarDistance(center.Z, intersection.Z)) > Width  * 0.5f)
+                if (Math.Abs(Util.ScalarDistance(center.X, surfacePoint.X)) > Length * 0.5f
+                 || Math.Abs(Util.ScalarDistance(center.Z, surfacePoint.Z)) > Width  * 0.5f)
                 {
                     return false;
                 }
@@ -76,8 +82,8 @@ namespace LEA_2021
                 Math.Abs(Orientation.X) == 1f
             )
             {
-                if (Math.Abs(Util.ScalarDistance(center.Z, intersection.Z)) > Length * 0.5f
-                 || Math.Abs(Util.ScalarDistance(center.Y, intersection.Y)) > Width  * 0.5f)
+                if (Math.Abs(Util.ScalarDistance(center.Z, surfacePoint.Z)) > Length * 0.5f
+                 || Math.Abs(Util.ScalarDistance(center.Y, surfacePoint.Y)) > Width  * 0.5f)
                 {
                     return false;
                 }
@@ -85,8 +91,8 @@ namespace LEA_2021
 
             else
             {
-                if (Math.Abs(Util.ScalarDistance(center.Y, intersection.Y)) > Length * 0.5f
-                 || Math.Abs(Util.ScalarDistance(center.X, intersection.X)) > Width  * 0.5f)
+                if (Math.Abs(Util.ScalarDistance(center.Y, surfacePoint.Y)) > Length * 0.5f
+                 || Math.Abs(Util.ScalarDistance(center.X, surfacePoint.X)) > Width  * 0.5f)
                 {
                     return false;
                 }
@@ -97,90 +103,89 @@ namespace LEA_2021
 
 
         // Not an elegant function, but the compiler was not satisfied with others
-        public override Vector3 GetSurfaceNormal(Vector3 intersection, Vector3 position)
+        public override Vector3 GetSurfaceNormal(Vector3 surfacePoint3, Vector3 position)
         {
             return Orientation;
         }
 
 
-        public override Point2 GetUvCoordinates(Point3 center, Point3 intersection)
+        /// <summary>
+        ///     Get the UV coordinates of the surfacePoint
+        /// </summary>
+        /// <param name="surfacePoint">A point on the oriented face of the plane</param>
+        /// <param name="position">The center position of the plane</param>
+        /// <returns>UV-coordinates of the surfacePoint</returns>
+        public override Point2 GetUvCoordinates(Point3 position, Point3 surfacePoint)
         {
             if (Math.Abs(Orientation.Y) == 1f)
             {
-                float u = Util.RescaleToRange(Util.ScalarDistance(center.Z, intersection.Z),
-                                              -Length * 0.5f,
-                                              Length  * 0.5f,
-                                              0,
-                                              1
-                                             );
+                float u = Util.Normalize(Util.ScalarDistance(position.Z, surfacePoint.Z),
+                                         -Length * 0.5f,
+                                         Length  * 0.5f
+                                        );
 
-                float v = Util.RescaleToRange(Util.ScalarDistance(center.X, intersection.X),
-                                              -Width * 0.5f,
-                                              Width  * 0.5f,
-                                              0,
-                                              1
-                                             );
+                float v = Util.Normalize(Util.ScalarDistance(position.X, surfacePoint.X),
+                                         -Width * 0.5f,
+                                         Width  * 0.5f
+                                        );
 
                 return new Point2(u, v);
             }
 
             if (Math.Abs(Orientation.X) == 1f)
             {
-                float u = Util.RescaleToRange(Util.ScalarDistance(center.Z, intersection.Z),
-                                              -Length * 0.5f,
-                                              Length  * 0.5f,
-                                              0,
-                                              1
-                                             );
+                float u = Util.Normalize(Util.ScalarDistance(position.Z, surfacePoint.Z),
+                                         -Length * 0.5f,
+                                         Length  * 0.5f
+                                        );
 
-                float v = Util.RescaleToRange(Util.ScalarDistance(center.Y, intersection.Y),
-                                              -Width * 0.5f,
-                                              Width  * 0.5f,
-                                              0,
-                                              1
-                                             );
+                float v = Util.Normalize(Util.ScalarDistance(position.Y, surfacePoint.Y),
+                                         -Width * 0.5f,
+                                         Width  * 0.5f
+                                        );
 
                 return new Point2(u, v);
             }
 
             else
             {
-                float u = Util.RescaleToRange(Util.ScalarDistance(center.Y, intersection.Y),
-                                              -Length * 0.5f,
-                                              Length  * 0.5f,
-                                              0,
-                                              1
-                                             );
+                float u = Util.Normalize(Util.ScalarDistance(position.Y, surfacePoint.Y),
+                                         -Length * 0.5f,
+                                         Length  * 0.5f
+                                        );
 
-                float v = Util.RescaleToRange(Util.ScalarDistance(center.X, intersection.X),
-                                              -Width * 0.5f,
-                                              Width  * 0.5f,
-                                              0,
-                                              1
-                                             );
+                float v = Util.Normalize(Util.ScalarDistance(position.X, surfacePoint.X),
+                                         -Width * 0.5f,
+                                         Width  * 0.5f
+                                        );
 
                 return new Point2(u, v);
             }
         }
 
 
+        /// <summary>
+        ///     Make an intersection test with the ray and this plane
+        /// </summary>
+        /// <param name="ray">A ray to test for intersection with the plane</param>
+        /// <param name="center">The center position of the plane</param>
+        /// <returns>A value >0 representing the distance to intersection along the ray or -1f if no intersection occurs</returns>
         public override float Intersect(Ray ray, Point3 center)
         {
             float denominator = Vec3.Dot(Orientation, ray.Direction);
 
 
-            // If the denominator is 0, the ray and plane are parallel
+            // If the denominator (dot product) is 0, the ray and plane are parallel
             if (Math.Abs(denominator) < float.Epsilon)
             {
-                // Ray does not intersect with plane
                 return -1f;
             }
 
             float t = Vec3.Dot(Util.FromAToB(ray.Origin, center), Orientation) / denominator;
 
-            if (t < float.Epsilon)
+            // Ray intersects but opposite of it's direction
+            if (t < 0)
             {
-                // Ray intersects, but is shot away from the plane
                 return -1f;
             }
 

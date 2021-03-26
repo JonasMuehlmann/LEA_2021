@@ -19,8 +19,9 @@ namespace LEA_2021
         #region Properties
 
         /// <summary>
-        ///     A Vector representing the normal of an object's top side
+        ///     An axis-aligned unit vector representing the top side of the object
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the direction is not an axis-aligned unit vector</exception>
         public Vec3 Orientation
         {
             get => _orientation;

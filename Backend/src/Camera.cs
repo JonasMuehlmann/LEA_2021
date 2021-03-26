@@ -30,16 +30,16 @@ namespace LEA_2021
         }
 
 
-        //Looking along Z-axis
+        /// Looking along negative Z-axis
         public Camera(float fov, Point3 position)
         {
             Position  = position;
-            Direction = Vec3.UnitZ;
+            Direction = -Vec3.UnitZ;
             Fov       = fov;
         }
 
 
-        // Centered at origin
+        /// Centered at origin
         public Camera(Vec3 direction, float fov)
         {
             Position  = Vec3.Zero;
@@ -48,16 +48,16 @@ namespace LEA_2021
         }
 
 
-        // Centered at origin, looking along Z-axis
+        /// Centered at origin, looking along negative Z-axis
         public Camera(float fov)
         {
             Position  = Vec3.Zero;
-            Direction = Vec3.UnitZ;
+            Direction = -Vec3.UnitZ;
             Fov       = fov;
         }
 
 
-        // Centered at origin, looking along Z-axis, 60 or 1.0472 rad deg FOV
+        /// Centered at origin, looking along negative Z-axis, 60 degree or 1.0472 radians FOV
         public Camera()
         {
             Position  = Vec3.Zero;

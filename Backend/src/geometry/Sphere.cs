@@ -25,7 +25,7 @@ namespace LEA_2021
         }
 
 
-        // Unit sphere
+        /// Unit sphere
         public Sphere()
         {
             Radius = 1f;
@@ -34,21 +34,19 @@ namespace LEA_2021
         #endregion
 
 
-        // Return UV coordinates in the range of [0,1]
-        public override Point2 GetUvCoordinates(Point3 surfacePoint, Vec3 centerPosition)
+        /// <summary>
+        ///     Get the UV coordinates of the surfacePoint
+        /// </summary>
+        /// <param name="surfacePoint">A point on the surface of the sphere</param>
+        /// <param name="position">The center position of the sphere</param>
+        /// <returns>UV-coordinates of the surfacePoint</returns>
+        public override Point2 GetUvCoordinates(Point3 surfacePoint, Vec3 position)
         {
-            Vector3 surfaceNormal = Vec3.Normalize(Util.FromAToB(centerPosition, surfacePoint));
+            Vector3 surfaceNormal = Vec3.Normalize(Util.FromAToB(position, surfacePoint));
 
-            // Upper bound of the calculation is too low, magic number for correction
-            float u = 1.77f * (float) ((Math.PI + Math.Atan2(-surfaceNormal.Z, surfaceNormal.X)) / (2 * Math.PI));
-            u = Math.Clamp(u, 0f, 1f);
-            //
-            // if (u > 1)
-            // {
-            //     throw new
-            //         ApplicationException($"Scuffed u term calculation caused invalid result:{u}, clamp the result or fix the algorithm"
-            //                             );
-            // }
+            float u = (float) ((Math.PI + Math.Atan2(-surfaceNormal.Z, surfaceNormal.X)) / (2 * Math.PI));
+            // Upper bound of the calculation is too low, using magic number and clamping for correction
+            u = Math.Clamp(1.77f * u, 0f, 1f);
 
             float v = (float) (Math.Acos(surfaceNormal.Y) / Math.PI);
 
@@ -56,13 +54,19 @@ namespace LEA_2021
         }
 
 
-        /// Calculate intersection point given the quadratic formula
+        /// <summary>
+        ///     Make an intersection test with the ray and this sphere
+        /// </summary>
+        /// <param name="ray">A ray to test for intersection with the plane</param>
+        /// <param name="center">The center position of the sphere</param>
+        /// <returns>A value >0 representing the distance to intersection along the ray or -1f if no intersection occurs</returns>
         public override float Intersect(Ray ray, Point3 center)
         {
-            Vector3 CO = Util.FromAToB(ray.Origin, center);
+            // Based on https://github.com/ssloy/tinyraytracer/wiki/Part-1:-understandable-raytracing
+            Vector3 Oc = Util.FromAToB(ray.Origin, center);
 
-            float tca = Vec3.Dot(ray.Direction, CO);
-            float d2  = Vector3.Dot(CO, CO) - Util.Square(tca);
+            float tca = Vec3.Dot(ray.Direction, Oc);
+            float d2  = Vector3.Dot(Oc, Oc) - Util.Square(tca);
 
             // No intersection
             if (d2 > Util.Square(Radius))
@@ -82,7 +86,6 @@ namespace LEA_2021
                 return -1f;
             }
 
-            // TODO: Try to uncomment for refraction
             // One intersection is behind the rays origin, we must be inside the sphere
             if (t1 < float.Epsilon || t2 < float.Epsilon)
             {
@@ -98,9 +101,15 @@ namespace LEA_2021
         }
 
 
-        public override Vec3 GetSurfaceNormal(Point3 intersection, Point3 position)
+        /// <summary>
+        ///     Get the surface normal at a given surfacePoint
+        /// </summary>
+        /// <param name="surfacePoint">A point on the surface of the sphere</param>
+        /// <param name="position">The center position of the sphere</param>
+        /// <returns>The surface normal at the surfacePoint</returns>
+        public override Vec3 GetSurfaceNormal(Point3 surfacePoint, Point3 position)
         {
-            return Vec3.Normalize(Util.FromAToB(position, intersection));
+            return Vec3.Normalize(Util.FromAToB(position, surfacePoint));
         }
     }
 }

@@ -492,11 +492,11 @@ namespace LEA_2021
 
             for (int i = 0; i < Metadata.NumIterations; ++i)
             {
-                Progress = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
-                OnPropertyChanged("Progress");
-
-                for (int column = 0; column < Metadata.Height; ++column)
+                for (int column = 0; column < Metadata.Width; ++column)
                 {
+                    Progress = Convert.ToInt32((column + i * Metadata.Width) / (float) (Metadata.Width * Metadata.NumIterations) * 100);
+                    OnPropertyChanged("Progress");
+
                     for (int row = 0; row < Metadata.Height; ++row)
                     {
                         Ray primaryRay = CastPrimaryRay(column, row);
@@ -520,13 +520,13 @@ namespace LEA_2021
 
             for (int i = 0; i < Metadata.NumIterations; ++i)
             {
-                Progress = Convert.ToInt32(i / (float) Metadata.NumIterations * 100);
-                OnPropertyChanged("Progress");
-
                 Parallel.For(0,
                              Metadata.Width,
                              column =>
                              {
+                                 Progress = Convert.ToInt32((column + i * Metadata.Width) / (float) (Metadata.Width * Metadata.NumIterations) * 100);
+                                 OnPropertyChanged("Progress");
+
                                  for (int row = 0; row < Metadata.Height; ++row)
                                  {
                                      Ray primaryRay = CastPrimaryRay(column, row);

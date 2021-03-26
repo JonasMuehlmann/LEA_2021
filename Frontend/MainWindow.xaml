@@ -23,7 +23,7 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Margin="20">
             <StackPanel DockPanel.Dock="Top">
-                <ProgressBar Value="{Binding Percentage, Mode=OneWay}" Height="0px" x:Name="ProgressBar" Maximum="100"
+                <ProgressBar Value="{Binding Progress, Mode=OneWay}" Height="0px" x:Name="ProgressBar" Maximum="100"
                              Minimum="1" Margin="0, 0, 0, 20" />
 
                 <Image Source="{Binding Image, Mode=OneWay, Converter={StaticResource ImageConverter}}" Height="330px" />

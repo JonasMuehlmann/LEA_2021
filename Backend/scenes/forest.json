@@ -1,69 +1,69 @@
 {
-    "Background": "Green",
-    "Metadata": {
-        "Width": 1280,
-        "Height": 720,
-        "Num_Iterations": 1
+  "Background": "Green",
+  "Metadata": {
+    "Width": 500,
+    "Height": 330,
+    "Num_Iterations": 1
+  },
+  "Camera": {
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
     },
-    "Camera": {
-        "Position": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 0.0
-        },
-        "Direction": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 1.0
-        },
-        "FOV": 100.0
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 1.0
     },
-    "Objects": [
-        {
-            "Name": "Brick Sphere 01",
-            "Shape": "Sphere",
-            "Material": "brick",
-            "Properties": {
-                "Radius": 20.0
-            },
-            "Position": {
-                "X": 20.0,
-                "Y": -10.0,
-                "Z": -35.0
-            }
-        },
-        {
-            "Name": "Tiles Sphere 01",
-            "Shape": "Sphere",
-            "Material": "floor_tiles",
-            "Properties": {
-                "Radius": 25.0
-            },
-            "Position": {
-                "X": -25.0,
-                "Y": 30.0,
-                "Z": -60.0
-            }
-        }
-    ],
-    "PointLights": [
-        {
-            "Color": "Red",
-            "Brightness": 1.0,
-            "Position": {
-                "X": 20.0,
-                "Y": 20.0,
-                "Z": 20.0
-            }
-        },
-        {
-            "Color": "Red",
-            "Brightness": 1.0,
-            "Position": {
-                "X": 20.0,
-                "Y": -20.0,
-                "Z": 20.0
-            }
-        }
-    ]
+    "FOV": 100.0
+  },
+  "Objects": [
+    {
+      "Name": "Brick Sphere 01",
+      "Shape": "Sphere",
+      "Material": "brick",
+      "Properties": {
+        "Radius": 20.0
+      },
+      "Position": {
+        "X": 20.0,
+        "Y": -10.0,
+        "Z": -35.0
+      }
+    },
+    {
+      "Name": "Tiles Sphere 01",
+      "Shape": "Sphere",
+      "Material": "floor_tiles",
+      "Properties": {
+        "Radius": 25.0
+      },
+      "Position": {
+        "X": -25.0,
+        "Y": 30.0,
+        "Z": -60.0
+      }
+    }
+  ],
+  "PointLights": [
+    {
+      "Color": "Red",
+      "Brightness": 1.0,
+      "Position": {
+        "X": 20.0,
+        "Y": 20.0,
+        "Z": 20.0
+      }
+    },
+    {
+      "Color": "Red",
+      "Brightness": 1.0,
+      "Position": {
+        "X": 20.0,
+        "Y": -20.0,
+        "Z": 20.0
+      }
+    }
+  ]
 }

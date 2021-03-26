@@ -24,6 +24,10 @@
                     <Setter Property="Padding" Value="5" />
                 </Style>
             </StackPanel.Resources>
+            
+            <TextBlock Padding="10" Background="Green" Foreground="White">
+                Die Elemente erfüllen aktuell keine Funktion.
+            </TextBlock>
 
             <StackPanel Orientation="Horizontal">
 

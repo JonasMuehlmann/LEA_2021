@@ -1,47 +1,47 @@
 {
-    "Background": "#fefefe",
-    "Metadata": {
-        "Width": 400,
-        "Height": 400,
-        "Num_Iterations": 5
+  "Background": "#fefefe",
+  "Metadata": {
+    "Width": 330,
+    "Height": 330,
+    "Num_Iterations": 1
+  },
+  "Camera": {
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
     },
-    "PointLights": [
-        {
-            "Color": "White",
-            "Brightness": 1,
-            "Position": {
-                "X": 20.0,
-                "Y": 20.0,
-                "Z": 20.0
-            }
-        }
-    ],
-    "Camera": {
-        "Position": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 0.0
-        },
-        "Direction": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 1.0
-        },
-        "FOV": 90.0
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 1.0
     },
-    "Objects": [
-        {
-            "Name": "Sphere",
-            "Shape": "Sphere",
-            "Material": "floor_tiles",
-            "Properties": {
-                "Radius": 17.0
-            },
-            "Position": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": -25.0
-            }
-        }
-    ]
+    "FOV": 90.0
+  },
+  "Objects": [
+    {
+      "Name": "Sphere",
+      "Shape": "Sphere",
+      "Material": "glass",
+      "Properties": {
+        "Radius": 17.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -25.0
+      }
+    }
+  ],
+  "PointLights": [
+    {
+      "Color": "White",
+      "Brightness": 1.0,
+      "Position": {
+        "X": 20.0,
+        "Y": 20.0,
+        "Z": 20.0
+      }
+    }
+  ]
 }

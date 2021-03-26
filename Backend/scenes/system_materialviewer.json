@@ -22,7 +22,7 @@
     {
       "Name": "Sphere",
       "Shape": "Sphere",
-      "Material": "brick",
+      "Material": "glass",
       "Properties": {
         "Radius": 17.0
       },
